@@ -1,0 +1,11 @@
+File to show folders in Git
+// This file is intentionally left blank.
+// It serves as a placeholder to ensure the directory structure is maintained in version control.
+// You can add actual repository implementation files here later.
+// For example, you might create a UserRepository.kt file to handle user authentication logic.
+// Remember to remove this .gitkeep file when you add real files to this directory.
+// .gitkeep is a convention used to keep empty directories in Git repositories.
+// More info: https://stackoverflow.com/questions/11589594/what-is-the-purpose-of-gitkeep-files
+// You can also use .gitignore files to ignore specific files or patterns in this directory if needed.
+// More info: https://git-scm.com/docs/gitignore
+// Happy coding!
