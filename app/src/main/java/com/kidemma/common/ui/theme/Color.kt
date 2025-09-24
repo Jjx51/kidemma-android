@@ -1,4 +1,4 @@
-package com.kidemma.common.components.theme
+package com.kidemma.common.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
