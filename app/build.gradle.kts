@@ -59,4 +59,17 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
     testImplementation(kotlin("test"))
+    implementation(libs.koin.android)
+    implementation(libs.retrofit)
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.retrofit2.kotlin.coroutines.adapter)
+    implementation(libs.adapter.rxjava2)
+    implementation(libs.lottie)
+    implementation(libs.glide)
+    implementation(libs.logging.interceptor)
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.gson)
+
 }
