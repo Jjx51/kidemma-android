@@ -51,7 +51,7 @@ class TodoComponentActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             KidemmaTheme {
-                Box(modifier = Modifier.padding(top = 16.dp)) {
+                Box(modifier = Modifier.padding(top = 24.dp)) {
                     TodoScreen()
                 }
             }
