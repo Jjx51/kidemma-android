@@ -2,6 +2,8 @@ package com.kidemma.samplearchitect.data.remote.todo
 
 import com.kidemma.samplearchitect.data.model.UseCaseResult
 import com.kidemma.samplearchitect.data.model.todo.TodoResponse
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.withContext
 
 /**
  * Copyright (c) 2025 Accenture. All rights reserved.
@@ -16,10 +18,12 @@ import com.kidemma.samplearchitect.data.model.todo.TodoResponse
  */
 
 class TodoAPIDataSource(
-    private val iTodoAPI: ITodoAPI
+    private val iTodoAPI: ITodoAPI,
+    private val ioDispatcher: CoroutineDispatcher
 ) {
     suspend fun fetchTodoList():
-            UseCaseResult<List<TodoResponse>> {
-        return iTodoAPI.fetchTodoList()
-    }
+            UseCaseResult<List<TodoResponse>> =
+        withContext(ioDispatcher) {
+            iTodoAPI.fetchTodoList()
+        }
 }

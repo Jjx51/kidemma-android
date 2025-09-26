@@ -16,7 +16,7 @@ import com.kidemma.samplearchitect.data.remote.todo.ITodoAPI
  *
  */
 
-class TodoMockAPI : ITodoAPI {
+class MockTodoAPI : ITodoAPI {
     override suspend fun fetchTodoList(): UseCaseResult<List<TodoResponse>> {
         return UseCaseResult.Success(
             listOf(

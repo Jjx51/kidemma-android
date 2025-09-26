@@ -6,7 +6,7 @@ import com.kidemma.samplearchitect.data.remote.todo.RetrofitTodoAPI
 import com.kidemma.samplearchitect.data.remote.todo.TodoAPI
 import com.kidemma.samplearchitect.data.remote.todo.TodoAPIDataSource
 import com.kidemma.samplearchitect.presentation.viewmodel.TodoViewModel
-import kidemma.samplearchitect.data.remote.todo.TodoMockAPI
+import kidemma.samplearchitect.data.remote.todo.MockTodoAPI
 import kidemma.samplearchitect.data.remote.todo.TodoMockDataSource
 import kidemma.samplearchitect.data.repository.TodoRepository
 import kidemma.samplearchitect.domain.FetchTodoUseCase
@@ -45,8 +45,8 @@ fun createAppModules(): Module = module() {
 
     single<ITodoAPI> { RetrofitTodoAPI(get()) }
 
-    single { TodoAPIDataSource(get()) }
-    single { TodoMockAPI() }
+    single { TodoAPIDataSource(get(), get()) }
+    single { MockTodoAPI() }
     single { TodoMockDataSource(get(), get()) }
     single { TodoRepository(get(), get()) }
     single { FetchTodoUseCase(get(), get()) }

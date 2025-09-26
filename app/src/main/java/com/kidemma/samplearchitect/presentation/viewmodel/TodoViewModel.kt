@@ -42,7 +42,7 @@ class TodoViewModel(private val fetchTodoUseCase: FetchTodoUseCase) : BaseViewMo
 
     private fun initTodoProcess() {
         viewModelScope.launch {
-            fetchTodos(DataSource.MOCK)
+            fetchTodos(DataSource.API)
         }
     }
 
@@ -53,6 +53,11 @@ class TodoViewModel(private val fetchTodoUseCase: FetchTodoUseCase) : BaseViewMo
             when (val result = fetchTodoUseCase(dataSource)) {
                 is UseCaseResult.Success -> {
                     _uiState.value = UIStates.Success(result.data)
+                    /*_uiState.value = UIStates.Error("Simulated error for testing")
+                    _uiEvent.emit(
+                        TodoUiEvent.ShowSnackbar(
+                            "TODOs cargados"))
+                     */
                 }
 
                 is UseCaseResult.Error -> {

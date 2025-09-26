@@ -18,7 +18,7 @@ import kotlinx.coroutines.withContext
  */
 
 class TodoMockDataSource(
-    private val iTodoAPI: TodoMockAPI,
+    private val iTodoAPI: MockTodoAPI,
     private val ioDispatcher: CoroutineDispatcher
 ) {
     suspend fun fetchTodoMockList():
