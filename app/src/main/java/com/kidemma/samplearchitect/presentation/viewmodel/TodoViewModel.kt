@@ -3,12 +3,17 @@ package com.kidemma.samplearchitect.presentation.viewmodel
 import androidx.lifecycle.viewModelScope
 import com.kidemma.samplearchitect.data.model.UseCaseResult
 import com.kidemma.samplearchitect.data.model.todo.TodoResponse
+import com.kidemma.samplearchitect.presentation.intent.TodoIntent
+import com.kidemma.samplearchitect.presentation.intent.TodoSideEffect
 import kidemma.samplearchitect.domain.FetchTodoUseCase
 import kidemma.samplearchitect.enums.DataSource
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.consumeAsFlow
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 
 /**
@@ -23,26 +28,30 @@ import kotlinx.coroutines.launch
  *
  */
 
-sealed class TodoUiEvent {
-    data class NavigateToDetails(val todoId: String) : TodoUiEvent()
-    data class ShowSnackbar(val message: String) : TodoUiEvent()
-}
-
 class TodoViewModel(private val fetchTodoUseCase: FetchTodoUseCase) : BaseViewModel() {
 
     private val _uiState = MutableStateFlow<UIStates<List<TodoResponse>>>(UIStates.Init)
     val uiState: StateFlow<UIStates<List<TodoResponse>>> = _uiState
 
-    private val _uiEvent = MutableSharedFlow<TodoUiEvent>()
-    val uiEvent = _uiEvent.asSharedFlow()
+    private val _sideEffect = Channel<TodoSideEffect>(Channel.UNLIMITED)
+    val sideEffect = _sideEffect.receiveAsFlow()
 
     init {
-        initTodoProcess()
+        sendIntent(TodoIntent.LoadTodos)
     }
 
-    private fun initTodoProcess() {
+    fun sendIntent(intent: TodoIntent) {
         viewModelScope.launch {
-            fetchTodos(DataSource.API)
+            when (intent) {
+                is TodoIntent.LoadTodos -> fetchTodos(DataSource.API)
+                is TodoIntent.NavigateToDetails -> _sideEffect.send(
+                    TodoSideEffect.NavigateToDetails(intent.todoId)
+                )
+
+                is TodoIntent.ShowSnackbar -> _sideEffect.send(
+                    TodoSideEffect.ShowSnackbar("TODOs cargados")
+                )
+            }
         }
     }
 
@@ -53,35 +62,18 @@ class TodoViewModel(private val fetchTodoUseCase: FetchTodoUseCase) : BaseViewMo
             when (val result = fetchTodoUseCase(dataSource)) {
                 is UseCaseResult.Success -> {
                     _uiState.value = UIStates.Success(result.data)
-                    /*_uiState.value = UIStates.Error("Simulated error for testing")
-                    _uiEvent.emit(
-                        TodoUiEvent.ShowSnackbar(
-                            "TODOs cargados"))
-                     */
                 }
 
                 is UseCaseResult.Error -> {
                     _uiState.value = UIStates.Error(
                         result.exception.message ?: "Error desconocido"
                     )
-                    _uiEvent.emit(
-                        TodoUiEvent.ShowSnackbar(
-                            "Error al cargar los TODOs"
-                        )
-                    )
                 }
 
                 is UseCaseResult.Unauthorized -> {
                     _uiState.value = UIStates.Unauthorized(result.message)
-                    _uiEvent.emit(TodoUiEvent.ShowSnackbar("Sesión expirada"))
                 }
             }
-        }
-    }
-
-    fun onTodoClicked(todoId: String) {
-        viewModelScope.launch {
-            _uiEvent.emit(TodoUiEvent.NavigateToDetails(todoId))
         }
     }
 }

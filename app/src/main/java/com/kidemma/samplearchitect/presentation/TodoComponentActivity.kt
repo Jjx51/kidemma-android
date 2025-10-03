@@ -23,13 +23,13 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.kidemma.samplearchitect.data.model.todo.TodoResponse
+import com.kidemma.samplearchitect.presentation.intent.TodoIntent
+import com.kidemma.samplearchitect.presentation.intent.TodoSideEffect
 import com.kidemma.samplearchitect.presentation.ui.theme.KidemmaTheme
-import com.kidemma.samplearchitect.presentation.viewmodel.TodoUiEvent
 import com.kidemma.samplearchitect.presentation.viewmodel.TodoViewModel
 import com.kidemma.samplearchitect.presentation.viewmodel.UIStates
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -63,7 +63,8 @@ class TodoComponentActivity : ComponentActivity() {
     @Composable
     fun TodoScreen(viewModel: TodoViewModel = todoViewModel) {
 
-        val uiState by viewModel.uiState.collectAsState()
+        val state by viewModel.uiState.collectAsState()
+        val sideEffectFlow = viewModel.sideEffect
         val snackbarHostState = remember { SnackbarHostState() }
 
         Scaffold(
@@ -71,20 +72,16 @@ class TodoComponentActivity : ComponentActivity() {
         ) { paddingValues ->
 
             LaunchedEffect(Unit) {
-                viewModel.uiEvent.collect { event ->
+                sideEffectFlow.collect { event ->
                     when (event) {
-                        is TodoUiEvent.ShowSnackbar -> {
-                            snackbarHostState.showSnackbar(
-                                message = event.message,
-                                actionLabel = "Close"
-                            )
-                        }
-
-                        is TodoUiEvent.NavigateToDetails -> {
+                        is TodoSideEffect.NavigateToDetails -> {
                             Log.d(
                                 "TodoScreen", "Navigate to details of ${event.todoId}"
                             )
                         }
+
+                        is TodoSideEffect.ShowSnackbar ->
+                            snackbarHostState.showSnackbar(event.message)
                     }
                 }
             }
@@ -95,7 +92,7 @@ class TodoComponentActivity : ComponentActivity() {
                     .padding(top = 24.dp)
                     .padding(paddingValues)
             ) {
-                when (uiState) {
+                when (state) {
                     is UIStates.Init -> Text("Initial Screen")
                     is UIStates.Loading -> {
                         Box(modifier = Modifier.fillMaxSize()) {
@@ -106,8 +103,9 @@ class TodoComponentActivity : ComponentActivity() {
                     }
 
                     is UIStates.Success -> {
+
                         val todos = (
-                                uiState as UIStates.Success<List<TodoResponse>>).value
+                                state as UIStates.Success<List<TodoResponse>>).value
                             ?: emptyList()
                         LazyColumn {
                             items(todos) { todo ->
@@ -115,8 +113,10 @@ class TodoComponentActivity : ComponentActivity() {
                                     modifier = Modifier
                                         .fillMaxWidth()
                                         .clickable {
-                                            viewModel.onTodoClicked(
-                                                todo.id.toString()
+                                            viewModel.sendIntent(
+                                                TodoIntent.NavigateToDetails(
+                                                    todo.id.toString()
+                                                )
                                             )
                                         }
                                         .padding(16.dp)
@@ -128,11 +128,11 @@ class TodoComponentActivity : ComponentActivity() {
                     }
 
                     is UIStates.Error -> {
-                        Log.e("TodoScreen", (uiState as UIStates.Error).message)
+                        Log.e("TodoScreen", (state as UIStates.Error).message)
                     }
 
                     is UIStates.Unauthorized -> {
-                        Log.e("TodoScreen", (uiState as UIStates.Unauthorized).message)
+                        Log.e("TodoScreen", (state as UIStates.Unauthorized).message)
                     }
                 }
             }
