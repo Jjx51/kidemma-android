@@ -21,7 +21,7 @@ class MainActivity : ComponentActivity() {
             KidemmaTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     Greeting(
-                        name = getString(R.string.app_name),
+                        name = "Kidemma",
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
