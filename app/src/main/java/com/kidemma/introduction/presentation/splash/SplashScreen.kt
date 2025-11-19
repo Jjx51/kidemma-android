@@ -1,19 +1,21 @@
-package com.kidemma.introduction.presentation.Splash
+package com.kidemma.introduction.presentation.splash
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
-import androidx.compose.material3.Button
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat.getString
 import com.kidemma.R
+import com.kidemma.common.components.KidemmaPrimaryButton
+import com.kidemma.common.ui.theme.KidemmaTheme
 
 @Composable
 fun SplashScreen(navigateToOnboarding: (String) -> Unit = {}) {
@@ -26,19 +28,25 @@ fun SplashScreen(navigateToOnboarding: (String) -> Unit = {}) {
         Spacer(modifier = Modifier.weight(1f))
         Text(
                 "Splash",
-                fontSize = 24.sp
+                style = MaterialTheme.typography.headlineLarge
         )
         Spacer(modifier = Modifier.height(24.dp))
-        Button(onClick = {
+        KidemmaPrimaryButton(text = "Go to Onboarding") {
             navigateToOnboarding(
                     getString(
                             context,
                             R.string.app_name
                     )
             )
-        }) {
-            Text(text = "Go to Onboarding")
         }
         Spacer(modifier = Modifier.weight(1f))
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun SplashScreenPreview() {
+    KidemmaTheme {
+        SplashScreen()
     }
 }

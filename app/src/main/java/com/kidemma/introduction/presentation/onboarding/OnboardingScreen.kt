@@ -1,18 +1,20 @@
-package com.kidemma.introduction.presentation.Onboarding
+package com.kidemma.introduction.presentation.onboarding
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import com.kidemma.common.ui.theme.KidemmaTheme
 
 @Composable
-fun OnboardingScreen(exampleArg: String) {
+fun OnboardingScreen(exampleArg: String = "") {
     Column(
             modifier = Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally
@@ -20,12 +22,21 @@ fun OnboardingScreen(exampleArg: String) {
         Spacer(modifier = Modifier.weight(1f))
         Text(
                 "Onboarding",
-                fontSize = 24.sp
+                style = MaterialTheme.typography.headlineLarge
         )
         Spacer(modifier = Modifier.height(24.dp))
         Text(
-                "Hello $exampleArg!"
+                "Hello $exampleArg!",
+                style = MaterialTheme.typography.bodyLarge
         )
         Spacer(modifier = Modifier.weight(1f))
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun OnboardingScreenPreview() {
+    KidemmaTheme {
+        OnboardingScreen("Preview")
     }
 }
