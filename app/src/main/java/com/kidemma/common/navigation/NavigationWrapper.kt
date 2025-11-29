@@ -5,8 +5,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
-import com.kidemma.introduction.presentation.Onboarding.OnboardingScreen
-import com.kidemma.introduction.presentation.Splash.SplashScreen
+import com.kidemma.introduction.presentation.onboarding.OnboardingScreen
+import com.kidemma.introduction.presentation.splash.SplashScreen
 
 @Composable
 fun NavigationWrapper() {
