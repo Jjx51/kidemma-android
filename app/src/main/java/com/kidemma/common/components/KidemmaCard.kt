@@ -22,6 +22,7 @@ import com.kidemma.common.ui.theme.KidemmaTheme
 fun KidemmaCard(
     modifier: Modifier = Modifier,
     elevation: Dp = KidemmaDimens.ElevationSmall,
+    onClick: (() -> Unit)? = null,
     content: @Composable ColumnScope.() -> Unit
 ) {
     Card(
@@ -42,7 +43,9 @@ fun KidemmaCard(
 @Composable
 fun KidemmaCardPreview() {
     KidemmaTheme {
-        KidemmaCard(modifier = Modifier.padding(16.dp)) {
+        KidemmaCard(
+            modifier = Modifier.padding(16.dp)
+        ) {
             Column(
                 modifier = Modifier.padding(16.dp),
                 horizontalAlignment = Alignment.CenterHorizontally

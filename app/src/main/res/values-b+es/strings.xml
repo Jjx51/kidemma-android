@@ -61,4 +61,20 @@
     <string name="agenda_see_more">Ver más</string>
     <string name="agenda_collapse">Contraer</string>
 
+    <!-- Home Admin -->
+    <string name="class_status_cardview_title">Estatus de clases</string>
+    <string name="class_status_cardview_icon">Icono de Estatus de clase</string>
+    <string name="class_status_possibly_cancel" >Posibles Cancelaciones</string>
+    <string name="class_status_definitely_cancel">Cancelaciones definitivas</string>
+
+    <string name="payment_status_cardview_title">Estatus de pagos</string>
+    <string name="payment_status_cardview_icon">Icono de Estatus de pagos</string>
+    <string name="payment_status_pending">Pagos pendientes</string>
+    <string name="payment_status_expired">Pagos vencidos</string>
+    <string name="payment_status_approvals">Pagos por aprobar</string>
+
+    <string name="complaints_cardview_title">Denuncias</string>
+    <string name="complaints_cardview_icon">Icono de Denuncias</string>
+    <string name="complaints_pending">Pendientes</string>
+    <string name="complaints_discarded">Desactivadas</string>
 </resources>
