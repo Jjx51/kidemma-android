@@ -1,4 +1,9 @@
 <resources>
     <string name="title_activity_todo_component">TodoComponentActivity</string>
     <string name="app_name" translatable="false">Kidemma</string>
+
+    <!-- Validation Errors -->
+    <string name="error_required">This field is required</string>
+    <string name="error_invalid_email">Invalid email format</string>
+    <string name="error_min_length">Must be at least %1$d characters</string>
 </resources>
