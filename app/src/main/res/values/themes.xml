@@ -2,4 +2,17 @@
 <resources>
 
     <style name="Theme.Kidemma" parent="android:Theme.Material.Light.NoActionBar" />
+    <!-- THEME FOR THE SPLASH -->
+    <style name="Theme.App.Starting" parent="Theme.SplashScreen">
+
+        <item name="windowSplashScreenBackground">@color/background_color</item>
+
+        <item name="windowSplashScreenAnimatedIcon">@drawable/kidemma_circle</item>
+
+        <!-- Time that should show the splash screen before the theme is applied -->
+        <item name="windowSplashScreenAnimationDuration">3</item>
+
+        <!-- Theme that will be applied after the splash screen animation -->
+        <item name="postSplashScreenTheme">@style/Theme.Kidemma</item>
+    </style>
 </resources>
