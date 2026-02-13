@@ -1,9 +1,9 @@
-package com.kidemma
+package com.kidemma.core
 
 import android.app.Application
 import com.kidemma.samplearchitect.presentation.module.createAppModules
 import org.koin.android.ext.koin.androidContext
-import org.koin.core.context.GlobalContext.startKoin
+import org.koin.core.context.GlobalContext
 
 /**
  * Copyright (c) 2025 Accenture. All rights reserved.
@@ -23,7 +23,7 @@ class MainApplication : Application() {
 
         val appModules = createAppModules()
 
-        startKoin {
+        GlobalContext.startKoin {
             androidContext(applicationContext)
             modules(appModules)
         }

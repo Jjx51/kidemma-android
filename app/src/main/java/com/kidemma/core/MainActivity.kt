@@ -1,4 +1,4 @@
-package com.kidemma
+package com.kidemma.core
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
