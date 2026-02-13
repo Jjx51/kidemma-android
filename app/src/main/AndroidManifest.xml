@@ -16,7 +16,7 @@
             android:name=".samplearchitect.presentation.TodoComponentActivity"
             android:exported="true"
             android:label="@string/title_activity_todo_component"
-            android:theme="@style/Theme.Kidemma" >
+            android:theme="@style/Theme.App.Starting" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
