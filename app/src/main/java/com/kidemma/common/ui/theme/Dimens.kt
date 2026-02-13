@@ -4,7 +4,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 object KidemmaDimens {
-    // General corner radius sizes
     val CornerRadiusSmall = 6.dp
     val CornerRadiusMedium = 8.dp
     val CornerRadiusLarge = 10.dp
@@ -16,6 +15,8 @@ object KidemmaDimens {
     val CardCornerRadiusMedium = 12.dp
 
     val ElevationSmall = 3.dp
+
+    val CardElevation = 6.dp
 
     // Material 3 standard sizes (see: https://developer.android.com/develop/ui/compose/designsystems/material3)
     val HeadlineLarge = 32.sp

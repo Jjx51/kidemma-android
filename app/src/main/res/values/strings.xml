@@ -63,4 +63,8 @@
     <string name="agenda_see_more">See more</string>
     <string name="agenda_collapse">Collapse</string>
 
+
+<!--    CreateFamilyScreen-->
+    <string name="nickname">Alias: %1$s</string>
+    <string name="family">Familia: %1$s</string>
 </resources>
