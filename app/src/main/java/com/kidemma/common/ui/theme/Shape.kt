@@ -8,3 +8,11 @@ val KidemmaShapes = Shapes(
         medium = RoundedCornerShape(KidemmaDimens.CornerRadiusMedium),
         large = RoundedCornerShape(KidemmaDimens.CornerRadiusLarge)
 )
+
+val KidemmaButtonShapes = Shapes(
+    medium = RoundedCornerShape(KidemmaDimens.ButtonCornerRadiusMedium),
+)
+
+val KidemmaCardShapes = Shapes(
+    medium = RoundedCornerShape(KidemmaDimens.CardCornerRadiusMedium),
+)

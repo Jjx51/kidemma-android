@@ -10,8 +10,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.kidemma.common.ui.theme.KidemmaButtonShapes
 import com.kidemma.common.ui.theme.KidemmaColors
-import com.kidemma.common.ui.theme.KidemmaShapes
 import com.kidemma.common.ui.theme.KidemmaTheme
 import com.kidemma.common.ui.theme.KidemmaTypography
 
@@ -25,8 +25,7 @@ fun KidemmaPrimaryButton(
     Button(
             onClick = onClick,
             modifier = modifier,
-            enabled = enabled,
-            shape = KidemmaShapes.medium,
+            enabled = enabled, shape = KidemmaButtonShapes.medium,
             colors = ButtonDefaults.buttonColors(
                     containerColor = KidemmaColors.PrimaryButton,
                     contentColor = KidemmaColors.PrimaryButtonText,
@@ -55,8 +54,7 @@ fun KidemmaSecondaryButton(
             border = BorderStroke(
                     1.dp,
                     if (enabled) KidemmaColors.SecondaryButtonBorder else KidemmaColors.DisabledButtonBorder
-            ),
-            shape = KidemmaShapes.medium,
+            ), shape = KidemmaButtonShapes.medium,
             colors = ButtonDefaults.outlinedButtonColors(
                     containerColor = KidemmaColors.SecondaryButton,
                     contentColor = KidemmaColors.SecondaryButtonText,
