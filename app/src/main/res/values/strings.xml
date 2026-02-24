@@ -6,4 +6,13 @@
     <string name="error_required">This field is required</string>
     <string name="error_invalid_email">Invalid email format</string>
     <string name="error_min_length">Must be at least %1$d characters</string>
+
+    <!-- Others screen -->
+    <string name="administration_panel">Panel administrativo</string>
+    <string name="others_about_us">¿Quiénes somos?</string>
+    <string name="others_staff">Personal de trabajo</string>
+    <string name="others_contact_and_location">Contacto y ubicación</string>
+    <string name="others_alliances">Alianzas</string>
+    <string name="others_complaints_and_suggestions">Foro</string>
+    <string name="public_links">Enlaces públicos</string>
 </resources>
