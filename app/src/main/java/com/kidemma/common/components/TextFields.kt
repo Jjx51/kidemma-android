@@ -10,9 +10,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.TextField
@@ -31,7 +28,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.kidemma.R
 import com.kidemma.common.ui.theme.KidemmaColors
-import com.kidemma.common.ui.theme.KidemmaDimens
 import com.kidemma.common.ui.theme.KidemmaTheme
 
 @Composable
@@ -44,17 +40,10 @@ fun KidemmaTextFieldWithFilter(
 ) {
 
     Row (verticalAlignment = Alignment.CenterVertically){
-        Card(
+        KidemmaCard (
             modifier = modifier
                 .weight(4f)
-                .height(60.dp),
-            shape = RoundedCornerShape(14.dp),
-            colors = CardDefaults.cardColors(
-                containerColor = Color.White
-            ),
-            elevation = CardDefaults.cardElevation(
-                defaultElevation = KidemmaDimens.CardElevation
-            )
+                .height(60.dp)
         ) {
             Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                 TextField(
@@ -90,11 +79,8 @@ fun KidemmaTextFieldWithFilter(
         Spacer(Modifier.width(10.dp))
 
         Column(Modifier.weight(1f)) {
-            Card(
-                modifier = Modifier.size(60.dp),
-                shape = RoundedCornerShape(14.dp),
-                colors = CardDefaults.cardColors(containerColor = KidemmaColors.Secondary),
-                elevation = CardDefaults.cardElevation(defaultElevation = KidemmaDimens.CardElevation)
+            KidemmaCard(
+                modifier = Modifier.size(60.dp)
             ) {
                 Box (Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                     Icon(

@@ -61,4 +61,11 @@
     <string name="agenda_see_more">Ver más</string>
     <string name="agenda_collapse">Contraer</string>
 
+
+    <!--    CreateFamilyScreen-->
+    <string name="family_screen_nickname">Alias: %1$s</string>
+    <string name="family_screen_family">Familia: %1$s</string>
+    <string name="family_screen_create_family">Crear familia</string>
+    <string name="family_screen_write_something">Escribe algo</string>
+
 </resources>

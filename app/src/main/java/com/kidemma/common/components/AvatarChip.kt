@@ -20,9 +20,9 @@ import com.kidemma.common.ui.theme.KidemmaColors
 @Composable
 fun AvatarChip(
     modifier: Modifier = Modifier,
-    userImage: Int = R.drawable.img_boy
+    memberImage: Int = R.drawable.img_boy
 ) {
-    val avatar = painterResource(userImage)
+    val avatar = painterResource(memberImage)
     Card(
         modifier = modifier.size(60.dp),
         shape = CircleShape,
