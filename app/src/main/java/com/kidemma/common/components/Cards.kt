@@ -15,6 +15,7 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -31,6 +32,7 @@ fun KidemmaFamilyCardItem(
     familyNickname: String,
     onNavigateToDetail: () -> Unit
 ) {
+    val icArrowRight = painterResource(R.drawable.ic_arrow_right)
     Card(
         modifier = Modifier
             .fillMaxWidth(),
@@ -40,8 +42,8 @@ fun KidemmaFamilyCardItem(
     ) {
         Row(Modifier.padding(15.dp), verticalAlignment = Alignment.CenterVertically) {
             Column(modifier = Modifier.weight(8f), verticalArrangement = Arrangement.spacedBy(15.dp)) {
-                KidemmaLabelLarge(text = stringResource(R.string.family, familyName))
-                KidemmaBodyLarge(text = stringResource(R.string.nickname, familyNickname))
+                KidemmaLabelLarge(text = stringResource(R.string.family_screen_family, familyName))
+                KidemmaBodyLarge(text = stringResource(R.string.family_screen_nickname, familyNickname))
 
                 LazyRow() {
                     items(6) {
@@ -56,7 +58,7 @@ fun KidemmaFamilyCardItem(
                     .clickable { onNavigateToDetail() }
             ) {
                 Icon(
-                    painter = painterResource(R.drawable.ic_arrow_right),
+                    painter = icArrowRight,
                     contentDescription = "Ver detalles",
                     tint = KidemmaColors.Icon,
                     modifier = Modifier.size(30.dp)

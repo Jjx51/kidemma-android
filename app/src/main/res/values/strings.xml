@@ -65,6 +65,8 @@
 
 
 <!--    CreateFamilyScreen-->
-    <string name="nickname">Alias: %1$s</string>
-    <string name="family">Familia: %1$s</string>
+    <string name="family_screen_nickname">Alias: %1$s</string>
+    <string name="family_screen_family">Familia: %1$s</string>
+    <string name="family_screen_create_family">Crear familia</string>
+    <string name="family_screen_write_something">Escribe algo</string>
 </resources>

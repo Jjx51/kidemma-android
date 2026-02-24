@@ -26,6 +26,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.kidemma.R
@@ -37,15 +38,17 @@ import com.kidemma.common.ui.theme.KidemmaTheme
 fun KidemmaTextFieldWithFilter(
     value: String,
     onValueChange: (String) -> Unit,
-    placeholder : String = "Escribe algo",
+    placeholder : String = stringResource(R.string.family_screen_write_something),
     onClickFilter: () -> Unit,
     modifier: Modifier = Modifier
 ) {
 
     Row (verticalAlignment = Alignment.CenterVertically){
         Card(
-            modifier = modifier.weight(4f).height(65.dp),
-            shape = RoundedCornerShape(14.dp), //definir bien los corner radius
+            modifier = modifier
+                .weight(4f)
+                .height(60.dp),
+            shape = RoundedCornerShape(14.dp),
             colors = CardDefaults.cardColors(
                 containerColor = Color.White
             ),
@@ -58,7 +61,7 @@ fun KidemmaTextFieldWithFilter(
                     modifier = Modifier.fillMaxWidth(),
                     value = value,
                     onValueChange = onValueChange,
-                    label = {
+                    placeholder = {
                         KidemmaLabelLarge(
                             text = placeholder,
                             color = KidemmaColors.PlaceholderForm
@@ -67,7 +70,9 @@ fun KidemmaTextFieldWithFilter(
                     trailingIcon = {
                         Icon(
                             painter = painterResource(R.drawable.ic_search),
-                            contentDescription = "Search Icon"
+                            tint = KidemmaColors.PlaceholderForm,
+                            contentDescription = "Search Icon",
+                            modifier = Modifier.size(30.dp)
                         )
                     },
                     singleLine = true,
@@ -86,7 +91,7 @@ fun KidemmaTextFieldWithFilter(
 
         Column(Modifier.weight(1f)) {
             Card(
-                modifier = Modifier.size(65.dp),
+                modifier = Modifier.size(60.dp),
                 shape = RoundedCornerShape(14.dp),
                 colors = CardDefaults.cardColors(containerColor = KidemmaColors.Secondary),
                 elevation = CardDefaults.cardElevation(defaultElevation = KidemmaDimens.CardElevation)
@@ -95,8 +100,10 @@ fun KidemmaTextFieldWithFilter(
                     Icon(
                         painter = painterResource(R.drawable.ic_filter),
                         contentDescription = "Filter Icon",
-                        tint = Color.Gray,
-                        modifier = Modifier.size(30.dp).clickable{onClickFilter()},
+                        tint = KidemmaColors.PlaceholderForm,
+                        modifier = Modifier
+                            .size(30.dp)
+                            .clickable { onClickFilter() },
                     )
                 }
 

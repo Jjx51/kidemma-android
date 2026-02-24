@@ -3,6 +3,7 @@ package com.kidemma.common.components
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Card
@@ -17,16 +18,20 @@ import com.kidemma.R
 import com.kidemma.common.ui.theme.KidemmaColors
 
 @Composable
-fun AvatarChip(modifier: Modifier = Modifier) {
+fun AvatarChip(
+    modifier: Modifier = Modifier,
+    userImage: Int = R.drawable.img_boy
+) {
+    val avatar = painterResource(userImage)
     Card(
-        modifier = Modifier.size(60.dp),
+        modifier = modifier.size(60.dp),
         shape = CircleShape,
         border = BorderStroke(3.dp, color = KidemmaColors.Icon),
         colors = CardDefaults.cardColors(containerColor = KidemmaColors.Secondary)
     ) {
         Image(
-            modifier = Modifier.fillMaxSize(),
-            painter = painterResource(R.drawable.img_avatar),
+            modifier = Modifier.fillMaxSize().padding(6.dp),
+            painter = avatar,
             contentDescription = "Avatar",
             contentScale = ContentScale.Crop
         )
@@ -36,6 +41,6 @@ fun AvatarChip(modifier: Modifier = Modifier) {
 
 @Preview(showBackground = true)
 @Composable
-fun AvatarChipPreview(modifier: Modifier = Modifier) {
+fun AvatarChipPreview() {
     AvatarChip()
 }

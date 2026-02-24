@@ -29,7 +29,7 @@ object KidemmaDimens {
     val BodySmall = 12.sp
 
     // Material 3 standard sizes (see: https://developer.android.com/develop/ui/compose/designsystems/material3)
-    val LabelLarge = 14.sp
+    val LabelLarge = 16.sp
     val LabelMedium = 12.sp
     val LabelSmall = 11.sp
     

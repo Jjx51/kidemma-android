@@ -3,6 +3,7 @@ package com.kidemma.home_admin.tabs.families
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -15,8 +16,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.kidemma.R
 import com.kidemma.common.components.KidemmaFamilyCardItem
 import com.kidemma.common.components.KidemmaPrimaryButton
 import com.kidemma.common.components.KidemmaTextFieldWithFilter
@@ -31,8 +34,11 @@ fun CreateFamilyScreen() {
 fun CreateFamilyContent() {
     var text by remember { mutableStateOf("") }
     Column(
-        Modifier.fillMaxSize().background(KidemmaColors.Background).padding(horizontal = 20.dp, vertical = 15.dp),
-        verticalArrangement = Arrangement.spacedBy(15.dp)
+        Modifier
+            .fillMaxSize()
+            .background(KidemmaColors.Background)
+            .padding(horizontal = 20.dp).padding(top = 15.dp),
+        verticalArrangement = Arrangement.spacedBy(18.dp)
     ) {
         KidemmaTextFieldWithFilter(
             value = text,
@@ -41,15 +47,22 @@ fun CreateFamilyContent() {
             onClickFilter = { /* Acción al hacer clic en el filtro */ },
         )
 
-        KidemmaPrimaryButton(modifier = Modifier.fillMaxWidth().height(65.dp), text = "Crear familia") { }
+        KidemmaPrimaryButton(modifier = Modifier
+            .fillMaxWidth()
+            .height(65.dp), text = stringResource(
+            R.string.family_screen_create_family
+        )) { }
 
-        LazyColumn() {
-            items(4){
+        LazyColumn(
+            verticalArrangement = Arrangement.spacedBy(30.dp),
+            contentPadding = PaddingValues(
+                bottom = 20.dp)
+        ) {
+            items(8){
                 KidemmaFamilyCardItem(
                     familyName = "Hernandez Ramirez",
                     familyNickname = "Familia mascotas"
                 ) { }
-                Spacer(Modifier.height(30.dp))
             }
         }
     }
