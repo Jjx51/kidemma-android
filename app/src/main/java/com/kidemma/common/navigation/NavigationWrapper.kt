@@ -4,25 +4,17 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.toRoute
 import com.kidemma.introduction.presentation.onboarding.OnboardingScreen
-import com.kidemma.introduction.presentation.splash.SplashScreen
+import com.kidemma.introduction.splash.presentation.SplashScreen
 
 @Composable
 fun NavigationWrapper() {
     val navController = rememberNavController()
     NavHost(
             navController = navController,
-            startDestination = Splash
+            startDestination = AppRoute.Splash
     ) {
-        composable<Splash> {
-            SplashScreen { exampleArg ->
-                navController.navigate(OnboardingArguments(exampleArg))
-            }
-        }
-        composable<OnboardingArguments> { backstackEntry ->
-            val onboardingArguments: OnboardingArguments = backstackEntry.toRoute()
-            OnboardingScreen(onboardingArguments.exampleArg)
-        }
+        composable<AppRoute.Splash> { SplashScreen(navController) }
+        composable<AppRoute.Onboarding> { OnboardingScreen(navController) }
     }
 }

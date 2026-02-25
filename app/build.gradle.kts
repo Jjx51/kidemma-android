@@ -42,6 +42,10 @@ android {
 }
 
 dependencies {
+    // Koin
+    implementation(libs.koin.android)
+    implementation(libs.koin.compose)
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -59,7 +63,6 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
     testImplementation(kotlin("test"))
-    implementation(libs.koin.android)
     implementation(libs.retrofit)
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.android)

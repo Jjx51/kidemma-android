@@ -9,12 +9,17 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.kidemma.common.components.KidemmaBodyLarge
 import com.kidemma.common.components.KidemmaHeadlineLarge
 import com.kidemma.common.ui.theme.KidemmaTheme
 
 @Composable
-fun OnboardingScreen(exampleArg: String = "") {
+fun OnboardingScreen(
+    navController: NavHostController,
+    exampleArg: String = ""
+) {
     Column(
             modifier = Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally
@@ -30,7 +35,8 @@ fun OnboardingScreen(exampleArg: String = "") {
 @Preview(showBackground = true)
 @Composable
 fun OnboardingScreenPreview() {
+    val navController = rememberNavController()
     KidemmaTheme {
-        OnboardingScreen("Preview")
+        OnboardingScreen(navController,"Preview")
     }
 }
