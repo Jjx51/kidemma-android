@@ -2,6 +2,7 @@ package com.kidemma.introduction.onboarding.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.kidemma.common.data.local.UserPreferencesRepository
 import com.kidemma.common.navigation.AppRoute
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -18,7 +19,9 @@ import kotlinx.coroutines.launch
  * Created on: 24/02/26
  * Last modified: 24/02/26
  */
-class OnboardingViewModelImpl() : ViewModel(), OnboardingViewModel {
+class OnboardingViewModelImpl(
+    private val userPreferencesRepository: UserPreferencesRepository
+) : ViewModel(), OnboardingViewModel {
 
     private val onboardingPages = OnboardingContentProvider.getOnboardingPages()
 
@@ -61,7 +64,7 @@ class OnboardingViewModelImpl() : ViewModel(), OnboardingViewModel {
 
     private fun finishOnboarding() {
         viewModelScope.launch {
-            //userPreferencesRepository.setOnboardingCompleted(true)
+            userPreferencesRepository.setOnboardingCompleted(true)
             _effects.emit(OnboardingContract.Effect.NavigateTo(AppRoute.Login))
         }
     }

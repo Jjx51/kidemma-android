@@ -31,4 +31,15 @@ object KidemmaDimens {
     val LabelLarge = 14.sp
     val LabelMedium = 12.sp
     val LabelSmall = 11.sp
+    
+    val SpacerExtraSmall = 4.dp
+    val SpacerSmall = 8.dp
+    val SpacerMedium = 16.dp
+    val SpacerLarge = 24.dp
+    val SpacerExtraLarge = 32.dp
+    val SpacerXXLarge = 48.dp
+    val SpacerXXXLarge = 64.dp
+
+    val GeneralPaddingFillMaxSize = 20.dp
+    
 }

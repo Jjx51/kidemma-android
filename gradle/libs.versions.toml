@@ -21,6 +21,7 @@ glide = "4.16.0"
 navigationCompose = "2.9.5"
 kotlinxSerialization = "1.7.3"
 coreSplashscreen = "1.2.0"
+dataStore = "1.2.0"
 #Tests
 coroutinesTest = "1.10.2"
 turbine = "1.2.1"
@@ -62,6 +63,12 @@ glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerialization" }
 core-splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "coreSplashscreen" }
+
+# --- DATASTORE PREFERENCES ---
+androidx-datastore-preferences = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "dataStore" }
+
+# --- ICONS ---
+androidx-compose-material-icons-extended = { group = "androidx.compose.material", name = "material-icons-extended" }
 
 # --- Tests Libraries ---
 # Coroutines Test

@@ -1,5 +1,6 @@
 package com.kidemma.introduction.onboarding.models
 
+import com.kidemma.common.fakes.FakeUserPreferencesRepository
 import com.kidemma.introduction.onboarding.presentation.OnboardingViewModel
 
 /*
@@ -12,4 +13,5 @@ import com.kidemma.introduction.onboarding.presentation.OnboardingViewModel
  */
 data class OnboardingViewModelTestSubject(
     val viewModel: OnboardingViewModel,
+    val fakeUserPreferencesRepository: FakeUserPreferencesRepository
 )

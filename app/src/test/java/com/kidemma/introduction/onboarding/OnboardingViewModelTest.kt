@@ -3,6 +3,7 @@ package com.kidemma.introduction.onboarding
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import app.cash.turbine.test
 import com.google.common.truth.Truth.assertThat
+import com.kidemma.common.interactions.UserPreferencesInteraction
 import com.kidemma.common.navigation.AppRoute
 import com.kidemma.extensions.isInstanceOfK
 import com.kidemma.introduction.onboarding.presentation.OnboardingContentProvider
@@ -70,6 +71,7 @@ class OnboardingViewModelTest : KoinTest {
             // --- GIVEN ---
             val harness = OnboardingViewModelTestFactory.givenAOnboardingViewModel()
             val viewModel = harness.viewModel
+            val fakeUserPrefsRepo = harness.fakeUserPreferencesRepository
 
             // We advance the ViewModel state to the last page manually
             repeat(OnboardingContentProvider.getOnboardingPages().size - 1) {
@@ -88,6 +90,9 @@ class OnboardingViewModelTest : KoinTest {
                 assertThat(effect).isInstanceOfK<OnboardingContract.Effect.NavigateTo>()
                 val navigateEffect = effect as OnboardingContract.Effect.NavigateTo
                 assertThat(navigateEffect.screen).isEqualTo(AppRoute.Login)
+                assertThat(fakeUserPrefsRepo.interactions).containsExactly(
+                    UserPreferencesInteraction.SET_ONBOARDING_COMPLETED,
+                )
             }
         }
 
@@ -96,6 +101,7 @@ class OnboardingViewModelTest : KoinTest {
         // --- GIVEN ---
         val harness = OnboardingViewModelTestFactory.givenAOnboardingViewModel()
         val viewModel = harness.viewModel
+        val fakeUserPrefsRepo = harness.fakeUserPreferencesRepository
 
         // --- WHEN & THEN ---
         // We test the effect emission
@@ -107,6 +113,9 @@ class OnboardingViewModelTest : KoinTest {
             assertThat(effect).isInstanceOfK<OnboardingContract.Effect.NavigateTo>()
             val navigateEffect = effect as OnboardingContract.Effect.NavigateTo
             assertThat(navigateEffect.screen).isEqualTo(AppRoute.Login)
+            assertThat(fakeUserPrefsRepo.interactions).containsExactly(
+                UserPreferencesInteraction.SET_ONBOARDING_COMPLETED,
+            )
         }
 
     }

@@ -2,11 +2,13 @@ package com.kidemma.introduction.splash.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.kidemma.common.data.local.UserPreferencesRepository
 import com.kidemma.common.navigation.AppRoute
 import com.kidemma.introduction.splash.domain.SplashViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 /*
@@ -17,7 +19,9 @@ import kotlinx.coroutines.launch
  * Created on: 24/02/26
  * Last modified: 24/02/26
  */
-class SplashViewModelImpl(): ViewModel(), SplashViewModel {
+class SplashViewModelImpl(
+    private val userPreferencesRepository: UserPreferencesRepository
+): ViewModel(), SplashViewModel {
 
     private val _effects = MutableSharedFlow<SplashContract.Effect>()
     override val effects: SharedFlow<SplashContract.Effect> = _effects.asSharedFlow()
@@ -35,9 +39,9 @@ class SplashViewModelImpl(): ViewModel(), SplashViewModel {
         }
     }
 
-    private fun performValidations(): AppRoute {
+    private suspend fun performValidations(): AppRoute {
         // TODO: Here Implement the validations
-        val isOnboardingComplete = false
+        val isOnboardingComplete = userPreferencesRepository.isOnboardingCompleted.first()
 
         return if (isOnboardingComplete) {
             when {
