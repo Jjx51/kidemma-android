@@ -1,6 +1,10 @@
 package com.kidemma.samplearchitect.presentation.module
 
 import com.google.gson.GsonBuilder
+import com.kidemma.authentication.di.authenticationModule
+import com.kidemma.common.di.commonModule
+import com.kidemma.home_admin.di.adminModule
+import com.kidemma.introduction.di.introductionModule
 import com.kidemma.samplearchitect.data.remote.todo.ITodoAPI
 import com.kidemma.samplearchitect.data.remote.todo.RetrofitTodoAPI
 import com.kidemma.samplearchitect.data.remote.todo.TodoAPI
@@ -54,6 +58,18 @@ fun createAppModules(): Module = module() {
     factory { TodoViewModel(get()) }
 
     viewModel { TodoViewModel(get()) }
+
+    // Here will be the modules for feature
+    includes(
+        introductionModule,
+        authenticationModule,
+        adminModule
+    )
+
+    //Here will be the common modules like network , database, etc
+    includes(
+        commonModule
+    )
 }
 
 inline fun <reified T> createWebService(

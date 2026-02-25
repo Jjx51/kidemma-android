@@ -36,4 +36,25 @@ object KidemmaColors {
     val DisabledButton = Color(0xFFD3D8E1)
     val DisabledButtonText = Color(0xFF858A8E)
     val DisabledButtonBorder = Color(0xFFD3D8E1)
+
+    // For OutlineTextField
+    private val OutlinedFocusColor = Color(0xFFAD5645)
+    val OutlinedFocusedBorderColor = OutlinedFocusColor
+    val OutlinedFocusedLabelColor = OutlinedFocusColor
+    val OutlinedFocusedIconColor = OutlinedFocusColor
+
+    private val OutlinedUnFocusColor = Color(0xFFBF7A6A)
+    val OutlinedUnfocusedBorderColor = OutlinedUnFocusColor
+    val OutlinedUnfocusedLabelColor = OutlinedUnFocusColor
+    val OutlinedUnfocusedIconColor = OutlinedUnFocusColor
+
+    private val OutlinedErrorColor = Color(0xFFD32F2F)
+    val OutlinedErrorBorderColor = OutlinedErrorColor
+    val OutlinedErrorLabelColor = OutlinedErrorColor
+    val OutlinedErrorIconColor = OutlinedErrorColor
+
+    val AvatarBorderColor = Primary
+
+    val BackgroundColorBottomItem = Icon
+    val TextColorBottomItemSelected = Icon
 }
