@@ -39,4 +39,15 @@
     <string name="login_error_invalid_credentials">Credenciales inválidas. Inténtalo de nuevo.</string>
     <string name="login_error_generic_error">Credenciales inválidas. Inténtalo de nuevo.</string>
 
+    <!-- Admin Routes -->
+    <string name="admin_nav_home">Inicio</string>
+    <string name="admin_nav_children">Niños</string>
+    <string name="admin_nav_agenda">Agenda</string>
+    <string name="admin_nav_families">Familias</string>
+    <string name="admin_nav_other">Otros</string>
+
+    <!-- TopAppBar -->
+    <string name="top_app_bar_logo_content_description">Logo de Kidemma</string>
+    <string name="top_app_bar_notification_content_description">Icono de notificaciones</string>
+
 </resources>

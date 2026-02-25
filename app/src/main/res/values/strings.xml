@@ -40,4 +40,16 @@
     <string name="login_error_blank_fields">Fields cannot be empty</string>
     <string name="login_error_invalid_credentials">Invalid credentials. Please try again.</string>
     <string name="login_error_generic_error">An error occurred. Please try again.</string>
+
+    <!-- Admin Routes -->
+    <string name="admin_nav_home">Home</string>
+    <string name="admin_nav_children">Kids</string>
+    <string name="admin_nav_agenda">Agenda</string>
+    <string name="admin_nav_families">Families</string>
+    <string name="admin_nav_other">Others</string>
+
+    <!-- TopAppBar -->
+    <string name="top_app_bar_logo_content_description">Kidemma Logo</string>
+    <string name="top_app_bar_notification_content_description">Icon of notifications</string>
+
 </resources>
