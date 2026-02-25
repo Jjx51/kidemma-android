@@ -31,29 +31,8 @@ import java.util.concurrent.TimeUnit
  * Created at: 24/09/2025
  *
  */
-
-fun createAppModules(): Module = module() {
-
-    single {
-        createWebService<TodoAPI>(
-            okHttpClient = createHttpClient(),
-            baseUrl = "https://jsonplaceholder.typicode.com/"
-        )
-    }
-
-    single { Dispatchers.IO }
-
-    single<ITodoAPI> { RetrofitTodoAPI(get()) }
-
-    single { TodoAPIDataSource(get(), get()) }
-    single { MockTodoAPI() }
-    single { TodoMockDataSource(get(), get()) }
-    single { TodoRepository(get(), get()) }
-    single { FetchTodoUseCase(get(), get()) }
-
-    factory { TodoViewModel(get()) }
-
-    viewModel { TodoViewModel(get()) }
+fun createAppModules(): Module = module {
+    includes(networkModule, dataModule, domainModule, uiModule)
 }
 
 inline fun <reified T> createWebService(

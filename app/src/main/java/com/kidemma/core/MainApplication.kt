@@ -20,12 +20,9 @@ import org.koin.core.context.GlobalContext
 class MainApplication : Application() {
     override fun onCreate() {
         super.onCreate()
-
-        val appModules = createAppModules()
-
         GlobalContext.startKoin {
             androidContext(applicationContext)
-            modules(appModules)
+            modules(createAppModules())
         }
     }
 }

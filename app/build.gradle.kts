@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -33,11 +35,29 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-    kotlinOptions {
-        jvmTarget = "11"
+
+    kotlin {
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_11)
+        }
     }
+
     buildFeatures {
         compose = true
+    }
+
+    detekt {
+        // Versión de la herramienta
+        //toolVersion = "1.23.8"
+
+        // Ruta del archivo de configuración
+        //config.setFrom(files("$rootDir/config/detekt/detekt.yml"))
+
+        //ignoreFailures = false
+
+        //parallel = true
+
+        //autoCorrect = true
     }
 }
 
