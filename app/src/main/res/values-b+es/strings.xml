@@ -4,4 +4,23 @@
     <string name="error_required">This field is required</string>
     <string name="error_invalid_email">Invalid email format</string>
     <string name="error_min_length">Must be at least %1$d characters</string>
+
+    <!-- Onboarding strings -->
+    <string name="onboarding_title_1">Bienvenido a Kidemma</string>
+    <string name="onboarding_body_1">Creemos que el aprendizaje empieza desde los primeros años. Acompañamos el desarrollo de tu hijo con actividades diseñadas para fortalecer sus habilidades cognitivas, emocionales y sociales.</string>
+    <string name="onboarding_button_text_1">Siguiente</string>
+    <string name="onboarding_image_content_description_1">Caja de juguetes</string>
+
+    <string name="onboarding_title_2">Todo en un solo lugar</string>
+    <string name="onboarding_body_2">Puedes acceder fácilmente a tu calendario, fotos de las clases y eventos importantes de la escuela. ¡Toda la información que necesitas en un solo lugar!</string>
+    <string name="onboarding_button_text_2">Siguiente</string>
+    <string name="onboarding_image_content_description_2">Tren de juguete</string>
+
+    <string name="onboarding_title_3">¡Comienza tu experiencia!</string>
+    <string name="onboarding_body_3">Tu conexión con la escuela ahora es más fácil que nunca. Explora la aplicación y acompaña cada paso del desarrollo de tu hijo.\n¡Estamos felices de tenerte aquí!</string>
+    <string name="onboarding_button_text_3">Finalizar</string>
+    <string name="onboarding_image_content_description_3">Bloques con números</string>
+
+    <string name="onboarding_skip_button">Omitir</string>
+
 </resources>

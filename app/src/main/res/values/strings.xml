@@ -6,4 +6,22 @@
     <string name="error_required">This field is required</string>
     <string name="error_invalid_email">Invalid email format</string>
     <string name="error_min_length">Must be at least %1$d characters</string>
+
+    <!-- Onboarding strings -->
+    <string name="onboarding_title_1">Welcome to Kidemma</string>
+    <string name="onboarding_body_1">We believe that learning begins in the early years. We accompany your child\'s development with activities designed to strengthen their cognitive, emotional, and social skills.</string>
+    <string name="onboarding_button_text_1">Next</string>
+    <string name="onboarding_image_content_description_1">Toy box</string>
+
+    <string name="onboarding_title_2">Everything in one place</string>
+    <string name="onboarding_body_2">You can easily access your calendar, class photos, and important school events. All the information you need in one place!</string>
+    <string name="onboarding_button_text_2">Next</string>
+    <string name="onboarding_image_content_description_2">Toy train</string>
+
+    <string name="onboarding_title_3">Start your experience!</string>
+    <string name="onboarding_body_3">Your connection with the school is now easier than ever. Explore the application and accompany every step of your child\'s development.\nWe are happy to have you here!</string>
+    <string name="onboarding_button_text_3">Finish</string>
+    <string name="onboarding_image_content_description_3">Number blocks</string>
+
+    <string name="onboarding_skip_button">Skip</string>
 </resources>
