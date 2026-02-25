@@ -1,5 +1,7 @@
 package com.kidemma.home_admin.di
 
+import org.koin.dsl.module
+
 /*
  * File: HomeAdminModule
  * Description: [Short description]
@@ -9,8 +11,6 @@ package com.kidemma.home_admin.di
  * Last modified: 10/02/26
  */
 
-val adminModule = 10
-/*Once koin is implemented uncomment this*/
-/*val adminModule = module{
+val adminModule = module{
 
-}*/
+}

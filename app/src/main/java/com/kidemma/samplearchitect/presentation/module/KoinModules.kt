@@ -1,7 +1,9 @@
 package com.kidemma.samplearchitect.presentation.module
 
 import com.google.gson.GsonBuilder
+import com.kidemma.authentication.di.authenticationModule
 import com.kidemma.common.di.commonModule
+import com.kidemma.home_admin.di.adminModule
 import com.kidemma.introduction.di.introductionModule
 import com.kidemma.samplearchitect.data.remote.todo.ITodoAPI
 import com.kidemma.samplearchitect.data.remote.todo.RetrofitTodoAPI
@@ -59,7 +61,9 @@ fun createAppModules(): Module = module() {
 
     // Here will be the modules for feature
     includes(
-        introductionModule
+        introductionModule,
+        authenticationModule,
+        adminModule
     )
 
     //Here will be the common modules like network , database, etc

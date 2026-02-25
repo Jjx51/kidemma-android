@@ -23,4 +23,31 @@
 
     <string name="onboarding_skip_button">Omitir</string>
 
+    <!-- Login strings -->
+    <string name="login_logo_content_description">Logo de Kidemma</string>
+    <string name="login_button_text">Iniciar sesión</string>
+
+    <string name="login_email_text_field_label">Email</string>
+    <string name="login_email_text_field_leading_icon_content_description">Icono de correo electrónico</string>
+
+    <string name="login_password_text_field_label">Password</string>
+    <string name="login_password_text_field_leading_icon_content_description">Icono de candado</string>
+    <string name="login_password_text_field_trailing_icon_hide_password_description">Icono de ojo cerrado</string>
+    <string name="login_password_text_field_trailing_icon_show_password_content_description">Icono de ojo abierto</string>
+    <string name="login_error_invalid_email_format">El formato del correo no es válido</string>
+    <string name="login_error_blank_fields">Los campos no pueden estar vacíos</string>
+    <string name="login_error_invalid_credentials">Credenciales inválidas. Inténtalo de nuevo.</string>
+    <string name="login_error_generic_error">Credenciales inválidas. Inténtalo de nuevo.</string>
+
+    <!-- Admin Routes -->
+    <string name="admin_nav_home">Inicio</string>
+    <string name="admin_nav_children">Niños</string>
+    <string name="admin_nav_agenda">Agenda</string>
+    <string name="admin_nav_families">Familias</string>
+    <string name="admin_nav_other">Otros</string>
+
+    <!-- TopAppBar -->
+    <string name="top_app_bar_logo_content_description">Logo de Kidemma</string>
+    <string name="top_app_bar_notification_content_description">Icono de notificaciones</string>
+
 </resources>
