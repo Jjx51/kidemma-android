@@ -68,6 +68,7 @@ dependencies {
     implementation(libs.gson)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.kotlinx.serialization.json)
+    implementation(libs.androidx.datastore.preferences)
 
     // Debug Implementation
     debugImplementation(libs.androidx.ui.tooling)
