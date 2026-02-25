@@ -14,7 +14,7 @@ import com.kidemma.common.ui.models.OutlinedTextFieldUiModel
  */
 data class LoginScreenUiModel(
     val logo: ImageUiModel,
-    val buttonText: Int,
+    @param:StringRes val buttonText: Int,
     val emailTextField: OutlinedTextFieldUiModel,
     val passwordTextField: OutlinedTextFieldUiModel,
     @param:StringRes val errorInvalidEmailFormat: Int,
