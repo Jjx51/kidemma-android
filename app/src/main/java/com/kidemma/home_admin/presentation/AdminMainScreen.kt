@@ -24,7 +24,7 @@ import com.kidemma.common.ui.theme.KidemmaColors
 import com.kidemma.common.ui.theme.KidemmaColors.BackgroundColorBottomItem
 import com.kidemma.common.ui.theme.KidemmaColors.TextColorBottomItemSelected
 import com.kidemma.home_admin.domain.model.AdminBottomNavItemUiModel
-import com.kidemma.home_admin.domain.model.TopBarUserProfileUiModel
+import com.kidemma.home_admin.domain.model.TopBarProfileAvatarUiModel
 
 /*
  * File: AdminMainScreen
@@ -42,7 +42,7 @@ fun AdminMainScreen(
     val adminNavController = rememberNavController()
     val navItems = remember { adminNavItems }
 
-    val topBarUserProfileUiModel = TopBarUserProfileUiModel(
+    val topBarProfileAvatarUiModel = TopBarProfileAvatarUiModel(
         profileName = "Jorge Nuñez",
         profileImage = null
     )
@@ -50,7 +50,7 @@ fun AdminMainScreen(
     Scaffold(
         topBar = {
             KidemmaTopAppBar(
-                topBarUserProfileUiModel = topBarUserProfileUiModel,
+                topBarProfileAvatarUiModel = topBarProfileAvatarUiModel,
                 onProfileClick = {},
                 onNotificationClick = {}
             )

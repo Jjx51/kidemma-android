@@ -25,7 +25,7 @@ import com.kidemma.common.ui.theme.KidemmaColors
 import java.util.Locale
 
 /*
- * File: ProfileAvatar
+ * File: KidemmaProfileAvatar
  * Description: [Short description]
  *
  * Created by: Jorge Luis Hernández Núñez
@@ -33,7 +33,7 @@ import java.util.Locale
  * Last modified: 25/02/26
  */
 @Composable
-fun ProfileAvatar(
+fun KidemmaProfileAvatar(
     name: String,
     image: ImageUiModel? = null,
     size: Dp = 40.dp,

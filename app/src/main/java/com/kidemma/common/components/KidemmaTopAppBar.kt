@@ -8,8 +8,6 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.LocalContentColor
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
@@ -23,7 +21,7 @@ import androidx.compose.ui.unit.dp
 import com.kidemma.common.domain.models.KidemmaTopBarUiModel
 import com.kidemma.common.presentation.TopBarContentProvider
 import com.kidemma.common.ui.theme.KidemmaColors
-import com.kidemma.home_admin.domain.model.TopBarUserProfileUiModel
+import com.kidemma.home_admin.domain.model.TopBarProfileAvatarUiModel
 
 /*
  * File: KidemmaTopAppBar
@@ -36,8 +34,8 @@ import com.kidemma.home_admin.domain.model.TopBarUserProfileUiModel
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun KidemmaTopAppBar(
-    topBarUserProfileUiModel: TopBarUserProfileUiModel,
-    uiData: KidemmaTopBarUiModel = TopBarContentProvider.getLoginUiData(),
+    topBarProfileAvatarUiModel: TopBarProfileAvatarUiModel,
+    uiModel: KidemmaTopBarUiModel = TopBarContentProvider.getLoginUiData(),
     onProfileClick: () -> Unit = {},
     onNotificationClick: () -> Unit = {}
 ) {
@@ -49,9 +47,9 @@ fun KidemmaTopAppBar(
 
         navigationIcon = {
             Row(modifier = Modifier.padding(start = 16.dp)) {
-                ProfileAvatar(
-                    name = topBarUserProfileUiModel.profileName,
-                    image = topBarUserProfileUiModel.profileImage,
+                KidemmaProfileAvatar(
+                    name = topBarProfileAvatarUiModel.profileName,
+                    image = topBarProfileAvatarUiModel.profileImage,
                     hasBorder = false,
                     onClick = onProfileClick
                 )
@@ -62,29 +60,22 @@ fun KidemmaTopAppBar(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 HorizontalSpacerSmall()
-
                 Image(
-                    painter = painterResource(id = uiData.appLogo.resId),
-                    contentDescription = stringResource(uiData.appLogo.contentDescription),
-                    modifier = Modifier.size(uiData.appLogo.size)
+                    painter = painterResource(id = uiModel.appLogo.resId),
+                    contentDescription = stringResource(uiModel.appLogo.contentDescription),
+                    modifier = Modifier.size(uiModel.appLogo.size)
                 )
-
                 HorizontalSpacerSmall()
-
-                Text(
-                    text = stringResource(id = uiData.appName),
-                    style = MaterialTheme.typography.titleLarge,
-                    fontWeight = FontWeight.Bold
-                )
+                KidemmaBodyMedium(text = stringResource(id = uiModel.appName), fontWeight = FontWeight.Bold)
             }
         },
 
         actions = {
             IconButton(onClick = onNotificationClick) {
                 Icon(
-                    imageVector = uiData.notificationIcon.icon,
-                    contentDescription = stringResource(uiData.notificationIcon.contentDescription),
-                    tint = uiData.notificationIcon.tint ?: LocalContentColor.current
+                    imageVector = uiModel.notificationIcon.icon,
+                    contentDescription = stringResource(uiModel.notificationIcon.contentDescription),
+                    tint = uiModel.notificationIcon.tint ?: LocalContentColor.current
                 )
             }
         }

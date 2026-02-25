@@ -10,7 +10,7 @@ import com.kidemma.common.ui.models.ImageUiModel
  * Created on: 25/02/26
  * Last modified: 25/02/26
  */
-data class TopBarUserProfileUiModel(
+data class TopBarProfileAvatarUiModel(
     val profileName: String,
     val profileImage: ImageUiModel? = null,
     val hasUnreadNotifications: Boolean = false
