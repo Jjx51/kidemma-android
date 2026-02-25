@@ -1,19 +1,8 @@
 package com.kidemma.samplearchitect.presentation.module
 
 import com.google.gson.GsonBuilder
-import com.kidemma.samplearchitect.data.remote.todo.ITodoAPI
-import com.kidemma.samplearchitect.data.remote.todo.RetrofitTodoAPI
-import com.kidemma.samplearchitect.data.remote.todo.TodoAPI
-import com.kidemma.samplearchitect.data.remote.todo.TodoAPIDataSource
-import com.kidemma.samplearchitect.presentation.viewmodel.TodoViewModel
-import kidemma.samplearchitect.data.remote.todo.MockTodoAPI
-import kidemma.samplearchitect.data.remote.todo.TodoMockDataSource
-import kidemma.samplearchitect.data.repository.TodoRepository
-import kidemma.samplearchitect.domain.FetchTodoUseCase
-import kotlinx.coroutines.Dispatchers
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.module.Module
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -33,28 +22,4 @@ import java.util.concurrent.TimeUnit
  */
 fun createAppModules(): Module = module {
     includes(networkModule, dataModule, domainModule, uiModule)
-}
-
-inline fun <reified T> createWebService(
-    okHttpClient: OkHttpClient,
-    baseUrl: String
-): T {
-    val retrofit = Retrofit.Builder()
-        .baseUrl(baseUrl)
-        .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
-        .client(okHttpClient)
-        .build()
-    return retrofit.create(T::class.java)
-}
-
-fun createHttpClient(): OkHttpClient {
-    val interceptor = HttpLoggingInterceptor().apply {
-        level = HttpLoggingInterceptor.Level.BODY
-    }
-
-    val builder = OkHttpClient.Builder()
-        .readTimeout(60, TimeUnit.SECONDS)
-        .addInterceptor(interceptor)
-
-    return builder.build()
 }

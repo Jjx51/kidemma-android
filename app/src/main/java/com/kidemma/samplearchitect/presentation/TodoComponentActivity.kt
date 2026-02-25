@@ -26,6 +26,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.kidemma.introduction.presentation.onboarding.OnboardingScreen
 import com.kidemma.samplearchitect.data.model.todo.TodoResponse
 import com.kidemma.samplearchitect.presentation.intent.TodoIntent
 import com.kidemma.samplearchitect.presentation.intent.TodoSideEffect
@@ -55,7 +56,8 @@ class TodoComponentActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             KidemmaTheme {
-                TodoScreen()
+                OnboardingScreen()
+                //TodoScreen()
             }
         }
     }
