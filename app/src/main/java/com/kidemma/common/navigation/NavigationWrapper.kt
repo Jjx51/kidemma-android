@@ -4,7 +4,10 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.kidemma.introduction.presentation.onboarding.OnboardingScreen
+import com.kidemma.authentication.login.presentation.LoginScreen
+import com.kidemma.home_admin.presentation.AdminMainScreen
+import com.kidemma.home_parent.presentation.ParentMainScreen
+import com.kidemma.introduction.onboarding.presentation.OnboardingScreen
 import com.kidemma.introduction.splash.presentation.SplashScreen
 
 @Composable
@@ -16,5 +19,8 @@ fun NavigationWrapper() {
     ) {
         composable<AppRoute.Splash> { SplashScreen(navController) }
         composable<AppRoute.Onboarding> { OnboardingScreen(navController) }
+        composable<AppRoute.Login> { LoginScreen(navController) }
+        composable<AppRoute.AdminMain> { AdminMainScreen() }
+        composable<AppRoute.UserMain> { ParentMainScreen() }
     }
 }

@@ -3,6 +3,8 @@ package com.kidemma.common.components
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import com.kidemma.common.ui.theme.KidemmaTheme
 import com.kidemma.common.ui.theme.KidemmaTypography
@@ -18,8 +20,12 @@ fun KidemmaHeadlineMedium(text: String, modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun KidemmaHeadlineSmall(text: String, modifier: Modifier = Modifier) {
-    Text(text = text, style = KidemmaTypography.headlineSmall, modifier = modifier)
+fun KidemmaHeadlineSmall(
+    modifier: Modifier = Modifier,
+    text: String,
+    textAlign: TextAlign = TextAlign.Start,
+) {
+    Text(text = text, style = KidemmaTypography.headlineSmall, modifier = modifier, textAlign = textAlign)
 }
 
 @Composable
@@ -28,8 +34,19 @@ fun KidemmaBodyLarge(text: String, modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun KidemmaBodyMedium(text: String, modifier: Modifier = Modifier) {
-    Text(text = text, style = KidemmaTypography.bodyMedium, modifier = modifier)
+fun KidemmaBodyMedium(
+    modifier: Modifier = Modifier,
+    text: String,
+    textAlign: TextAlign = TextAlign.Start,
+    fontWeight: FontWeight = FontWeight.Normal
+) {
+    Text(
+        text = text,
+        style = KidemmaTypography.bodyMedium,
+        modifier = modifier,
+        textAlign = textAlign,
+        fontWeight = fontWeight
+    )
 }
 
 @Composable
@@ -59,9 +76,9 @@ fun KidemmaTypographyPreview() {
         androidx.compose.foundation.layout.Column {
             KidemmaHeadlineLarge("Headline Large")
             KidemmaHeadlineMedium("Headline Medium")
-            KidemmaHeadlineSmall("Headline Small")
+            KidemmaHeadlineSmall(text = "Headline Small")
             KidemmaBodyLarge("Body Large")
-            KidemmaBodyMedium("Body Medium")
+            KidemmaBodyMedium(text = "Body Medium")
             KidemmaBodySmall("Body Small")
             KidemmaLabelLarge("Label Large")
             KidemmaLabelMedium("Label Medium")

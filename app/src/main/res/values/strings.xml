@@ -6,4 +6,50 @@
     <string name="error_required">This field is required</string>
     <string name="error_invalid_email">Invalid email format</string>
     <string name="error_min_length">Must be at least %1$d characters</string>
+
+    <!-- Onboarding strings -->
+    <string name="onboarding_title_1">Welcome to Kidemma</string>
+    <string name="onboarding_body_1">We believe that learning begins in the early years. We accompany your child\'s development with activities designed to strengthen their cognitive, emotional, and social skills.</string>
+    <string name="onboarding_button_text_1">Next</string>
+    <string name="onboarding_image_content_description_1">Toy box</string>
+
+    <string name="onboarding_title_2">Everything in one place</string>
+    <string name="onboarding_body_2">You can easily access your calendar, class photos, and important school events. All the information you need in one place!</string>
+    <string name="onboarding_button_text_2">Next</string>
+    <string name="onboarding_image_content_description_2">Toy train</string>
+
+    <string name="onboarding_title_3">Start your experience!</string>
+    <string name="onboarding_body_3">Your connection with the school is now easier than ever. Explore the application and accompany every step of your child\'s development.\nWe are happy to have you here!</string>
+    <string name="onboarding_button_text_3">Finish</string>
+    <string name="onboarding_image_content_description_3">Number blocks</string>
+
+    <string name="onboarding_skip_button">Skip</string>
+
+    <!-- Login strings -->
+    <string name="login_logo_content_description">Kidemma logo</string>
+    <string name="login_button_text">Log in</string>
+
+    <string name="login_email_text_field_label">Email</string>
+    <string name="login_email_text_field_leading_icon_content_description">Email icon</string>
+
+    <string name="login_password_text_field_label">Password</string>
+    <string name="login_password_text_field_leading_icon_content_description">Lock icon</string>
+    <string name="login_password_text_field_trailing_icon_hide_password_description">Hide password icon</string>
+    <string name="login_password_text_field_trailing_icon_show_password_content_description">Show password icon</string>
+    <string name="login_error_invalid_email_format">Invalid email format</string>
+    <string name="login_error_blank_fields">Fields cannot be empty</string>
+    <string name="login_error_invalid_credentials">Invalid credentials. Please try again.</string>
+    <string name="login_error_generic_error">An error occurred. Please try again.</string>
+
+    <!-- Admin Routes -->
+    <string name="admin_nav_home">Home</string>
+    <string name="admin_nav_children">Kids</string>
+    <string name="admin_nav_agenda">Agenda</string>
+    <string name="admin_nav_families">Families</string>
+    <string name="admin_nav_other">Others</string>
+
+    <!-- TopAppBar -->
+    <string name="top_app_bar_logo_content_description">Kidemma Logo</string>
+    <string name="top_app_bar_notification_content_description">Icon of notifications</string>
+
 </resources>

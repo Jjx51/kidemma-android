@@ -21,6 +21,14 @@ glide = "4.16.0"
 navigationCompose = "2.9.5"
 kotlinxSerialization = "1.7.3"
 coreSplashscreen = "1.2.0"
+dataStore = "1.2.0"
+#Tests
+coroutinesTest = "1.10.2"
+turbine = "1.2.1"
+androidxArchCoreTest = "2.2.0"
+mockk = "1.14.6"
+truth = "1.4.5"
+monitor = "1.8.0"
 
 [libraries]
 # Koin
@@ -55,6 +63,24 @@ glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerialization" }
 core-splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "coreSplashscreen" }
+
+# --- DATASTORE PREFERENCES ---
+androidx-datastore-preferences = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "dataStore" }
+
+# --- ICONS ---
+androidx-compose-material-icons-extended = { group = "androidx.compose.material", name = "material-icons-extended" }
+
+# --- Tests Libraries ---
+# Coroutines Test
+kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutinesTest" }
+# Turbine
+cash-turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine" }
+# Androidx Arch Core Testing
+androidx-arch-core-testing = { group = "androidx.arch.core", name = "core-testing", version.ref = "androidxArchCoreTest" }
+# MockK
+mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
+androidx-monitor = { group = "androidx.test", name = "monitor", version.ref = "monitor" }
+google-truth = { group = "com.google.truth", name = "truth", version.ref = "truth" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
