@@ -52,4 +52,9 @@ object KidemmaColors {
     val OutlinedErrorBorderColor = OutlinedErrorColor
     val OutlinedErrorLabelColor = OutlinedErrorColor
     val OutlinedErrorIconColor = OutlinedErrorColor
+
+    val AvatarBorderColor = Primary
+
+    val BackgroundColorBottomItem = Icon
+    val TextColorBottomItemSelected = Icon
 }
