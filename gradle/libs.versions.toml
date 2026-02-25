@@ -67,6 +67,9 @@ core-splashscreen = { group = "androidx.core", name = "core-splashscreen", versi
 # --- DATASTORE PREFERENCES ---
 androidx-datastore-preferences = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "dataStore" }
 
+# --- ICONS ---
+androidx-compose-material-icons-extended = { group = "androidx.compose.material", name = "material-icons-extended" }
+
 # --- Tests Libraries ---
 # Coroutines Test
 kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutinesTest" }

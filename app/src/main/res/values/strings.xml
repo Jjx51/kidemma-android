@@ -24,4 +24,20 @@
     <string name="onboarding_image_content_description_3">Number blocks</string>
 
     <string name="onboarding_skip_button">Skip</string>
+
+    <!-- Login strings -->
+    <string name="login_logo_content_description">Kidemma logo</string>
+    <string name="login_button_text">Log in</string>
+
+    <string name="login_email_text_field_label">Email</string>
+    <string name="login_email_text_field_leading_icon_content_description">Email icon</string>
+
+    <string name="login_password_text_field_label">Password</string>
+    <string name="login_password_text_field_leading_icon_content_description">Lock icon</string>
+    <string name="login_password_text_field_trailing_icon_hide_password_description">Hide password icon</string>
+    <string name="login_password_text_field_trailing_icon_show_password_content_description">Show password icon</string>
+    <string name="login_error_invalid_email_format">Invalid email format</string>
+    <string name="login_error_blank_fields">Fields cannot be empty</string>
+    <string name="login_error_invalid_credentials">Invalid credentials. Please try again.</string>
+    <string name="login_error_generic_error">An error occurred. Please try again.</string>
 </resources>
