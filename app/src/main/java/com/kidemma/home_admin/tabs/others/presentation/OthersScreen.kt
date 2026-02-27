@@ -20,6 +20,14 @@ import com.kidemma.common.ui.theme.KidemmaTheme
 import com.kidemma.common.ui.theme.KidemmaTypography
 import com.kidemma.home_admin.tabs.others.presentation.components.KidemmaOptionCard
 
+/*
+ * File: OthersScreen
+ * Description: [Short description]
+ *
+ * Created by: Lino Alonso Hdez
+ * Created on: 16/02/26
+ * Last modified: 20/02/26
+ */
 @Composable
 fun OthersScreen(modifier: Modifier = Modifier) {
 

@@ -29,6 +29,14 @@ import com.kidemma.common.ui.theme.KidemmaColors
 import com.kidemma.common.ui.theme.KidemmaTheme
 import com.kidemma.common.ui.theme.KidemmaTypography
 
+/*
+ * File: KidemmaOptionCard
+ * Description: [Short description]
+ *
+ * Created by: Lino Alonso Hdez
+ * Created on: 16/02/26
+ * Last modified: 20/02/26
+ */
 @Composable
 fun KidemmaOptionCard(
     modifier: Modifier = Modifier,

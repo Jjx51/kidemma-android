@@ -14,6 +14,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
 
+/*
+ * File: SpacerExtension
+ * Description: [Short description]
+ *
+ * Created by: Lino Alonso Hdez
+ * Created on: 16/02/26
+ * Last modified: 16/02/26
+ */
+
 @Composable
 fun RowScope.KidemmaSpacer(width: Dp, modifier: Modifier = Modifier) {
     Spacer(modifier = modifier.width(width))
