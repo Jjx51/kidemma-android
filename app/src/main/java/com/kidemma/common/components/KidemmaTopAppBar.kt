@@ -29,7 +29,7 @@ import com.kidemma.home_admin.domain.model.TopBarProfileAvatarUiModel
  *
  * Created by: Jorge Luis Hernández Núñez
  * Created on: 25/02/26
- * Last modified: 25/02/26
+ * Last modified: 26/02/26
  */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -66,7 +66,7 @@ fun KidemmaTopAppBar(
                     modifier = Modifier.size(uiModel.appLogo.size)
                 )
                 HorizontalSpacerSmall()
-                KidemmaBodyMedium(text = stringResource(id = uiModel.appName), fontWeight = FontWeight.Bold)
+                KidemmaLabelMedium(text = stringResource(id = uiModel.appName))
             }
         },
 

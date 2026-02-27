@@ -55,18 +55,15 @@ val KidemmaTypography = Typography(
 
         // Labels — Poppins
         labelLarge = TextStyle(
-                fontFamily = Poppins,
-                fontWeight = FontWeight.SemiBold,
+                fontFamily = Poppins, fontWeight = FontWeight.Bold,
                 fontSize = KidemmaDimens.LabelLarge
         ),
         labelMedium = TextStyle(
-                fontFamily = Poppins,
-                fontWeight = FontWeight.Medium,
+                fontFamily = Poppins, fontWeight = FontWeight.Bold,
                 fontSize = KidemmaDimens.LabelMedium
         ),
         labelSmall = TextStyle(
-                fontFamily = Poppins,
-                fontWeight = FontWeight.Medium,
+                fontFamily = Poppins, fontWeight = FontWeight.Bold,
                 fontSize = KidemmaDimens.LabelSmall
         )
 )
