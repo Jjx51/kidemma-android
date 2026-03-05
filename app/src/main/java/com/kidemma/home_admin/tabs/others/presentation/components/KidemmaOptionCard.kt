@@ -56,7 +56,7 @@ fun KidemmaOptionCard(
         ) {
             Image(
                 painter = painterResource(icon),
-                contentDescription = null,
+                contentDescription = stringResource(R.string.cd_option_icon, title),
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
                     .size(40.dp)
@@ -73,7 +73,7 @@ fun KidemmaOptionCard(
             IconButton(onClick = onClick) {
                 Icon(
                     imageVector = Icons.AutoMirrored.Filled.ArrowForward,
-                    contentDescription = "",
+                    contentDescription = stringResource(R.string.cd_go_to_option, title),
                     tint = Color.Black,
                     modifier = Modifier
                         .size(30.dp)

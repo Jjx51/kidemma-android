@@ -50,4 +50,15 @@
     <string name="top_app_bar_logo_content_description">Logo de Kidemma</string>
     <string name="top_app_bar_notification_content_description">Icono de notificaciones</string>
 
+
+    <!-- Others screen -->
+    <string name="administration_panel">Panel administrativo</string>
+    <string name="others_about_us">¿Quiénes somos?</string>
+    <string name="others_staff">Personal de trabajo</string>
+    <string name="others_contact_and_location">Contacto y ubicación</string>
+    <string name="others_alliances">Alianzas</string>
+    <string name="others_complaints_and_suggestions">Foro</string>
+    <string name="public_links">Enlaces públicos</string>
+    <string name="cd_option_icon">Icono de %1$s</string>
+    <string name="cd_go_to_option">Ir a %1$s</string>
 </resources>

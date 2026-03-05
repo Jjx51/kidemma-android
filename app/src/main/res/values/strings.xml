@@ -53,11 +53,13 @@
     <string name="top_app_bar_notification_content_description">Icon of notifications</string>
 
     <!-- Others screen -->
-    <string name="administration_panel">Panel administrativo</string>
-    <string name="others_about_us">¿Quiénes somos?</string>
-    <string name="others_staff">Personal de trabajo</string>
-    <string name="others_contact_and_location">Contacto y ubicación</string>
-    <string name="others_alliances">Alianzas</string>
-    <string name="others_complaints_and_suggestions">Foro</string>
-    <string name="public_links">Enlaces públicos</string>
+    <string name="administration_panel">Admin panel</string>
+    <string name="others_about_us">About us</string>
+    <string name="others_staff">Staff</string>
+    <string name="others_contact_and_location">Contact and location</string>
+    <string name="others_alliances">Partnerships</string>
+    <string name="others_complaints_and_suggestions">Forum</string>
+    <string name="public_links">Public links</string>
+    <string name="cd_option_icon">%1$s icon</string>
+    <string name="cd_go_to_option">Go to %1$s</string>
 </resources>
