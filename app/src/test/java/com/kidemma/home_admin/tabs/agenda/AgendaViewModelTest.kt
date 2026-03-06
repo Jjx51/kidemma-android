@@ -39,26 +39,21 @@ class AgendaViewModelTest {
     }
 
     @Test
-    fun `when viewmodel is initialized, then classes are loaded for today`() = runTest {
+    fun `when viewmodel is initialized, then content is Data`() = runTest {
         // GIVEN
         val testSubject = AgendaViewModelTestFactory.givenAnAgendaViewModel()
         val viewModel = testSubject.viewModel
 
-        // THEN (Checking initial loading state)
-        // We need to run current to allow the init block's coroutine to start
+        // WHEN
         testDispatcher.scheduler.runCurrent()
-        assertThat(viewModel.uiState.value.isLoading).isTrue()
-
-        // WHEN (Advancing time to skip the 2s delay)
         advanceTimeBy(ADVANCE_TIME_MS)
 
         // THEN
-        assertThat(viewModel.uiState.value.isLoading).isFalse()
-        assertThat(viewModel.uiState.value.classes).isNotEmpty()
+        assertThat(viewModel.uiState.value.content).isInstanceOf(AgendaContract.AgendaContentState.Data::class.java)
     }
 
     @Test
-    fun `when SelectDate intent is processed, then selectedDate updates and classes are reloaded`() = runTest {
+    fun `when SelectDate intent is processed, then selectedDate updates and content is reloaded`() = runTest {
         // GIVEN
         val testSubject = AgendaViewModelTestFactory.givenAnAgendaViewModel()
         val viewModel = testSubject.viewModel
@@ -67,15 +62,14 @@ class AgendaViewModelTest {
 
         // WHEN
         viewModel.processIntent(AgendaContract.Intent.OnSelectDate(newDate))
-        // We need to run current to allow the launched coroutine in loadClasses to start
         testDispatcher.scheduler.runCurrent()
 
         // THEN (Checking loading state again)
         assertThat(viewModel.uiState.value.selectedDate).isEqualTo(newDate)
-        assertThat(viewModel.uiState.value.isLoading).isTrue()
+        assertThat(viewModel.uiState.value.content).isInstanceOf(AgendaContract.AgendaContentState.Loading::class.java)
 
         advanceTimeBy(ADVANCE_TIME_MS)
-        assertThat(viewModel.uiState.value.isLoading).isFalse()
+        assertThat(viewModel.uiState.value.content).isInstanceOf(AgendaContract.AgendaContentState.Data::class.java)
     }
 
     @Test
@@ -144,12 +138,14 @@ class AgendaViewModelTest {
         viewModel.processIntent(AgendaContract.Intent.OnToggleExpandClass(classId))
 
         // THEN
-        assertThat(viewModel.uiState.value.expandedClassIds).contains(classId)
+        val content = viewModel.uiState.value.content as AgendaContract.AgendaContentState.Data
+        assertThat(content.expandedClassIds).contains(classId)
 
         // WHEN - Collapse
         viewModel.processIntent(AgendaContract.Intent.OnToggleExpandClass(classId))
 
         // THEN
-        assertThat(viewModel.uiState.value.expandedClassIds).doesNotContain(classId)
+        val collapsedContent = viewModel.uiState.value.content as AgendaContract.AgendaContentState.Data
+        assertThat(collapsedContent.expandedClassIds).doesNotContain(classId)
     }
 }

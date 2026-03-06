@@ -15,11 +15,18 @@ class AgendaContract {
     data class State(
         val selectedDate: LocalDate = LocalDate.now(),
         val weekStart: LocalDate = LocalDate.now().with(java.time.DayOfWeek.MONDAY),
-        val classes: List<ClassUiModel> = emptyList(),
-        val isLoading: Boolean = false,
+        val content: AgendaContentState = AgendaContentState.Loading,
         val showDatePicker: Boolean = false,
-        val expandedClassIds: Set<String> = emptySet()
     )
+
+    sealed interface AgendaContentState {
+        data object Loading : AgendaContentState
+        data object Empty : AgendaContentState
+        data class Data(
+            val classes: List<ClassUiModel>,
+            val expandedClassIds: Set<String> = emptySet()
+        ) : AgendaContentState
+    }
 
     sealed interface Intent {
         data class OnSelectDate(val date: LocalDate) : Intent

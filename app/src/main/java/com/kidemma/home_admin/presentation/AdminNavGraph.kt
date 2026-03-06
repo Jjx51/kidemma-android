@@ -7,9 +7,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.kidemma.common.components.PlaceholderScreen
 import com.kidemma.common.navigation.AdminRoute
-import com.kidemma.home_admin.tabs.agenda.presentation.AgendaViewModelImpl
 import com.kidemma.home_admin.tabs.agenda.presentation.ui.AgendaTabScreen
-import org.koin.androidx.compose.koinViewModel
 
 /*
  * File: AdminNavGraph
@@ -35,7 +33,7 @@ fun AdminNavGraph(
         composable<AdminRoute.Children> { PlaceholderScreen("Niños") }
 
         composable<AdminRoute.Agenda> {
-            AgendaTabScreen(viewModel = koinViewModel<AgendaViewModelImpl>())
+            AgendaTabScreen()
         }
 
         composable<AdminRoute.Families> { PlaceholderScreen("Familias") }

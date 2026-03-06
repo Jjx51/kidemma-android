@@ -62,12 +62,17 @@ class AgendaViewModelImpl : ViewModel(), AgendaViewModel {
             }
             is AgendaContract.Intent.OnToggleExpandClass -> {
                 _uiState.update { state ->
-                    val newExpandedIds = if (state.expandedClassIds.contains(intent.classId)) {
-                        state.expandedClassIds - intent.classId
+                    if (state.content is AgendaContract.AgendaContentState.Data) {
+                        val currentExpandedIds = state.content.expandedClassIds
+                        val newExpandedIds = if (currentExpandedIds.contains(intent.classId)) {
+                            currentExpandedIds - intent.classId
+                        } else {
+                            currentExpandedIds + intent.classId
+                        }
+                        state.copy(content = state.content.copy(expandedClassIds = newExpandedIds))
                     } else {
-                        state.expandedClassIds + intent.classId
+                        state
                     }
-                    state.copy(expandedClassIds = newExpandedIds)
                 }
             }
         }
@@ -75,11 +80,16 @@ class AgendaViewModelImpl : ViewModel(), AgendaViewModel {
 
     private fun loadClasses(date: LocalDate) {
         viewModelScope.launch {
-            _uiState.update { it.copy(isLoading = true) }
+            _uiState.update { it.copy(content = AgendaContract.AgendaContentState.Loading) }
             // Simulating network delay
             delay(LOADING_DELAY_MILLIS)
             val classes = AgendaMockProvider.getClassesForDate(date)
-            _uiState.update { it.copy(classes = classes, isLoading = false) }
+            val nextContent = if (classes.isEmpty()) {
+                AgendaContract.AgendaContentState.Empty
+            } else {
+                AgendaContract.AgendaContentState.Data(classes = classes)
+            }
+            _uiState.update { it.copy(content = nextContent) }
         }
     }
 }
