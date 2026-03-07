@@ -134,6 +134,10 @@ class AgendaViewModelTest {
         val viewModel = testSubject.viewModel
         val classId = "1"
 
+        // Ensure initial load has completed so content is Data
+        testDispatcher.scheduler.runCurrent()
+        advanceTimeBy(ADVANCE_TIME_MS)
+
         // WHEN - Expand
         viewModel.processIntent(AgendaContract.Intent.OnToggleExpandClass(classId))
 

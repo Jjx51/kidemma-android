@@ -67,11 +67,21 @@ private fun ClassCard(
     isExpanded: Boolean,
     onToggleExpand: () -> Unit,
 ) {
+    // Decided to keep logic here for simplicity, but if it grows more complex we can move it to a ViewModel or helper function
+    val maxKids = AgendaUiConstants.Numbers.MAX_KIDS_DISPLAYED
+    val hasMoreKids = classItem.kids.size > maxKids
+    val kidsToDisplay = if (!isExpanded && hasMoreKids) classItem.kids.take(maxKids) else classItem.kids
+
     KidemmaCard(modifier = modifier.fillMaxWidth()) {
         Column {
             ClassTimeRow(timeDescription = classItem.timeDescription)
             HorizontalDivider(color = KidemmaColors.Divider)
-            KidsSection(kids = classItem.kids, isExpanded = isExpanded, onToggleExpand = onToggleExpand)
+            KidsSection(
+                kidsToDisplay = kidsToDisplay,
+                hasMoreKids = hasMoreKids,
+                isExpanded = isExpanded,
+                onToggleExpand = onToggleExpand,
+            )
         }
     }
 }

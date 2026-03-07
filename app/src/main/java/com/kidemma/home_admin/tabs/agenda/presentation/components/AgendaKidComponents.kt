@@ -11,9 +11,6 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.derivedStateOf
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -34,7 +31,6 @@ import com.kidemma.home_admin.tabs.agenda.presentation.components.AgendaUiConsta
 import com.kidemma.home_admin.tabs.agenda.presentation.components.AgendaUiConstants.Dimens.KidAvatarIconSize
 import com.kidemma.home_admin.tabs.agenda.presentation.components.AgendaUiConstants.Dimens.KidAvatarSize
 import com.kidemma.home_admin.tabs.agenda.presentation.components.AgendaUiConstants.Dimens.KidsRowPadding
-import com.kidemma.home_admin.tabs.agenda.presentation.components.AgendaUiConstants.Numbers.MAX_KIDS_DISPLAYED
 import com.kidemma.home_admin.tabs.agenda.presentation.models.KidUiModel
 
 /*
@@ -49,20 +45,11 @@ import com.kidemma.home_admin.tabs.agenda.presentation.models.KidUiModel
 
 @Composable
 internal fun KidsSection(
-    kids: List<KidUiModel>,
+    kidsToDisplay: List<KidUiModel>,
+    hasMoreKids: Boolean,
     isExpanded: Boolean,
     onToggleExpand: () -> Unit,
 ) {
-    val kidsToDisplay by remember(kids, isExpanded) {
-        derivedStateOf {
-            if (kids.size > MAX_KIDS_DISPLAYED && !isExpanded) {
-                kids.take(MAX_KIDS_DISPLAYED)
-            } else {
-                kids
-            }
-        }
-    }
-
     Column {
         kidsToDisplay.forEachIndexed { index, kid ->
             KidRow(kid = kid)
@@ -71,10 +58,14 @@ internal fun KidsSection(
             }
         }
 
-        if (kids.size > MAX_KIDS_DISPLAYED) {
+        if (hasMoreKids) {
             VerticalSpacerSmall()
             KidemmaTertiaryButton(
-                text = if (isExpanded) stringResource(R.string.agenda_collapse) else stringResource(R.string.agenda_see_more),
+                text = if (isExpanded) {
+                    stringResource(R.string.agenda_collapse)
+                } else {
+                    stringResource(R.string.agenda_see_more)
+                },
                 onClick = onToggleExpand,
             )
         }
@@ -127,12 +118,13 @@ private fun KidDetails(kid: KidUiModel) {
 private fun KidsSectionCollapsedPreview() {
     KidemmaTheme {
         KidsSection(
-            kids = listOf(
+            kidsToDisplay = listOf(
                 KidUiModel("1", "Alejandro Ávila", "1 año 7 meses"),
                 KidUiModel("2", "Brenda Barrera", "1 año 5 meses"),
                 KidUiModel("3", "José Carrillo", "1 año 6 meses"),
                 KidUiModel("4", "Mateo Mendoza", "7 meses"),
             ),
+            hasMoreKids = true,
             isExpanded = false,
             onToggleExpand = {},
         )
@@ -144,12 +136,13 @@ private fun KidsSectionCollapsedPreview() {
 private fun KidsSectionExpandedPreview() {
     KidemmaTheme {
         KidsSection(
-            kids = listOf(
+            kidsToDisplay = listOf(
                 KidUiModel("1", "Alejandro Ávila", "1 año 7 meses"),
                 KidUiModel("2", "Brenda Barrera", "1 año 5 meses"),
                 KidUiModel("3", "José Carrillo", "1 año 6 meses"),
                 KidUiModel("4", "Mateo Mendoza", "7 meses"),
             ),
+            hasMoreKids = true,
             isExpanded = true,
             onToggleExpand = {},
         )
@@ -161,13 +154,13 @@ private fun KidsSectionExpandedPreview() {
 private fun KidsSectionShortListPreview() {
     KidemmaTheme {
         KidsSection(
-            kids = listOf(
+            kidsToDisplay = listOf(
                 KidUiModel("1", "Luna Lunaria", "8 meses"),
                 KidUiModel("2", "Santiago Cruz", "2 años"),
             ),
+            hasMoreKids = false,
             isExpanded = false,
             onToggleExpand = {},
         )
     }
 }
-

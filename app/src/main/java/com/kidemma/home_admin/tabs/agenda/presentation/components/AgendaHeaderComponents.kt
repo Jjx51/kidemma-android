@@ -1,4 +1,3 @@
-
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -151,7 +150,7 @@ private fun AgendaDaySelector(
         modifier = modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween,
     ) {
-        (0..DAYS_IN_SELECTOR).forEach { index ->
+        for (index in 0..DAYS_IN_SELECTOR) {
             val date = weekStart.plusDays(index.toLong())
             val isSelected = date == selectedDate
 
