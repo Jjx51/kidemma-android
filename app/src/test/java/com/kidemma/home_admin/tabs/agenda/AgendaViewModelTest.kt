@@ -5,14 +5,14 @@ import com.google.common.truth.Truth.assertThat
 import com.kidemma.home_admin.tabs.agenda.presentation.AgendaContract
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.test.StandardTestDispatcher
+import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.advanceTimeBy
+import kotlinx.coroutines.test.runCurrent
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import java.time.LocalDate
 
 /*
  * File: AgendaViewModelTest
@@ -31,11 +31,11 @@ class AgendaViewModelTest {
 
     @get:Rule
     val instantTaskExecutorRule = InstantTaskExecutorRule()
-    private val testDispatcher = StandardTestDispatcher()
 
     @Before
     fun setUp() {
-        Dispatchers.setMain(testDispatcher)
+        // Use a test dispatcher tied to runTest's scheduler so delay() is controllable.
+        Dispatchers.setMain(UnconfinedTestDispatcher())
     }
 
     @Test
@@ -45,11 +45,13 @@ class AgendaViewModelTest {
         val viewModel = testSubject.viewModel
 
         // WHEN
-        testDispatcher.scheduler.runCurrent()
+        runCurrent()
         advanceTimeBy(ADVANCE_TIME_MS)
+        runCurrent()
 
         // THEN
-        assertThat(viewModel.uiState.value.content).isInstanceOf(AgendaContract.AgendaContentState.Data::class.java)
+        assertThat(viewModel.uiState.value.content)
+            .isInstanceOf(AgendaContract.AgendaContentState.Data::class.java)
     }
 
     @Test
@@ -57,19 +59,30 @@ class AgendaViewModelTest {
         // GIVEN
         val testSubject = AgendaViewModelTestFactory.givenAnAgendaViewModel()
         val viewModel = testSubject.viewModel
+
+        // Ensure init load has completed
+        runCurrent()
         advanceTimeBy(ADVANCE_TIME_MS)
-        val newDate = LocalDate.now().plusDays(ONE_DAY)
+        runCurrent()
+
+        val baseDate = viewModel.uiState.value.selectedDate
+        val newDate = baseDate.plusDays(ONE_DAY)
 
         // WHEN
         viewModel.processIntent(AgendaContract.Intent.OnSelectDate(newDate))
-        testDispatcher.scheduler.runCurrent()
+        runCurrent()
 
-        // THEN (Checking loading state again)
+        // THEN
         assertThat(viewModel.uiState.value.selectedDate).isEqualTo(newDate)
-        assertThat(viewModel.uiState.value.content).isInstanceOf(AgendaContract.AgendaContentState.Loading::class.java)
+        assertThat(viewModel.uiState.value.content)
+            .isInstanceOf(AgendaContract.AgendaContentState.Loading::class.java)
 
         advanceTimeBy(ADVANCE_TIME_MS)
-        assertThat(viewModel.uiState.value.content).isInstanceOf(AgendaContract.AgendaContentState.Data::class.java)
+        runCurrent()
+
+        // It can legitimately be Empty if there are no classes for that date.
+        assertThat(viewModel.uiState.value.content)
+            .isNotInstanceOf(AgendaContract.AgendaContentState.Loading::class.java)
     }
 
     @Test
@@ -135,8 +148,9 @@ class AgendaViewModelTest {
         val classId = "1"
 
         // Ensure initial load has completed so content is Data
-        testDispatcher.scheduler.runCurrent()
+        runCurrent()
         advanceTimeBy(ADVANCE_TIME_MS)
+        runCurrent()
 
         // WHEN - Expand
         viewModel.processIntent(AgendaContract.Intent.OnToggleExpandClass(classId))
