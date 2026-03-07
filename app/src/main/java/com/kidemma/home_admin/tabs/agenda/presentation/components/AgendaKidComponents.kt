@@ -11,6 +11,9 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.derivedStateOf
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -18,7 +21,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.kidemma.R
 import com.kidemma.common.components.HorizontalSpacerExtraSmall
 import com.kidemma.common.components.HorizontalSpacerMedium
@@ -28,9 +30,22 @@ import com.kidemma.common.components.KidemmaTertiaryButton
 import com.kidemma.common.components.VerticalSpacerSmall
 import com.kidemma.common.ui.theme.KidemmaColors
 import com.kidemma.common.ui.theme.KidemmaTheme
+import com.kidemma.home_admin.tabs.agenda.presentation.components.AgendaUiConstants.Dimens.KidAvatarBorderWidth
+import com.kidemma.home_admin.tabs.agenda.presentation.components.AgendaUiConstants.Dimens.KidAvatarIconSize
+import com.kidemma.home_admin.tabs.agenda.presentation.components.AgendaUiConstants.Dimens.KidAvatarSize
+import com.kidemma.home_admin.tabs.agenda.presentation.components.AgendaUiConstants.Dimens.KidsRowPadding
+import com.kidemma.home_admin.tabs.agenda.presentation.components.AgendaUiConstants.Numbers.MAX_KIDS_DISPLAYED
 import com.kidemma.home_admin.tabs.agenda.presentation.models.KidUiModel
 
-private const val MAX_KIDS_DISPLAYED = 3
+/*
+ * File: AgendaKidComponents
+ * Description: Composable components related to displaying kids in the Agenda tab,
+ * including the list of kids for a class and individual kid rows.
+ *
+ * Created by: José Manuel Carrillo Torres
+ * Created on: 05/03/26
+ * Last modified: 06/03/26
+ */
 
 @Composable
 internal fun KidsSection(
@@ -38,10 +53,14 @@ internal fun KidsSection(
     isExpanded: Boolean,
     onToggleExpand: () -> Unit,
 ) {
-    val kidsToDisplay = if (kids.size > MAX_KIDS_DISPLAYED && !isExpanded) {
-        kids.take(MAX_KIDS_DISPLAYED)
-    } else {
-        kids
+    val kidsToDisplay by remember(kids, isExpanded) {
+        derivedStateOf {
+            if (kids.size > MAX_KIDS_DISPLAYED && !isExpanded) {
+                kids.take(MAX_KIDS_DISPLAYED)
+            } else {
+                kids
+            }
+        }
     }
 
     Column {
@@ -67,22 +86,21 @@ private fun KidRow(kid: KidUiModel) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(16.dp),
+            .padding(KidsRowPadding),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         // TODO: Replace with KidemmaAvatarChip
         Box(
             modifier = Modifier
-                .size(48.dp)
+                .size(KidAvatarSize)
                 .clip(CircleShape)
-                .border(1.dp, KidemmaColors.Primary, CircleShape),
+                .border(KidAvatarBorderWidth, KidemmaColors.Primary, CircleShape),
             contentAlignment = Alignment.Center,
         ) {
-            // Using a default icon for avatar
             Icon(
                 painter = painterResource(id = R.drawable.ic_launcher_foreground),
                 contentDescription = null,
-                modifier = Modifier.size(32.dp),
+                modifier = Modifier.size(KidAvatarIconSize),
                 tint = Color.Unspecified,
             )
         }
@@ -152,3 +170,4 @@ private fun KidsSectionShortListPreview() {
         )
     }
 }
+

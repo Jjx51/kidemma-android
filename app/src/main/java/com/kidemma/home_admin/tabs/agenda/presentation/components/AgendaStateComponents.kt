@@ -1,4 +1,3 @@
-package com.kidemma.home_admin.tabs.agenda.presentation.components
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -17,7 +16,18 @@ import com.kidemma.common.components.KidemmaPrimaryButton
 import com.kidemma.common.ui.theme.KidemmaTheme
 import java.time.Instant
 import java.time.LocalDate
-import java.time.ZoneId
+import java.time.LocalDateTime
+import java.time.ZoneOffset
+
+/*
+ * File: AgendaStateComponents
+ * Description: Composable components for different states of the Agenda tab,
+ * including the date picker dialog and empty state content.
+ *
+ * Created by: José Manuel Carrillo Torres
+ * Created on: 05/03/26
+ * Last modified: 06/03/26
+ */
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -36,7 +46,9 @@ internal fun AgendaDatePickerDialog(
                 text = stringResource(R.string.agenda_date_picker_confirm),
                 onClick = {
                     datePickerState.selectedDateMillis?.let {
-                        val date = Instant.ofEpochMilli(it).atZone(ZoneId.systemDefault()).toLocalDate()
+                        // Material3 DatePicker exposes the selected day as UTC midnight millis.
+                        // Converting using the system timezone can shift the date (e.g., show previous day).
+                        val date = LocalDateTime.ofInstant(Instant.ofEpochMilli(it), ZoneOffset.UTC).toLocalDate()
                         onDateSelected(date)
                     }
                 },

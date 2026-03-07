@@ -5,12 +5,13 @@ import java.time.LocalDate
 
 /*
  * File: AgendaContract
- * Description: Contract for the Agenda tab defining State, Intent, and Effect
+ * Description: Contract for the Agenda tab defining State, Intent, and Effect.
  *
  * Created by: José Manuel Carrillo Torres
  * Created on: 26/02/26
- * Last modified: 26/02/26
+ * Last modified: 06/03/26
  */
+
 class AgendaContract {
     data class State(
         val selectedDate: LocalDate = LocalDate.now(),

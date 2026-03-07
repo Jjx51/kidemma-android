@@ -1,4 +1,3 @@
-package com.kidemma.home_admin.tabs.agenda.presentation.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -24,7 +23,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.kidemma.R
 import com.kidemma.common.components.HorizontalSpacerSmall
 import com.kidemma.common.components.KidemmaCard
@@ -33,13 +31,29 @@ import com.kidemma.common.components.VerticalSpacerLarge
 import com.kidemma.common.ui.theme.KidemmaCardShapes
 import com.kidemma.common.ui.theme.KidemmaColors
 import com.kidemma.common.ui.theme.KidemmaTheme
+import com.kidemma.home_admin.tabs.agenda.presentation.components.AgendaUiConstants.Dimens.DaySelectorCardSize
+import com.kidemma.home_admin.tabs.agenda.presentation.components.AgendaUiConstants.Dimens.DaySelectorSelectedBorderWidth
+import com.kidemma.home_admin.tabs.agenda.presentation.components.AgendaUiConstants.Dimens.ScreenPadding
+import com.kidemma.home_admin.tabs.agenda.presentation.components.AgendaUiConstants.Dimens.WeekNavigationIconSize
+import com.kidemma.home_admin.tabs.agenda.presentation.components.AgendaUiConstants.Dimens.WeekRangeChipBorderWidth
+import com.kidemma.home_admin.tabs.agenda.presentation.components.AgendaUiConstants.Dimens.WeekRangeChipIconSize
+import com.kidemma.home_admin.tabs.agenda.presentation.components.AgendaUiConstants.Dimens.WeekRangeChipPadding
+import com.kidemma.home_admin.tabs.agenda.presentation.components.AgendaUiConstants.Numbers.DAYS_IN_SELECTOR
+import com.kidemma.home_admin.tabs.agenda.presentation.components.AgendaUiConstants.Numbers.DAYS_TO_ADD_FOR_THE_WEEKEND
 import com.kidemma.home_admin.tabs.agenda.presentation.AgendaContract
 import java.time.LocalDate
 import java.time.format.TextStyle
 import java.util.Locale
 
-private const val DAYS_TO_ADD_FOR_WEEK_END = 5L
-private const val DAYS_IN_SELECTOR = 5
+/*
+ * File: AgendaHeaderComponents
+ * Description: Composable components for the header section of the Agenda tab,
+ * including the week selector
+ *
+ * Created by: José Manuel Carrillo Torres
+ * Created on: 05/03/26
+ * Last modified: 06/03/26
+ */
 
 @Composable
 internal fun AgendaHeader(
@@ -51,7 +65,7 @@ internal fun AgendaHeader(
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .padding(16.dp),
+            .padding(ScreenPadding),
     ) {
         AgendaWeekSelector(weekStart = weekStart, onIntent = onIntent)
         VerticalSpacerLarge()
@@ -77,22 +91,22 @@ private fun AgendaWeekSelector(
 
 @Composable
 private fun WeekRangeChip(weekStart: LocalDate, onIntent: (AgendaContract.Intent) -> Unit) {
-    val weekEnd = weekStart.plusDays(DAYS_TO_ADD_FOR_WEEK_END)
+    val weekEnd = weekStart.plusDays(DAYS_TO_ADD_FOR_THE_WEEKEND)
 
     Row(
         modifier = Modifier
             .clip(KidemmaCardShapes.medium)
             .clickable { onIntent(AgendaContract.Intent.OnOpenDatePicker) }
             .background(Color.White)
-            .border(1.dp, KidemmaColors.Icon, KidemmaCardShapes.medium)
-            .padding(16.dp),
+            .border(WeekRangeChipBorderWidth, KidemmaColors.Icon, KidemmaCardShapes.medium)
+            .padding(WeekRangeChipPadding),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Icon(
             Icons.Default.DateRange,
             contentDescription = null,
             tint = KidemmaColors.Icon,
-            modifier = Modifier.size(20.dp),
+            modifier = Modifier.size(WeekRangeChipIconSize),
         )
         HorizontalSpacerSmall()
         KidemmaLabelLarge(
@@ -111,7 +125,7 @@ private fun WeekNavigationButtons(
             Icon(
                 imageVector = Icons.AutoMirrored.Filled.KeyboardArrowLeft,
                 contentDescription = stringResource(R.string.agenda_prev_week_content_description),
-                modifier = Modifier.size(40.dp),
+                modifier = Modifier.size(WeekNavigationIconSize),
                 tint = KidemmaColors.Icon,
             )
         }
@@ -119,7 +133,7 @@ private fun WeekNavigationButtons(
             Icon(
                 imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight,
                 contentDescription = stringResource(R.string.agenda_next_week_content_description),
-                modifier = Modifier.size(40.dp),
+                modifier = Modifier.size(WeekNavigationIconSize),
                 tint = KidemmaColors.Icon,
             )
         }
@@ -143,11 +157,11 @@ private fun AgendaDaySelector(
 
             KidemmaCard(
                 modifier = Modifier
-                    .size(50.dp)
+                    .size(DaySelectorCardSize)
                     .clickable { onIntent(AgendaContract.Intent.OnSelectDate(date)) }
                     .then(
                         if (isSelected) {
-                            Modifier.border(2.dp, KidemmaColors.Icon, KidemmaCardShapes.medium)
+                            Modifier.border(DaySelectorSelectedBorderWidth, KidemmaColors.Icon, KidemmaCardShapes.medium)
                         } else {
                             Modifier
                         },

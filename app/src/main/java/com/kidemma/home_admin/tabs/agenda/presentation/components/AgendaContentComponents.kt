@@ -15,7 +15,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
+import com.kidemma.home_admin.tabs.agenda.presentation.components.AgendaUiConstants.Dimens.ClassTimeRowPadding
+import com.kidemma.home_admin.tabs.agenda.presentation.components.AgendaUiConstants.Dimens.ClassesListContentPadding
+import com.kidemma.home_admin.tabs.agenda.presentation.components.AgendaUiConstants.Dimens.ClassesListItemSpacing
 import com.kidemma.R
 import com.kidemma.common.components.HorizontalSpacerExtraSmall
 import com.kidemma.common.components.KidemmaBodyMedium
@@ -25,9 +27,16 @@ import com.kidemma.common.ui.theme.KidemmaColors
 import com.kidemma.common.ui.theme.KidemmaTheme
 import com.kidemma.home_admin.tabs.agenda.data.AgendaMockProvider
 import java.time.LocalDate
-import java.time.LocalTime
 import com.kidemma.home_admin.tabs.agenda.presentation.models.ClassUiModel
-import com.kidemma.home_admin.tabs.agenda.presentation.models.KidUiModel
+
+/*
+ * File: AgendaContentComponents
+ * Description: Composables for the Agenda tab content (classes list + class cards).
+ *
+ * Created by: José Manuel Carrillo Torres
+ * Created on: 05/03/26
+ * Last modified: 06/03/26
+ */
 
 @Composable
 internal fun AgendaClassesList(
@@ -38,8 +47,8 @@ internal fun AgendaClassesList(
 ) {
     LazyColumn(
         modifier = modifier.fillMaxSize(),
-        contentPadding = PaddingValues(16.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp),
+        contentPadding = PaddingValues(ClassesListContentPadding),
+        verticalArrangement = Arrangement.spacedBy(ClassesListItemSpacing),
     ) {
         items(classes) { classItem ->
             ClassCard(
@@ -72,7 +81,7 @@ private fun ClassTimeRow(timeDescription: String) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(16.dp),
+            .padding(ClassTimeRowPadding),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         KidemmaLabelMedium(text = stringResource(R.string.agenda_class_time_label))

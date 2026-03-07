@@ -1,5 +1,8 @@
 package com.kidemma.home_admin.tabs.agenda.presentation.ui
 
+import AgendaDatePickerDialog
+import AgendaHeader
+import EmptyAgendaContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -16,9 +19,6 @@ import com.kidemma.home_admin.tabs.agenda.data.AgendaMockProvider
 import com.kidemma.home_admin.tabs.agenda.presentation.AgendaContract
 import com.kidemma.home_admin.tabs.agenda.presentation.AgendaViewModelImpl
 import com.kidemma.home_admin.tabs.agenda.presentation.components.AgendaClassesList
-import com.kidemma.home_admin.tabs.agenda.presentation.components.AgendaDatePickerDialog
-import com.kidemma.home_admin.tabs.agenda.presentation.components.AgendaHeader
-import com.kidemma.home_admin.tabs.agenda.presentation.components.EmptyAgendaContent
 import org.koin.androidx.compose.koinViewModel
 import java.time.DayOfWeek
 import java.time.LocalDate
@@ -29,7 +29,7 @@ import java.time.LocalDate
  *
  * Created by: José Manuel Carrillo Torres
  * Created on: 26/02/26
- * Last modified: 26/02/26
+ * Last modified: 06/03/26
  */
 
 @Composable
