@@ -16,8 +16,6 @@ object KidemmaDimens {
 
     val ElevationSmall = 3.dp
 
-    val CardElevation = 6.dp
-
     // Material 3 standard sizes (see: https://developer.android.com/develop/ui/compose/designsystems/material3)
     val HeadlineLarge = 32.sp
     val HeadlineMedium = 28.sp
@@ -28,7 +26,7 @@ object KidemmaDimens {
     val BodyMedium = 14.sp
     val BodySmall = 12.sp
 
-    // Material 3 standard sizes (see: https://developer.android.com/develop/ui/compose/designsystems/material3)
+
     val LabelLarge = 16.sp
     val LabelMedium = 12.sp
     val LabelSmall = 11.sp

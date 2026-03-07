@@ -5,7 +5,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.kidemma.authentication.login.presentation.LoginScreen
+import com.kidemma.common.ui.theme.KidemmaTheme
 import com.kidemma.home_admin.presentation.AdminMainScreen
+import com.kidemma.home_admin.tabs.families.FamiliesTabScreen
+import com.kidemma.home_admin.tabs.families.FamiliesTabViewModel
 import com.kidemma.home_parent.presentation.ParentMainScreen
 import com.kidemma.introduction.onboarding.presentation.OnboardingScreen
 import com.kidemma.introduction.splash.presentation.SplashScreen
@@ -18,6 +21,7 @@ fun NavigationWrapper() {
             startDestination = AppRoute.Splash
     ) {
         composable<AppRoute.Splash> { SplashScreen(navController) }
+        //composable<AppRoute.Splash> { FamiliesTabScreen()}
         composable<AppRoute.Onboarding> { OnboardingScreen(navController) }
         composable<AppRoute.Login> { LoginScreen(navController) }
         composable<AppRoute.AdminMain> { AdminMainScreen() }

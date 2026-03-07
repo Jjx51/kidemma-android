@@ -8,6 +8,7 @@ import androidx.navigation.compose.composable
 import com.kidemma.common.components.PlaceholderScreen
 import com.kidemma.common.navigation.AdminRoute
 import com.kidemma.home_admin.tabs.agenda.presentation.ui.AgendaTabScreen
+import com.kidemma.home_admin.tabs.families.FamiliesTabScreen
 
 /*
  * File: AdminNavGraph
@@ -36,7 +37,7 @@ fun AdminNavGraph(
             AgendaTabScreen()
         }
 
-        composable<AdminRoute.Families> { PlaceholderScreen("Familias") }
+        composable<AdminRoute.Families> { FamiliesTabScreen(onNavigateToCreateFamily = {}, onNavigateToFamilyDetail = {}) }
 
         composable<AdminRoute.Other> { PlaceholderScreen("Otros") }
     }

@@ -34,8 +34,8 @@ import com.kidemma.common.ui.theme.KidemmaTheme
 fun KidemmaTextFieldWithFilter(
     value: String,
     onValueChange: (String) -> Unit,
-    placeholder : String = stringResource(R.string.family_screen_write_something),
-    onClickFilter: () -> Unit,
+    placeholder : String,
+    onClickFilter: () -> Unit = {},
     modifier: Modifier = Modifier
 ) {
 
@@ -108,7 +108,8 @@ fun KidemmaTextFieldWithFilterPreview() {
         KidemmaTextFieldWithFilter(
             value = text,
             onValueChange = { text = it },
-            onClickFilter = {}
+            onClickFilter = {},
+            placeholder = stringResource(R.string.family_screen_write_something)
         )
     }
 }

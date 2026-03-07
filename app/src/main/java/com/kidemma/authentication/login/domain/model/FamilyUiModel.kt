@@ -1,5 +1,7 @@
 package com.kidemma.authentication.domain.model
 
+import androidx.annotation.DrawableRes
+
 data class FamilyUiModel (
     val id: Int,
     val nickname: String,
@@ -9,5 +11,5 @@ data class FamilyUiModel (
 data class FamilyMemberUiModel(
     val id: Int,
     val name: String,
-    val photo: Int
+    @param:DrawableRes val image: Int
 )

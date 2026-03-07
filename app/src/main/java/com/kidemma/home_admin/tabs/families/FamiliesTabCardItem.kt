@@ -1,4 +1,4 @@
-package com.kidemma.common.components
+package com.kidemma.home_admin.tabs.families
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -15,14 +15,17 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.kidemma.R
 import com.kidemma.authentication.domain.model.FamilyMemberUiModel
+import com.kidemma.common.components.KidemmaAvatarChip
+import com.kidemma.common.components.KidemmaBodyLarge
+import com.kidemma.common.components.KidemmaCard
+import com.kidemma.common.components.KidemmaLabelLarge
 import com.kidemma.common.ui.theme.KidemmaColors
 
 @Composable
-fun KidemmaFamilyCardItem(
+fun FamiliesTabCardItem (
     familyName: String,
     familyNickname: String,
     familyMembers: List<FamilyMemberUiModel> = emptyList(),
@@ -35,14 +38,14 @@ fun KidemmaFamilyCardItem(
     ) {
         Row(Modifier.padding(15.dp), verticalAlignment = Alignment.CenterVertically) {
             Column(modifier = Modifier.weight(8f), verticalArrangement = Arrangement.spacedBy(15.dp)) {
-                KidemmaLabelLarge(text = stringResource(R.string.family_screen_family, familyName))
-                KidemmaBodyLarge(text = stringResource(R.string.family_screen_nickname, familyNickname))
+                KidemmaLabelLarge(text = stringResource(R.string.families_tab_card_item_family, familyName))
+                KidemmaBodyLarge(text = stringResource(R.string.families_tab_card_item_nickname, familyNickname))
 
                 LazyRow(
-                        horizontalArrangement = Arrangement.spacedBy(14.dp)
+                    horizontalArrangement = Arrangement.spacedBy(14.dp)
                 ) {
                     items(familyMembers) {
-                        AvatarChip(memberImage = it.photo)
+                        KidemmaAvatarChip(memberImage = R.drawable.img_boy)
                     }
                 }
             }
@@ -53,7 +56,7 @@ fun KidemmaFamilyCardItem(
             ) {
                 Icon(
                     painter = icArrowRight,
-                    contentDescription = "Ver detalles",
+                    contentDescription = stringResource(R.string.families_tab_card_item_view_family_details),
                     tint = KidemmaColors.Icon,
                     modifier = Modifier.size(30.dp)
                 )
@@ -62,14 +65,4 @@ fun KidemmaFamilyCardItem(
 
 
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun KidemmaFamilyCardItemPreview() {
-    KidemmaFamilyCardItem(
-        familyName = "Familia Pérez",
-        familyNickname = "Los Pérez",
-        onNavigateToDetail = {}
-    )
 }
