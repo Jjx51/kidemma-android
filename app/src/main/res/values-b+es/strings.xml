@@ -75,4 +75,8 @@
     <!-- KidemmaAvatarChip-->
     <string name="kidemma_avatar_chip_avatar">Avatar</string>
 
+    <!-- KidemmaTextFieldWithFilter-->
+    <string name="texfield_with_filter_filter_icon">Icono de filtro</string>
+    <string name="texfield_with_filter_search_icon">Icono de busqueda</string>
+
 </resources>

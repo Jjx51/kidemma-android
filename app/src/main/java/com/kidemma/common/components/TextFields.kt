@@ -2,14 +2,11 @@ package com.kidemma.common.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.TextField
@@ -27,23 +24,26 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.kidemma.R
+import com.kidemma.common.ui.theme.IconSize
 import com.kidemma.common.ui.theme.KidemmaColors
 import com.kidemma.common.ui.theme.KidemmaTheme
 
+private val SearchBarHeight = 60.dp
 @Composable
 fun KidemmaTextFieldWithFilter(
+    modifier: Modifier = Modifier,
     value: String,
     onValueChange: (String) -> Unit,
     placeholder : String,
-    onClickFilter: () -> Unit = {},
-    modifier: Modifier = Modifier
+    onClickFilter: () -> Unit = {}
 ) {
 
-    Row (verticalAlignment = Alignment.CenterVertically){
+
+    Row (modifier = modifier, verticalAlignment = Alignment.CenterVertically){
         KidemmaCard (
-            modifier = modifier
-                .weight(4f)
-                .height(60.dp)
+            modifier = Modifier
+                .weight(1f)
+                .height( SearchBarHeight)
         ) {
             Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                 TextField(
@@ -60,8 +60,8 @@ fun KidemmaTextFieldWithFilter(
                         Icon(
                             painter = painterResource(R.drawable.ic_search),
                             tint = KidemmaColors.PlaceholderForm,
-                            contentDescription = "Search Icon",
-                            modifier = Modifier.size(30.dp)
+                            contentDescription = stringResource(R.string.texfield_with_filter_search_icon),
+                            modifier = Modifier.size(IconSize.Medium)
                         )
                     },
                     singleLine = true,
@@ -76,24 +76,21 @@ fun KidemmaTextFieldWithFilter(
             }
         }
 
-        Spacer(Modifier.width(10.dp))
+        HorizontalSpacerSmall()
 
-        Column(Modifier.weight(1f)) {
-            KidemmaCard(
-                modifier = Modifier.size(60.dp)
-            ) {
-                Box (Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                    Icon(
-                        painter = painterResource(R.drawable.ic_filter),
-                        contentDescription = "Filter Icon",
-                        tint = KidemmaColors.PlaceholderForm,
-                        modifier = Modifier
-                            .size(30.dp)
-                            .clickable { onClickFilter() },
-                    )
-                }
-
+        KidemmaCard(
+            modifier = Modifier.size(SearchBarHeight).clickable{onClickFilter()}
+        ) {
+            Box (Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                Icon(
+                    painter = painterResource(R.drawable.ic_filter),
+                    contentDescription = stringResource(R.string.texfield_with_filter_filter_icon),
+                    tint = KidemmaColors.PlaceholderForm,
+                    modifier = Modifier
+                        .size(IconSize.Medium)
+                )
             }
+
         }
 
     }

@@ -42,3 +42,7 @@ object KidemmaDimens {
     val GeneralPaddingFillMaxSize = 20.dp
     
 }
+
+object IconSize{
+    val Medium = 30.dp
+}
