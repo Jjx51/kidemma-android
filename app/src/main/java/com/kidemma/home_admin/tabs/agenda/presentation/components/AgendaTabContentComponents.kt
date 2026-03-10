@@ -15,9 +15,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.kidemma.home_admin.tabs.agenda.presentation.components.AgendaUiConstants.Dimens.ClassTimeRowPadding
-import com.kidemma.home_admin.tabs.agenda.presentation.components.AgendaUiConstants.Dimens.ClassesListContentPadding
-import com.kidemma.home_admin.tabs.agenda.presentation.components.AgendaUiConstants.Dimens.ClassesListItemSpacing
+import com.kidemma.home_admin.tabs.agenda.presentation.components.AgendaTabUiConstants.Dimens.ClassTimeRowPadding
+import com.kidemma.home_admin.tabs.agenda.presentation.components.AgendaTabUiConstants.Dimens.ClassesListContentPadding
+import com.kidemma.home_admin.tabs.agenda.presentation.components.AgendaTabUiConstants.Dimens.ClassesListItemSpacing
 import com.kidemma.R
 import com.kidemma.common.components.HorizontalSpacerExtraSmall
 import com.kidemma.common.components.KidemmaBodyMedium
@@ -25,12 +25,12 @@ import com.kidemma.common.components.KidemmaCard
 import com.kidemma.common.components.KidemmaLabelMedium
 import com.kidemma.common.ui.theme.KidemmaColors
 import com.kidemma.common.ui.theme.KidemmaTheme
-import com.kidemma.home_admin.tabs.agenda.data.AgendaMockProvider
+import com.kidemma.home_admin.tabs.agenda.data.AgendaTabMockProvider
 import java.time.LocalDate
 import com.kidemma.home_admin.tabs.agenda.presentation.models.ClassUiModel
 
 /*
- * File: AgendaContentComponents
+ * File: AgendaTabContentComponents
  * Description: Composables for the Agenda tab content (classes list + class cards).
  *
  * Created by: José Manuel Carrillo Torres
@@ -39,7 +39,7 @@ import com.kidemma.home_admin.tabs.agenda.presentation.models.ClassUiModel
  */
 
 @Composable
-internal fun AgendaClassesList(
+internal fun AgendaClassList(
     modifier: Modifier = Modifier,
     classes: List<ClassUiModel>,
     expandedClassIds: Set<String>,
@@ -68,7 +68,7 @@ private fun ClassCard(
     onToggleExpand: () -> Unit,
 ) {
     // Decided to keep logic here for simplicity, but if it grows more complex we can move it to a ViewModel or helper function
-    val maxKids = AgendaUiConstants.Numbers.MAX_KIDS_DISPLAYED
+    val maxKids = AgendaTabUiConstants.Numbers.MAX_KIDS_DISPLAYED
     val hasMoreKids = classItem.kids.size > maxKids
     val kidsToDisplay = if (!isExpanded && hasMoreKids) classItem.kids.take(maxKids) else classItem.kids
 
@@ -102,11 +102,11 @@ private fun ClassTimeRow(timeDescription: String) {
 
 @Preview(showBackground = true, backgroundColor = 0xFFFDF9ED)
 @Composable
-private fun AgendaClassesListPreview() {
+private fun AgendaClassListPreview() {
     KidemmaTheme {
         val selectedDate = LocalDate.now().with(java.time.DayOfWeek.MONDAY)
-        AgendaClassesList(
-            classes = AgendaMockProvider.getClassesForDate(selectedDate),
+        AgendaClassList(
+            classes = AgendaTabMockProvider.getClassesForDate(selectedDate),
             expandedClassIds = setOf("1"),
             onToggleExpanded = {},
         )

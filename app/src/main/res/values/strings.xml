@@ -53,6 +53,7 @@
     <string name="top_app_bar_notification_content_description">Icon of notifications</string>
 
     <!-- Agenda Tab strings -->
+    <string name="agenda_week_range_chip_content_description">Select week range</string>
     <string name="agenda_class_time_label">Time: </string>
     <string name="agenda_kid_age_label">Age: </string>
     <string name="agenda_empty_state_message">No classes assigned for this date</string>

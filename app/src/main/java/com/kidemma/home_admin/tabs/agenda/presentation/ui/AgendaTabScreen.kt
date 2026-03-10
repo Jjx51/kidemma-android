@@ -2,7 +2,7 @@ package com.kidemma.home_admin.tabs.agenda.presentation.ui
 
 import AgendaDatePickerDialog
 import AgendaHeader
-import EmptyAgendaContent
+import EmptyClassList
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -15,10 +15,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.kidemma.common.components.KidemmaLoadingOverlay
 import com.kidemma.common.ui.theme.KidemmaColors
 import com.kidemma.common.ui.theme.KidemmaTheme
-import com.kidemma.home_admin.tabs.agenda.data.AgendaMockProvider
-import com.kidemma.home_admin.tabs.agenda.presentation.AgendaContract
-import com.kidemma.home_admin.tabs.agenda.presentation.AgendaViewModelImpl
-import com.kidemma.home_admin.tabs.agenda.presentation.components.AgendaClassesList
+import com.kidemma.home_admin.tabs.agenda.data.AgendaTabMockProvider
+import com.kidemma.home_admin.tabs.agenda.presentation.AgendaTabContract
+import com.kidemma.home_admin.tabs.agenda.presentation.AgendaTabViewModelImpl
+import com.kidemma.home_admin.tabs.agenda.presentation.components.AgendaClassList
 import org.koin.androidx.compose.koinViewModel
 import java.time.DayOfWeek
 import java.time.LocalDate
@@ -35,7 +35,7 @@ import java.time.LocalDate
 @Composable
 fun AgendaTabScreen(
     modifier: Modifier = Modifier,
-    viewModel: AgendaViewModelImpl = koinViewModel(),
+    viewModel: AgendaTabViewModelImpl = koinViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsState()
 
@@ -49,8 +49,8 @@ fun AgendaTabScreen(
 @Composable
 private fun AgendaTabContent(
     modifier: Modifier = Modifier,
-    uiState: AgendaContract.State,
-    onIntent: (AgendaContract.Intent) -> Unit,
+    uiState: AgendaTabContract.State,
+    onIntent: (AgendaTabContract.Intent) -> Unit,
 ) {
     Box(modifier = modifier.fillMaxSize()) {
         Column(
@@ -64,37 +64,41 @@ private fun AgendaTabContent(
                 onIntent = onIntent,
             )
 
-            when (val content = uiState.content) {
-                AgendaContract.AgendaContentState.Loading -> {
-                    // Handled by the overlay below to ensure it's on top of everything
-                }
-
-                AgendaContract.AgendaContentState.Empty -> EmptyAgendaContent()
-
-                is AgendaContract.AgendaContentState.Data -> {
-                    AgendaClassesList(
-                        classes = content.classes,
-                        expandedClassIds = content.expandedClassIds,
-                        onToggleExpanded = { classId ->
-                            onIntent(AgendaContract.Intent.OnToggleExpandClass(classId))
-                        },
-                    )
-                }
-            }
+            AgendaTabBody(
+                content = uiState.content,
+                onIntent = onIntent,
+            )
         }
 
-        if (uiState.content is AgendaContract.AgendaContentState.Loading) {
+        // The loading overlay is placed at the end of the Box so it appears above all other content when visible.
+        if (uiState.content is AgendaTabContract.AgendaContentState.Loading) {
             KidemmaLoadingOverlay()
         }
     }
 
     if (uiState.showDatePicker) {
         AgendaDatePickerDialog(
-            onDateSelected = {
-                onIntent(AgendaContract.Intent.OnSelectDate(it))
-                onIntent(AgendaContract.Intent.OnCloseDatePicker)
+            onDateSelected = { selectedDate ->
+                onIntent(AgendaTabContract.Intent.OnSelectDate(selectedDate))
+                onIntent(AgendaTabContract.Intent.OnCloseDatePicker)
             },
-            onDismiss = { onIntent(AgendaContract.Intent.OnCloseDatePicker) },
+            onDismiss = { onIntent(AgendaTabContract.Intent.OnCloseDatePicker) },
+        )
+    }
+}
+
+@Composable
+private fun AgendaTabBody(
+    content: AgendaTabContract.AgendaContentState,
+    onIntent: (AgendaTabContract.Intent) -> Unit,
+) {
+    if (content is AgendaTabContract.AgendaContentState.Empty) {
+        EmptyClassList()
+    } else if (content is AgendaTabContract.AgendaContentState.Data) {
+        AgendaClassList(
+            classes = content.classes,
+            expandedClassIds = content.expandedClassIds,
+            onToggleExpanded = { classId -> onIntent(AgendaTabContract.Intent.OnToggleExpandClass(classId)) },
         )
     }
 }
@@ -105,11 +109,11 @@ private fun AgendaTabScreenPreview() {
     KidemmaTheme {
         val weekStart = LocalDate.now().with(DayOfWeek.MONDAY)
         AgendaTabContent(
-            uiState = AgendaContract.State(
+            uiState = AgendaTabContract.State(
                 selectedDate = weekStart,
                 weekStart = weekStart,
-                content = AgendaContract.AgendaContentState.Data(
-                    classes = AgendaMockProvider.getClassesForDate(weekStart),
+                content = AgendaTabContract.AgendaContentState.Data(
+                    classes = AgendaTabMockProvider.getClassesForDate(weekStart),
                     expandedClassIds = setOf("1"),
                 ),
                 showDatePicker = false,

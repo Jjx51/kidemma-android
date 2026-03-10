@@ -27,14 +27,14 @@ import com.kidemma.common.components.KidemmaTertiaryButton
 import com.kidemma.common.components.VerticalSpacerSmall
 import com.kidemma.common.ui.theme.KidemmaColors
 import com.kidemma.common.ui.theme.KidemmaTheme
-import com.kidemma.home_admin.tabs.agenda.presentation.components.AgendaUiConstants.Dimens.KidAvatarBorderWidth
-import com.kidemma.home_admin.tabs.agenda.presentation.components.AgendaUiConstants.Dimens.KidAvatarIconSize
-import com.kidemma.home_admin.tabs.agenda.presentation.components.AgendaUiConstants.Dimens.KidAvatarSize
-import com.kidemma.home_admin.tabs.agenda.presentation.components.AgendaUiConstants.Dimens.KidsRowPadding
+import com.kidemma.home_admin.tabs.agenda.presentation.components.AgendaTabUiConstants.Dimens.KidAvatarBorderWidth
+import com.kidemma.home_admin.tabs.agenda.presentation.components.AgendaTabUiConstants.Dimens.KidAvatarIconSize
+import com.kidemma.home_admin.tabs.agenda.presentation.components.AgendaTabUiConstants.Dimens.KidAvatarSize
+import com.kidemma.home_admin.tabs.agenda.presentation.components.AgendaTabUiConstants.Dimens.KidsRowPadding
 import com.kidemma.home_admin.tabs.agenda.presentation.models.KidUiModel
 
 /*
- * File: AgendaKidComponents
+ * File: AgendaTabKidComponents
  * Description: Composable components related to displaying kids in the Agenda tab,
  * including the list of kids for a class and individual kid rows.
  *

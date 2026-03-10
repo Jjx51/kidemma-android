@@ -4,7 +4,7 @@ import com.kidemma.home_admin.tabs.agenda.presentation.models.ClassUiModel
 import java.time.LocalDate
 
 /*
- * File: AgendaContract
+ * File: AgendaTabContract
  * Description: Contract for the Agenda tab defining State, Intent, and Effect.
  *
  * Created by: José Manuel Carrillo Torres
@@ -12,7 +12,7 @@ import java.time.LocalDate
  * Last modified: 06/03/26
  */
 
-class AgendaContract {
+class AgendaTabContract {
     data class State(
         val selectedDate: LocalDate = LocalDate.now(),
         val weekStart: LocalDate = LocalDate.now().with(java.time.DayOfWeek.MONDAY),

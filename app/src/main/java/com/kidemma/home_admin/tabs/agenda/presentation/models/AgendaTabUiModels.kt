@@ -4,7 +4,7 @@ import com.kidemma.common.ui.models.ImageUiModel
 import java.time.LocalTime
 
 /*
- * File: AgendaUiModels
+ * File: AgendaTabUiModels
  * Description: UI models for the Agenda tab
  *
  * Created by: José Manuel Carrillo Torres

@@ -20,7 +20,7 @@ import java.time.LocalDateTime
 import java.time.ZoneOffset
 
 /*
- * File: AgendaStateComponents
+ * File: AgendaTabStateComponents
  * Description: Composable components for different states of the Agenda tab,
  * including the date picker dialog and empty state content.
  *
@@ -60,7 +60,7 @@ internal fun AgendaDatePickerDialog(
 }
 
 @Composable
-internal fun EmptyAgendaContent(modifier: Modifier = Modifier) {
+internal fun EmptyClassList(modifier: Modifier = Modifier) {
     Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
         KidemmaBodyMedium(text = stringResource(R.string.agenda_empty_state_message))
     }
@@ -68,9 +68,9 @@ internal fun EmptyAgendaContent(modifier: Modifier = Modifier) {
 
 @Preview(showBackground = true, backgroundColor = 0xFFFDF9ED)
 @Composable
-private fun EmptyAgendaContentPreview() {
+private fun EmptyClassListPreview() {
     KidemmaTheme {
-        EmptyAgendaContent()
+        EmptyClassList()
     }
 }
 

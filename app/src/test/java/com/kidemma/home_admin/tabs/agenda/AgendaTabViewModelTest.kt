@@ -2,7 +2,7 @@ package com.kidemma.home_admin.tabs.agenda
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.google.common.truth.Truth.assertThat
-import com.kidemma.home_admin.tabs.agenda.presentation.AgendaContract
+import com.kidemma.home_admin.tabs.agenda.presentation.AgendaTabContract
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
@@ -27,7 +27,7 @@ private const val ADVANCE_TIME_MS = 2001L
 private const val ONE_DAY = 1L
 
 @OptIn(ExperimentalCoroutinesApi::class)
-class AgendaViewModelTest {
+class AgendaTabViewModelTest {
 
     @get:Rule
     val instantTaskExecutorRule = InstantTaskExecutorRule()
@@ -41,7 +41,7 @@ class AgendaViewModelTest {
     @Test
     fun `when viewmodel is initialized, then content is Data`() = runTest {
         // GIVEN
-        val testSubject = AgendaViewModelTestFactory.givenAnAgendaViewModel()
+        val testSubject = AgendaTabViewModelTestFactory.givenAnAgendaViewModel()
         val viewModel = testSubject.viewModel
 
         // WHEN
@@ -51,13 +51,13 @@ class AgendaViewModelTest {
 
         // THEN
         assertThat(viewModel.uiState.value.content)
-            .isInstanceOf(AgendaContract.AgendaContentState.Data::class.java)
+            .isInstanceOf(AgendaTabContract.AgendaContentState.Data::class.java)
     }
 
     @Test
     fun `when SelectDate intent is processed, then selectedDate updates and content is reloaded`() = runTest {
         // GIVEN
-        val testSubject = AgendaViewModelTestFactory.givenAnAgendaViewModel()
+        val testSubject = AgendaTabViewModelTestFactory.givenAnAgendaViewModel()
         val viewModel = testSubject.viewModel
 
         // Ensure init load has completed
@@ -69,31 +69,31 @@ class AgendaViewModelTest {
         val newDate = baseDate.plusDays(ONE_DAY)
 
         // WHEN
-        viewModel.processIntent(AgendaContract.Intent.OnSelectDate(newDate))
+        viewModel.processIntent(AgendaTabContract.Intent.OnSelectDate(newDate))
         runCurrent()
 
         // THEN
         assertThat(viewModel.uiState.value.selectedDate).isEqualTo(newDate)
         assertThat(viewModel.uiState.value.content)
-            .isInstanceOf(AgendaContract.AgendaContentState.Loading::class.java)
+            .isInstanceOf(AgendaTabContract.AgendaContentState.Loading::class.java)
 
         advanceTimeBy(ADVANCE_TIME_MS)
         runCurrent()
 
         // It can legitimately be Empty if there are no classes for that date.
         assertThat(viewModel.uiState.value.content)
-            .isNotInstanceOf(AgendaContract.AgendaContentState.Loading::class.java)
+            .isNotInstanceOf(AgendaTabContract.AgendaContentState.Loading::class.java)
     }
 
     @Test
     fun `when NextWeek intent is processed, then weekStart updates by one week`() = runTest {
         // GIVEN
-        val testSubject = AgendaViewModelTestFactory.givenAnAgendaViewModel()
+        val testSubject = AgendaTabViewModelTestFactory.givenAnAgendaViewModel()
         val viewModel = testSubject.viewModel
         val initialWeekStart = viewModel.uiState.value.weekStart
 
         // WHEN
-        viewModel.processIntent(AgendaContract.Intent.OnNextWeek)
+        viewModel.processIntent(AgendaTabContract.Intent.OnNextWeek)
 
         // THEN
         assertThat(viewModel.uiState.value.weekStart).isEqualTo(initialWeekStart.plusWeeks(1))
@@ -102,12 +102,12 @@ class AgendaViewModelTest {
     @Test
     fun `when PreviousWeek intent is processed, then weekStart updates by minus one week`() = runTest {
         // GIVEN
-        val testSubject = AgendaViewModelTestFactory.givenAnAgendaViewModel()
+        val testSubject = AgendaTabViewModelTestFactory.givenAnAgendaViewModel()
         val viewModel = testSubject.viewModel
         val initialWeekStart = viewModel.uiState.value.weekStart
 
         // WHEN
-        viewModel.processIntent(AgendaContract.Intent.OnPreviousWeek)
+        viewModel.processIntent(AgendaTabContract.Intent.OnPreviousWeek)
 
         // THEN
         assertThat(viewModel.uiState.value.weekStart).isEqualTo(initialWeekStart.minusWeeks(1))
@@ -116,11 +116,11 @@ class AgendaViewModelTest {
     @Test
     fun `when OpenDatePicker intent is processed, then showDatePicker is true`() = runTest {
         // GIVEN
-        val testSubject = AgendaViewModelTestFactory.givenAnAgendaViewModel()
+        val testSubject = AgendaTabViewModelTestFactory.givenAnAgendaViewModel()
         val viewModel = testSubject.viewModel
 
         // WHEN
-        viewModel.processIntent(AgendaContract.Intent.OnOpenDatePicker)
+        viewModel.processIntent(AgendaTabContract.Intent.OnOpenDatePicker)
 
         // THEN
         assertThat(viewModel.uiState.value.showDatePicker).isTrue()
@@ -129,12 +129,12 @@ class AgendaViewModelTest {
     @Test
     fun `when CloseDatePicker intent is processed, then showDatePicker is false`() = runTest {
         // GIVEN
-        val testSubject = AgendaViewModelTestFactory.givenAnAgendaViewModel()
+        val testSubject = AgendaTabViewModelTestFactory.givenAnAgendaViewModel()
         val viewModel = testSubject.viewModel
-        viewModel.processIntent(AgendaContract.Intent.OnOpenDatePicker)
+        viewModel.processIntent(AgendaTabContract.Intent.OnOpenDatePicker)
 
         // WHEN
-        viewModel.processIntent(AgendaContract.Intent.OnCloseDatePicker)
+        viewModel.processIntent(AgendaTabContract.Intent.OnCloseDatePicker)
 
         // THEN
         assertThat(viewModel.uiState.value.showDatePicker).isFalse()
@@ -143,7 +143,7 @@ class AgendaViewModelTest {
     @Test
     fun `when OnToggleExpandClass intent is processed, then expandedClassIds is updated`() = runTest {
         // GIVEN
-        val testSubject = AgendaViewModelTestFactory.givenAnAgendaViewModel()
+        val testSubject = AgendaTabViewModelTestFactory.givenAnAgendaViewModel()
         val viewModel = testSubject.viewModel
         val classId = "1"
 
@@ -153,17 +153,17 @@ class AgendaViewModelTest {
         runCurrent()
 
         // WHEN - Expand
-        viewModel.processIntent(AgendaContract.Intent.OnToggleExpandClass(classId))
+        viewModel.processIntent(AgendaTabContract.Intent.OnToggleExpandClass(classId))
 
         // THEN
-        val content = viewModel.uiState.value.content as AgendaContract.AgendaContentState.Data
+        val content = viewModel.uiState.value.content as AgendaTabContract.AgendaContentState.Data
         assertThat(content.expandedClassIds).contains(classId)
 
         // WHEN - Collapse
-        viewModel.processIntent(AgendaContract.Intent.OnToggleExpandClass(classId))
+        viewModel.processIntent(AgendaTabContract.Intent.OnToggleExpandClass(classId))
 
         // THEN
-        val collapsedContent = viewModel.uiState.value.content as AgendaContract.AgendaContentState.Data
+        val collapsedContent = viewModel.uiState.value.content as AgendaTabContract.AgendaContentState.Data
         assertThat(collapsedContent.expandedClassIds).doesNotContain(classId)
     }
 }

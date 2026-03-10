@@ -13,7 +13,7 @@ import androidx.compose.ui.unit.dp
  * Last modified: 06/03/26
  */
 
-internal object AgendaUiConstants {
+internal object AgendaTabUiConstants {
 
     internal object Dimens {
         val ScreenPadding: Dp = 16.dp

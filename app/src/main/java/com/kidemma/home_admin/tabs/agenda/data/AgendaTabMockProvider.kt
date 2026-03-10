@@ -6,14 +6,14 @@ import java.time.LocalDate
 import java.time.LocalTime
 
 /*
- * File: AgendaMockProvider
+ * File: AgendaTabMockProvider
  * Description: Mock data provider for the Agenda tab
  *
  * Created by: José Manuel Carrillo Torres
  * Created on: 26/02/26
  * Last modified: 26/02/26
  */
-object AgendaMockProvider {
+object AgendaTabMockProvider {
     private const val WEDNESDAY_VALUE = 3
     private const val SUNDAY_VALUE = 7
     private const val HOUR_9 = 9
