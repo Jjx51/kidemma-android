@@ -64,6 +64,24 @@
     <!-- Privacy Policies -->
     <string name="privacy_policies_title">Privacy Policies</string>
 
+    <!-- KidCardDetail -->
+    <string name="kid_card_detail_label_age">Age</string>
+    <string name="kid_card_detail_label_classes">Classes</string>
+    <array name="kid_card_days_of_week">
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+        <item>Sunday</item>
+    </array>
+
+    <!-- Kids Tab strings -->
+    <string name="kids_empty_state_message">No kid content</string>
+    <string name="kids_grid_view_content_description">Show kids grid view</string>
+    <string name="kids_list_view_content_description">Show Kids list view</string>
+
     <!-- Agenda Tab strings -->
     <string name="agenda_week_range_chip_content_description">Select week range</string>
     <string name="agenda_class_time_label">Time: </string>

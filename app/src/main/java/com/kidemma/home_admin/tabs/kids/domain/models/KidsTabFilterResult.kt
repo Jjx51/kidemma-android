@@ -12,7 +12,7 @@ import java.time.LocalDate
  * Last modified: 09/03/26
  */
 
-data class KidsFilterResult(
+data class KidsTabFilterResult(
     val birthday: LocalDate,
     val gender: Gender
 )

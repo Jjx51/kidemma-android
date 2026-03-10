@@ -1,6 +1,6 @@
 package com.kidemma.home_admin.tabs.kids.domain
 
-import com.kidemma.home_admin.tabs.kids.presentation.KidsContract
+import com.kidemma.home_admin.tabs.kids.presentation.KidsTabContract
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 
@@ -13,8 +13,8 @@ import kotlinx.coroutines.flow.StateFlow
  * Last modified: 09/03/26
  */
 
-interface KidsViewModel {
-    val state: StateFlow<KidsContract.State>
-    val effects: SharedFlow<KidsContract.Effect>
-    fun processIntent(intent: KidsContract.Intent)
+interface KidsTabViewModel {
+    val state: StateFlow<KidsTabContract.State>
+    val effects: SharedFlow<KidsTabContract.Effect>
+    fun processIntent(intent: KidsTabContract.Intent)
 }

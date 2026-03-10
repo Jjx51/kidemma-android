@@ -2,10 +2,9 @@ package com.kidemma.home_admin.tabs.kids.presentation.components
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.kidemma.home_admin.tabs.kids.domain.models.KidsFilterResult
 
 /*
- * File: KidsFilterDialog.kt
+ * File: KidsTabFilterDialog.kt
  * Description: Kids tab filter dialog composable.
  *
  * Created by: José Manuel Carrillo Torres
@@ -14,4 +13,4 @@ import com.kidemma.home_admin.tabs.kids.domain.models.KidsFilterResult
  */
 
 @Composable
-internal fun KidsFilterDialog(modifier: Modifier = Modifier, onDismiss: () -> KidsFilterResult) {}
+internal fun KidsTabFilterDialog(modifier: Modifier = Modifier, onDismiss: () -> Unit, onApplyFilter: () -> Unit) {}

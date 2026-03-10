@@ -3,7 +3,7 @@ package com.kidemma.home_admin.tabs.kids.presentation.ui
 import androidx.compose.runtime.Composable
 
 /*
- * File: KidsHeaderComponents.kt
+ * File: KidsTabHeaderComponents.kt
  * Description: Kids tab header composables.
  *
  * Created by: José Manuel Carrillo Torres

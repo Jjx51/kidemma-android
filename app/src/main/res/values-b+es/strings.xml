@@ -73,4 +73,22 @@
     <string name="agenda_see_more">Ver más</string>
     <string name="agenda_collapse">Contraer</string>
 
+    <!-- KidCardDetail -->
+    <string name="kid_card_detail_label_age">Edad</string>
+    <string name="kid_card_detail_label_classes">Clases</string>
+    <array name="kid_card_days_of_week">
+        <item>Lunes</item>
+        <item>Martes</item>
+        <item>Miércoles</item>
+        <item>Jueves</item>
+        <item>Viernes</item>
+        <item>Sábado</item>
+        <item>Domingo</item>
+    </array>
+
+    <!-- Kids Tab strings -->
+    <string name="kids_empty_state_message">Sin contenido de niños</string>
+    <string name="kids_grid_view_content_description">Mostrar listado de niños en cuadrícula</string>
+    <string name="kids_list_view_content_description">Mostrar listado de niños en lista</string>
+
 </resources>
