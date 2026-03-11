@@ -7,15 +7,16 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.kidemma.common.components.PlaceholderScreen
 import com.kidemma.common.navigation.AdminRoute
+import com.kidemma.home_admin.tabs.agenda.presentation.ui.AgendaTabScreen
 import com.kidemma.home_admin.tabs.others.presentation.OthersScreen
 
 /*
  * File: AdminNavGraph
- * Description: [Short description]
+ * Description: NavGraph for Admin section
  *
  * Created by: Jorge Luis Hernández Núñez
  * Created on: 25/02/26
- * Last modified: 25/02/26
+ * Last modified: 26/02/26
  */
 @Composable
 fun AdminNavGraph(
@@ -32,7 +33,9 @@ fun AdminNavGraph(
 
         composable<AdminRoute.Children> { PlaceholderScreen("Niños") }
 
-        composable<AdminRoute.Agenda> { PlaceholderScreen("Agenda") }
+        composable<AdminRoute.Agenda> {
+            AgendaTabScreen()
+        }
 
         composable<AdminRoute.Families> { PlaceholderScreen("Familias") }
 
