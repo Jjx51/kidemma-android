@@ -1,8 +1,10 @@
 package com.kidemma.home_admin.tabs.kids.presentation
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -10,6 +12,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ViewList
+import androidx.compose.material.icons.filled.FilterList
 import androidx.compose.material.icons.filled.GridView
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -28,17 +31,15 @@ import com.kidemma.common.components.KidemmaLoadingOverlay
 import com.kidemma.common.ui.theme.KidemmaColors
 import com.kidemma.common.ui.theme.KidemmaDimens
 import com.kidemma.common.ui.theme.KidemmaTheme
-import com.kidemma.common.utils.Gender
 import com.kidemma.home_admin.tabs.kids.data.KidsTabMockProvider
-import com.kidemma.home_admin.tabs.kids.domain.models.KidsTabFilterResult
 import com.kidemma.home_admin.tabs.kids.presentation.KidsTabContract.Intent.OnApplyFilter
 import com.kidemma.home_admin.tabs.kids.presentation.KidsTabContract.Intent.OnCloseFilterDialog
+import com.kidemma.home_admin.tabs.kids.presentation.KidsTabContract.Intent.OnOpenFilterDialog
 import com.kidemma.home_admin.tabs.kids.presentation.components.KidsTabFilterDialog
 import com.kidemma.home_admin.tabs.kids.presentation.ui.EmptyKidsContent
 import com.kidemma.home_admin.tabs.kids.presentation.ui.KidsGridView
 import com.kidemma.home_admin.tabs.kids.presentation.ui.KidsListView
 import org.koin.androidx.compose.koinViewModel
-import java.time.LocalDate
 
 /*
  * File: KidsTabScreen.kt
@@ -74,7 +75,22 @@ private fun KidsTabContent(
         ) {
             // KidsHeader()
 
-            ToggleGridViewButton(isGridView = uiState.isGridView) { onIntent(KidsTabContract.Intent.OnToggleGridView) }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 16.dp, start = 16.dp, end = 16.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                FilterButton(
+                    onClick = { onIntent(OnOpenFilterDialog) },
+                )
+
+                ToggleGridViewButton(
+                    isGridView = uiState.isGridView,
+                    onToggle = { onIntent(KidsTabContract.Intent.OnToggleGridView) },
+                )
+            }
 
             when (val content = uiState.content) {
                 KidsTabContract.KidsContentState.Loading -> {
@@ -109,16 +125,12 @@ private fun KidsTabContent(
     }
 
     if (uiState.showFilterDialog) {
-        // todo: Pass actual filter values from the state when implementing the dialog
-        KidsTabFilterDialog(onDismiss = { onIntent(OnCloseFilterDialog) }) {
-            onIntent(
-                OnApplyFilter(
-                    KidsTabFilterResult(
-                        birthday = LocalDate.now().minusYears(2).minusMonths(3), gender = Gender.MALE
-                    )
-                )
-            )
-        }
+        KidsTabFilterDialog(
+            onDismiss = { onIntent(OnCloseFilterDialog) },
+            onApplyFilter = { filter ->
+                onIntent(OnApplyFilter(filter))
+            },
+        )
     }
 }
 
@@ -132,29 +144,47 @@ internal fun ToggleGridViewButton(
     val iconContentDescription = if (isGridView) stringResource(R.string.kids_list_view_content_description)
     else stringResource(R.string.kids_grid_view_content_description)
 
-    Box(
-        modifier = modifier
-            .fillMaxWidth()
-            .padding(top = 16.dp, end = 16.dp),
-        contentAlignment = Alignment.CenterEnd,
+    Card(
+        onClick = onToggle,
+        modifier = Modifier
+            .size(36.dp)
+            .clip(CircleShape),
+        shape = CircleShape,
+        colors = CardDefaults.cardColors(containerColor = KidemmaColors.Card),
+        elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
     ) {
-        Card(
-            onClick = onToggle,
-            modifier = Modifier
-                .size(36.dp)
-                .clip(CircleShape),
-            shape = CircleShape,
-            colors = CardDefaults.cardColors(containerColor = KidemmaColors.Card),
-            elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
-        ) {
-            Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                Icon(
-                    imageVector = icon,
-                    contentDescription = iconContentDescription,
-                    tint = KidemmaColors.Icon,
-                    modifier = Modifier.size(KidemmaDimens.IconSizeSmall),
-                )
-            }
+        Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+            Icon(
+                imageVector = icon,
+                contentDescription = iconContentDescription,
+                tint = KidemmaColors.Icon,
+                modifier = Modifier.size(KidemmaDimens.IconSizeSmall),
+            )
+        }
+    }
+}
+
+@Composable
+private fun FilterButton(
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit,
+) {
+    Card(
+        onClick = onClick,
+        modifier = modifier
+            .size(36.dp)
+            .clip(CircleShape),
+        shape = CircleShape,
+        colors = CardDefaults.cardColors(containerColor = KidemmaColors.Card),
+        elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
+    ) {
+        Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+            Icon(
+                imageVector = Icons.Filled.FilterList,
+                contentDescription = stringResource(R.string.kids_open_filter_dialog_content_description),
+                tint = KidemmaColors.Icon,
+                modifier = Modifier.size(KidemmaDimens.IconSizeSmall),
+            )
         }
     }
 }

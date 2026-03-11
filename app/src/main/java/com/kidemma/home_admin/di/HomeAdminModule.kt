@@ -6,10 +6,6 @@ import com.kidemma.home_admin.tabs.agenda.domain.AgendaTabViewModel
 import com.kidemma.home_admin.tabs.agenda.presentation.AgendaTabViewModelImpl
 import org.koin.androidx.viewmodel.dsl.viewModelOf
 import org.koin.dsl.bind
-import com.kidemma.home_admin.tabs.kids.domain.KidsViewModel
-import com.kidemma.home_admin.tabs.kids.presentation.KidsViewModelImpl
-import org.koin.androidx.viewmodel.dsl.viewModelOf
-import org.koin.dsl.bind
 import org.koin.dsl.module
 
 /*

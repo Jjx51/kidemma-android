@@ -2,8 +2,10 @@ package com.kidemma.home_admin.tabs.kids.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.kidemma.common.domain.models.KidDetailCardUiModel
 import com.kidemma.home_admin.tabs.kids.data.KidsTabMockProvider
 import com.kidemma.home_admin.tabs.kids.domain.KidsTabViewModel
+import com.kidemma.home_admin.tabs.kids.domain.models.KidsTabFilterResult
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -31,6 +33,8 @@ class KidsTabViewModelImpl : ViewModel(), KidsTabViewModel {
     private val _effects = MutableSharedFlow<KidsTabContract.Effect>()
     override val effects: SharedFlow<KidsTabContract.Effect> = _effects.asSharedFlow()
 
+    private var fullKidDetailList = emptyList<KidDetailCardUiModel>()
+
     init {
         loadKids()
     }
@@ -51,14 +55,16 @@ class KidsTabViewModelImpl : ViewModel(), KidsTabViewModel {
             }
 
             is KidsTabContract.Intent.OnApplyFilter -> {
+                val filtered = applyFilter(fullKidDetailList, intent.filter)
+
                 _state.value = _state.value.copy(
                     showFilterDialog = false,
-                    // content = ...
+                    content = if (filtered.isEmpty()) KidsTabContract.KidsContentState.Empty
+                    else KidsTabContract.KidsContentState.Data(filtered),
                 )
             }
 
             is KidsTabContract.Intent.OnKidClick -> {
-                // TODO: Emit navigation effect / open kid detail.
                 // _effects.emit(...)
             }
         }
@@ -72,11 +78,32 @@ class KidsTabViewModelImpl : ViewModel(), KidsTabViewModel {
             delay(LOADING_DELAY_MILLIS)
 
             val kidDetailList = KidsTabMockProvider.getKidsDetailList()
+            fullKidDetailList = kidDetailList
+
             _state.value = if (kidDetailList.isEmpty()) {
                 _state.value.copy(content = KidsTabContract.KidsContentState.Empty)
             } else {
                 _state.value.copy(content = KidsTabContract.KidsContentState.Data(kidDetailList))
             }
+        }
+    }
+
+    private fun applyFilter(
+        source: List<KidDetailCardUiModel>,
+        filter: KidsTabFilterResult,
+    ): List<KidDetailCardUiModel> {
+        return source.filter { kidDetail ->
+            val kid = kidDetail.kidUiModel
+
+            val isWithinBirthdayRange = when {
+                filter.minBirthday != null && kid.birthday.isBefore(filter.minBirthday) -> false
+                filter.maxBirthday != null && kid.birthday.isAfter(filter.maxBirthday) -> false
+                else -> true
+            }
+
+            val matchesGender = filter.gender?.let { it == kid.gender } ?: true
+
+            isWithinBirthdayRange && matchesGender
         }
     }
 }

@@ -81,6 +81,33 @@
     <string name="kids_empty_state_message">No kid content</string>
     <string name="kids_grid_view_content_description">Show kids grid view</string>
     <string name="kids_list_view_content_description">Show Kids list view</string>
+    <string name="kids_open_filter_dialog_content_description" translatable="false">Open kids filters</string>
+
+    <!-- Kids filter dialog -->
+    <string name="kids_filter_dialog_title" translatable="false">Filter kids</string>
+    <string name="kids_filter_dialog_clear" translatable="false">Clear</string>
+    <string name="kids_filter_dialog_apply" translatable="false">Apply</string>
+
+    <string name="kids_filter_gender_section_title" translatable="false">Gender</string>
+    <string name="kids_filter_age_range_section_title" translatable="false">Age range</string>
+    <string name="kids_filter_age_range_min_label" translatable="false">Min</string>
+    <string name="kids_filter_age_range_max_label" translatable="false">Max</string>
+
+    <string name="kids_filter_gender_male" translatable="false">Male</string>
+    <string name="kids_filter_gender_female" translatable="false">Female</string>
+    <string name="kids_filter_gender_both" translatable="false">Both</string>
+
+    <string name="kids_filter_age_range_value" translatable="false">%1$s - %2$s</string>
+
+    <plurals name="kids_age_years">
+        <item quantity="one">%d year</item>
+        <item quantity="other">%d years</item>
+    </plurals>
+
+    <plurals name="kids_age_months">
+        <item quantity="one">%d month</item>
+        <item quantity="other">%d months</item>
+    </plurals>
 
     <!-- Agenda Tab strings -->
     <string name="agenda_week_range_chip_content_description">Select week range</string>
