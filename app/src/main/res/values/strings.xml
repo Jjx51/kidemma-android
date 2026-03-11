@@ -1,5 +1,5 @@
 <resources>
-    <string name="title_activity_todo_component">TodoComponentActivity</string>
+    <string name="title_activity_todo_component" translatable="false">TodoComponentActivity</string>
     <string name="app_name" translatable="false">Kidemma</string>
 
     <!-- Validation Errors -->
@@ -51,5 +51,16 @@
     <!-- TopAppBar -->
     <string name="top_app_bar_logo_content_description">Kidemma Logo</string>
     <string name="top_app_bar_notification_content_description">Icon of notifications</string>
+
+    <!-- Agenda Tab strings -->
+    <string name="agenda_week_range_chip_content_description">Select week range</string>
+    <string name="agenda_class_time_label">Time: </string>
+    <string name="agenda_kid_age_label">Age: </string>
+    <string name="agenda_empty_state_message">No classes assigned for this date</string>
+    <string name="agenda_date_picker_confirm">OK</string>
+    <string name="agenda_prev_week_content_description">Previous week</string>
+    <string name="agenda_next_week_content_description">Next week</string>
+    <string name="agenda_see_more">See more</string>
+    <string name="agenda_collapse">Collapse</string>
 
 </resources>

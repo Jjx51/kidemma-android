@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Validation Errors -->
-    <string name="error_required">This field is required</string>
-    <string name="error_invalid_email">Invalid email format</string>
-    <string name="error_min_length">Must be at least %1$d characters</string>
+    <string name="error_required">Este campo es obligatorio</string>
+    <string name="error_invalid_email">Formato de email inválido</string>
+    <string name="error_min_length">Debe tener al menos %1$d caracteres</string>
 
     <!-- Onboarding strings -->
     <string name="onboarding_title_1">Bienvenido a Kidemma</string>
@@ -30,7 +30,7 @@
     <string name="login_email_text_field_label">Email</string>
     <string name="login_email_text_field_leading_icon_content_description">Icono de correo electrónico</string>
 
-    <string name="login_password_text_field_label">Password</string>
+    <string name="login_password_text_field_label">Contraseña</string>
     <string name="login_password_text_field_leading_icon_content_description">Icono de candado</string>
     <string name="login_password_text_field_trailing_icon_hide_password_description">Icono de ojo cerrado</string>
     <string name="login_password_text_field_trailing_icon_show_password_content_description">Icono de ojo abierto</string>
@@ -49,5 +49,16 @@
     <!-- TopAppBar -->
     <string name="top_app_bar_logo_content_description">Logo de Kidemma</string>
     <string name="top_app_bar_notification_content_description">Icono de notificaciones</string>
+
+    <!-- Agenda Tab strings -->
+    <string name="agenda_week_range_chip_content_description">Seleccionar rango de semana</string>
+    <string name="agenda_class_time_label">Hora: </string>
+    <string name="agenda_kid_age_label">Edad: </string>
+    <string name="agenda_empty_state_message">No hay clases asignadas para esta fecha</string>
+    <string name="agenda_date_picker_confirm">Aceptar</string>
+    <string name="agenda_prev_week_content_description">Semana anterior</string>
+    <string name="agenda_next_week_content_description">Próxima semana</string>
+    <string name="agenda_see_more">Ver más</string>
+    <string name="agenda_collapse">Contraer</string>
 
 </resources>
