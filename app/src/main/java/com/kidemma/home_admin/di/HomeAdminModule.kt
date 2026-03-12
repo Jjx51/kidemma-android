@@ -4,8 +4,8 @@ import com.kidemma.home_admin.tabs.agenda.domain.AgendaTabViewModel
 import com.kidemma.home_admin.tabs.agenda.presentation.AgendaTabViewModelImpl
 import org.koin.androidx.viewmodel.dsl.viewModelOf
 import org.koin.dsl.bind
-import com.kidemma.home_admin.tabs.others.presentation.OthersViewModel
-import com.kidemma.home_admin.tabs.others.presentation.OthersViewModelImpl
+import com.kidemma.home_admin.tabs.others.presentation.OthersTabViewModel
+import com.kidemma.home_admin.tabs.others.presentation.OthersTabViewModelImpl
 import org.koin.dsl.module
 
 /*
@@ -19,5 +19,5 @@ import org.koin.dsl.module
 
 val adminModule = module {
     viewModelOf(::AgendaTabViewModelImpl) bind AgendaTabViewModel::class
-    viewModelOf(::OthersViewModelImpl) bind OthersViewModel::class
+    viewModelOf(::OthersTabViewModelImpl) bind OthersTabViewModel::class
 }
