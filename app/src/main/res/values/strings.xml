@@ -64,7 +64,7 @@
     <string name="agenda_collapse">Collapse</string>
 
 
-    <!--  CreateFamilyScreen-->
+    <!-- FamiliesTabScreen-->
     <string name="family_screen_create_family">Create family</string>
     <string name="family_screen_write_something">Write something</string>
     <string name="family_screen_empty_list">No families to show</string>

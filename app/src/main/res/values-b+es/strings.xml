@@ -62,7 +62,7 @@
     <string name="agenda_collapse">Contraer</string>
 
 
-    <!--    CreateFamilyScreen-->
+    <!-- FamiliesTabScreen-->
     <string name="family_screen_create_family">Crear familia</string>
     <string name="family_screen_write_something">Escribe algo</string>
     <string name="family_screen_empty_list">Sin familias por mostrar</string>

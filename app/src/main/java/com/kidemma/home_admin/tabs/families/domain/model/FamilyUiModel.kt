@@ -11,5 +11,8 @@ data class FamilyUiModel (
 data class FamilyMemberUiModel(
     val id: Int,
     val name: String,
-    @param:DrawableRes val image: Int
+    val gender: String,
+    val role: String,
+    @param:DrawableRes val image: Int,
+    @param:DrawableRes val imageError: Int
 )

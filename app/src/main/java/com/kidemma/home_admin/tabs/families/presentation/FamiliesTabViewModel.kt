@@ -1,20 +1,20 @@
-package com.kidemma.home_admin.tabs.families
+package com.kidemma.home_admin.tabs.families.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.kidemma.authentication.domain.model.FamilyUiModel
-import com.kidemma.home_admin.tabs.families.domain.FamilyMock
+import com.kidemma.home_admin.tabs.families.domain.FamiliesTabMockProvider
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 /*
  * File: FamiliesTabViewModel
- * Description: [Short description]
+ * Description: view model for families screen
  *
  * Created by: Laura Zermeño Pichardo
  * Created on: 27/02/26
- * Last modified: 06/03/26
+ * Last modified: 12/03/26
  */
 class FamiliesTabViewModel(): ViewModel() {
 
@@ -26,16 +26,16 @@ class FamiliesTabViewModel(): ViewModel() {
         loadFamilies()
     }
 
-    fun onEvent(event: FamiliesTabContract.Event) {
-        when(event){
-            is FamiliesTabContract.Event.OnSearchQueryChange -> {
+    fun onIntent(intent: FamiliesTabContract.Intent) {
+        when(intent){
+            is FamiliesTabContract.Intent.OnSearchQueryChange -> {
                 val filtered = allFamilies.filter {
-                    it.familyName.contains(event.query, ignoreCase = true)
+                    it.familyName.contains(intent.query, ignoreCase = true)
                 }
 
                 _state.value = _state.value.copy(
-                    searchQuery = event.query,
-                    families = if (event.query.isBlank()) allFamilies else filtered
+                    searchQuery = intent.query,
+                    families = if (intent.query.isBlank()) allFamilies else filtered
                 )
             }
         }
@@ -45,7 +45,7 @@ class FamiliesTabViewModel(): ViewModel() {
         viewModelScope.launch {
             _state.value = _state.value.copy(isLoading = true)
             delay(1000)
-            val families = FamilyMock.familyList
+            val families = FamiliesTabMockProvider.familyList
             allFamilies = families
 
             _state.value = _state.value.copy(

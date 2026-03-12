@@ -83,16 +83,14 @@ fun KidemmaBodyMedium(
     text: String,
     modifier: Modifier = Modifier,
     color: Color = KidemmaColors.Text,
-    textAlign: TextAlign = TextAlign.Start,
-    fontWeight: FontWeight = FontWeight.Normal
+    textAlign: TextAlign = TextAlign.Start
 ) {
     Text(
         text = text,
         style = KidemmaTypography.bodyMedium,
         modifier = modifier,
         color = color,
-        textAlign = textAlign,
-        fontWeight = fontWeight
+        textAlign = textAlign
     )
 }
 

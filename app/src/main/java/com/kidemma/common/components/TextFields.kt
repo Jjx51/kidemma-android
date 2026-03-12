@@ -24,17 +24,24 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.kidemma.R
-import com.kidemma.common.ui.theme.IconSize
 import com.kidemma.common.ui.theme.KidemmaColors
+import com.kidemma.common.ui.theme.KidemmaDimens
 import com.kidemma.common.ui.theme.KidemmaTheme
 
+/*
+ * File: KidemmaTextFieldWithFilter
+ * Description: [Short description]
+ *
+ * Created by: Laura Zermeño Pichardo
+ * Created on: 27/02/26
+ * Last modified: 12/03/26
+ */
 private val SearchBarHeight = 60.dp
 @Composable
 fun KidemmaTextFieldWithFilter(
     modifier: Modifier = Modifier,
     value: String,
     onValueChange: (String) -> Unit,
-    placeholder : String,
     onClickFilter: () -> Unit = {}
 ) {
 
@@ -52,7 +59,7 @@ fun KidemmaTextFieldWithFilter(
                     onValueChange = onValueChange,
                     placeholder = {
                         KidemmaLabelLarge(
-                            text = placeholder,
+                            text = stringResource(R.string.family_screen_write_something),
                             color = KidemmaColors.PlaceholderForm
                         )
                     },
@@ -61,7 +68,7 @@ fun KidemmaTextFieldWithFilter(
                             painter = painterResource(R.drawable.ic_search),
                             tint = KidemmaColors.PlaceholderForm,
                             contentDescription = stringResource(R.string.texfield_with_filter_search_icon),
-                            modifier = Modifier.size(IconSize.Medium)
+                            modifier = Modifier.size(KidemmaDimens.IconSizeMedium)
                         )
                     },
                     singleLine = true,
@@ -87,7 +94,7 @@ fun KidemmaTextFieldWithFilter(
                     contentDescription = stringResource(R.string.texfield_with_filter_filter_icon),
                     tint = KidemmaColors.PlaceholderForm,
                     modifier = Modifier
-                        .size(IconSize.Medium)
+                        .size(KidemmaDimens.IconSizeMedium)
                 )
             }
 
@@ -105,8 +112,7 @@ fun KidemmaTextFieldWithFilterPreview() {
         KidemmaTextFieldWithFilter(
             value = text,
             onValueChange = { text = it },
-            onClickFilter = {},
-            placeholder = stringResource(R.string.family_screen_write_something)
+            onClickFilter = {}
         )
     }
 }

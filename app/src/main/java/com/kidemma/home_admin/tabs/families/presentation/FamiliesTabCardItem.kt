@@ -1,4 +1,4 @@
-package com.kidemma.home_admin.tabs.families
+package com.kidemma.home_admin.tabs.families.presentation
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -15,6 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.kidemma.R
 import com.kidemma.authentication.domain.model.FamilyMemberUiModel
@@ -23,7 +24,16 @@ import com.kidemma.common.components.KidemmaBodyLarge
 import com.kidemma.common.components.KidemmaCard
 import com.kidemma.common.components.KidemmaLabelLarge
 import com.kidemma.common.ui.theme.KidemmaColors
+import com.kidemma.home_admin.tabs.families.domain.FamiliesTabMockProvider
 
+/*
+ * File: FamiliesTabCardItem
+ * Description: [Short description]
+ *
+ * Created by: Laura Zermeño Pichardo
+ * Created on: 26/02/26
+ * Last modified: 12/03/26
+ */
 @Composable
 fun FamiliesTabCardItem (
     familyName: String,
@@ -44,8 +54,8 @@ fun FamiliesTabCardItem (
                 LazyRow(
                     horizontalArrangement = Arrangement.spacedBy(14.dp)
                 ) {
-                    items(familyMembers) {
-                        KidemmaAvatarChip(memberImage = R.drawable.img_boy)
+                    items(familyMembers) { member ->
+                        KidemmaAvatarChip(memberImage = member.image, memberErrorImage = member.imageError)
                     }
                 }
             }
@@ -63,6 +73,15 @@ fun FamiliesTabCardItem (
             }
         }
 
-
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun FamiliesTabCardItemPreview() {
+    FamiliesTabCardItem(
+        familyName = "Perez Gonzalez",
+        familyNickname = "Los Perez",
+        familyMembers = FamiliesTabMockProvider.familyList.get(2).members
+    ) { }
 }

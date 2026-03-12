@@ -40,9 +40,9 @@ object KidemmaDimens {
     val SpacerXXXLarge = 64.dp
 
     val GeneralPaddingFillMaxSize = 20.dp
-    
-}
 
-object IconSize{
-    val Medium = 30.dp
+    val KidImageSize = 60.dp
+
+    val IconSizeMedium = 30.dp
+    
 }

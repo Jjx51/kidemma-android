@@ -1,4 +1,4 @@
-package com.kidemma.home_admin.tabs.families
+package com.kidemma.home_admin.tabs.families.presentation
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -22,6 +21,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.kidemma.R
 import com.kidemma.authentication.domain.model.FamilyUiModel
 import com.kidemma.common.components.KidemmaBodyLarge
+import com.kidemma.common.components.KidemmaLoadingOverlay
 import com.kidemma.common.components.KidemmaPrimaryButton
 import com.kidemma.common.components.KidemmaTextFieldWithFilter
 import com.kidemma.common.ui.theme.KidemmaColors
@@ -29,11 +29,11 @@ import org.koin.androidx.compose.koinViewModel
 
 /*
  * File: FamiliesTabScreen
- * Description: [Short description]
+ * Description: screen for listing and filtering families
  *
  * Created by: Laura Zermeño Pichardo
  * Created on: 26/02/26
- * Last modified: 06/03/26
+ * Last modified: 12/03/26
  */
 @Composable
 fun FamiliesTabScreen(
@@ -48,8 +48,8 @@ fun FamiliesTabScreen(
             familyList = state.families,
             text = state.searchQuery,
             onTextChange = {
-                viewModel.onEvent(
-                    FamiliesTabContract.Event.OnSearchQueryChange(it)
+                viewModel.onIntent(
+                    FamiliesTabContract.Intent.OnSearchQueryChange(it)
                 )
             },
             onNavigateToCreateFamily = onNavigateToCreateFamily,
@@ -57,11 +57,7 @@ fun FamiliesTabScreen(
         )
 
         if (state.isLoading){
-            Box(Modifier.fillMaxSize()) {
-                CircularProgressIndicator(
-                    modifier = Modifier.align(Alignment.Center)
-                )
-            }
+            KidemmaLoadingOverlay()
         }
     }
 
@@ -86,16 +82,14 @@ fun FamiliesTabContent(
     ) {
         KidemmaTextFieldWithFilter(
             value = text,
-            onValueChange = onTextChange,
-            placeholder = stringResource(R.string.family_screen_write_something)
+            onValueChange = onTextChange
         )
 
         KidemmaPrimaryButton(
+            text = stringResource(R.string.family_screen_create_family),
             modifier = Modifier
                 .fillMaxWidth()
-                .height(65.dp), text = stringResource(
-                R.string.family_screen_create_family
-            )
+                .height(65.dp)
         ) { onNavigateToCreateFamily()}
 
         if (familyList.isEmpty()){

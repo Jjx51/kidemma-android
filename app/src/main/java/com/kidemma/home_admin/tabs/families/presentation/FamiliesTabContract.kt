@@ -1,4 +1,4 @@
-package com.kidemma.home_admin.tabs.families
+package com.kidemma.home_admin.tabs.families.presentation
 
 import com.kidemma.authentication.domain.model.FamilyUiModel
 
@@ -11,8 +11,8 @@ object FamiliesTabContract {
         val error: String? = null
     )
 
-    sealed class Event {
-        data class OnSearchQueryChange(val query: String) : Event()
+    sealed class Intent {
+        data class OnSearchQueryChange(val query: String) : Intent()
 
     }
 }

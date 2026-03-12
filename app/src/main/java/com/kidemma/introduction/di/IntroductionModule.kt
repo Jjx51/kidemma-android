@@ -1,6 +1,5 @@
 package com.kidemma.introduction.di
 
-import com.kidemma.home_admin.tabs.families.FamiliesTabViewModel
 import com.kidemma.introduction.onboarding.presentation.OnboardingViewModel
 import com.kidemma.introduction.onboarding.presentation.OnboardingViewModelImpl
 import com.kidemma.introduction.splash.domain.SplashViewModel
