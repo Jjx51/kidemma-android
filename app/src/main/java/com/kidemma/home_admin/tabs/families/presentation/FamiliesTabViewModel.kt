@@ -45,8 +45,7 @@ class FamiliesTabViewModel(): ViewModel() {
         viewModelScope.launch {
             _state.value = _state.value.copy(isLoading = true)
             delay(1000)
-            val families = FamiliesTabMockProvider.familyList
-            allFamilies = families
+            allFamilies = FamiliesTabMockProvider.familyList
 
             _state.value = _state.value.copy(
                 isLoading = false,
