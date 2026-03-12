@@ -2,6 +2,10 @@
     <string name="title_activity_todo_component" translatable="false">TodoComponentActivity</string>
     <string name="app_name" translatable="false">Kidemma</string>
 
+    <!-- Testing strings -->
+    <string name="testing_text" translatable="false">Lorem Ipsum</string>
+    <string name="testing_blank" translatable="false"> </string>
+
     <!-- Validation Errors -->
     <string name="error_required">This field is required</string>
     <string name="error_invalid_email">Invalid email format</string>
@@ -62,5 +66,23 @@
     <string name="agenda_next_week_content_description">Next week</string>
     <string name="agenda_see_more">See more</string>
     <string name="agenda_collapse">Collapse</string>
+
+    <!-- Home Admin -->
+    <string name="class_status_cardview_title">Class Status</string>
+    <string name="class_status_cardview_icon">Class Status Icon</string>
+    <string name="class_status_possibly_cancel" translatable="false">Possible Cancellations</string>
+    <string name="class_status_definitely_cancel" translatable="false">Definitive cancellations</string>
+
+    <string name="payment_status_cardview_title">Payment Status</string>
+    <string name="payment_status_cardview_icon">Payment Status Icon</string>
+    <string name="payment_status_pending">Pending payments</string>
+    <string name="payment_status_expired">Expired payments</string>
+    <string name="payment_status_approvals">Waiting for Approval</string>
+
+    <string name="complaints_cardview_title">Complaints</string>
+    <string name="complaints_cardview_icon">Complaints Icon</string>
+    <string name="complaints_pending">Pending</string>
+    <string name="complaints_discarded">Deactivated</string>
+
 
 </resources>
