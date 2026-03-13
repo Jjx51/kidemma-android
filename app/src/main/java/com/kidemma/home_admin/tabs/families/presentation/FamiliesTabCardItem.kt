@@ -35,7 +35,7 @@ import com.kidemma.home_admin.tabs.families.domain.FamiliesTabMockProvider
  * Last modified: 12/03/26
  */
 @Composable
-fun FamiliesTabCardItem (
+fun FamiliesTabCardItem(
     familyName: String,
     familyNickname: String,
     familyMembers: List<FamilyMemberUiModel> = emptyList(),
@@ -47,30 +47,40 @@ fun FamiliesTabCardItem (
             .fillMaxWidth()
     ) {
         Row(Modifier.padding(15.dp), verticalAlignment = Alignment.CenterVertically) {
-            Column(modifier = Modifier.weight(8f), verticalArrangement = Arrangement.spacedBy(15.dp)) {
-                KidemmaLabelLarge(text = stringResource(R.string.families_tab_card_item_family, familyName))
-                KidemmaBodyLarge(text = stringResource(R.string.families_tab_card_item_nickname, familyNickname))
+            Column(
+                modifier = Modifier.weight(1f),
+                verticalArrangement = Arrangement.spacedBy(15.dp)
+            ) {
+                KidemmaLabelLarge(
+                    text = stringResource(
+                        R.string.families_tab_card_item_family,
+                        familyName
+                    )
+                )
+                KidemmaBodyLarge(
+                    text = stringResource(
+                        R.string.families_tab_card_item_nickname,
+                        familyNickname
+                    )
+                )
 
                 LazyRow(
                     horizontalArrangement = Arrangement.spacedBy(14.dp)
                 ) {
                     items(familyMembers) { member ->
-                        KidemmaAvatarChip(memberImage = member.image, memberErrorImage = member.imageError)
+                        KidemmaAvatarChip(
+                            memberImage = member.image,
+                            memberErrorImage = member.imageError
+                        )
                     }
                 }
             }
-            Column(
-                modifier = Modifier
-                    .weight(1f)
-                    .clickable { onNavigateToDetail() }
-            ) {
-                Icon(
-                    painter = icArrowRight,
-                    contentDescription = stringResource(R.string.families_tab_card_item_view_family_details),
-                    tint = KidemmaColors.Icon,
-                    modifier = Modifier.size(30.dp)
-                )
-            }
+            Icon(
+                painter = icArrowRight,
+                contentDescription = stringResource(R.string.families_tab_card_item_view_family_details),
+                tint = KidemmaColors.Icon,
+                modifier = Modifier.size(30.dp).clickable{onNavigateToDetail()}
+            )
         }
 
     }

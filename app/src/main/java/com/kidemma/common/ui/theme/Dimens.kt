@@ -41,8 +41,12 @@ object KidemmaDimens {
 
     val GeneralPaddingFillMaxSize = 20.dp
 
-    val KidImageSize = 60.dp
+    val AvatarSize = 60.dp
 
     val IconSizeMedium = 30.dp
+
+    val ButtonHeight = 65.dp
+
+    val ListBottomPadding = 20.dp
     
 }

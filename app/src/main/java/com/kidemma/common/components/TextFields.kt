@@ -30,7 +30,7 @@ import com.kidemma.common.ui.theme.KidemmaTheme
 
 /*
  * File: KidemmaTextFieldWithFilter
- * Description: [Short description]
+ * Description: search bar and filter
  *
  * Created by: Laura Zermeño Pichardo
  * Created on: 27/02/26
@@ -46,11 +46,11 @@ fun KidemmaTextFieldWithFilter(
 ) {
 
 
-    Row (modifier = modifier, verticalAlignment = Alignment.CenterVertically){
-        KidemmaCard (
+    Row(modifier = modifier, verticalAlignment = Alignment.CenterVertically) {
+        KidemmaCard(
             modifier = Modifier
                 .weight(1f)
-                .height( SearchBarHeight)
+                .height(SearchBarHeight)
         ) {
             Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                 TextField(
@@ -86,9 +86,11 @@ fun KidemmaTextFieldWithFilter(
         HorizontalSpacerSmall()
 
         KidemmaCard(
-            modifier = Modifier.size(SearchBarHeight).clickable{onClickFilter()}
+            modifier = Modifier
+                .size(SearchBarHeight)
+                .clickable { onClickFilter() }
         ) {
-            Box (Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+            Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                 Icon(
                     painter = painterResource(R.drawable.ic_filter),
                     contentDescription = stringResource(R.string.texfield_with_filter_filter_icon),

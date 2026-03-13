@@ -2,6 +2,14 @@ package com.kidemma.authentication.domain.model
 
 import androidx.annotation.DrawableRes
 
+/*
+ * File: FamilyUiModel
+ * Description: families UiModel
+ *
+ * Created by: Laura Zermeño Pichardo
+ * Created on: 27/02/26
+ * Last modified: 12/03/26
+ */
 data class FamilyUiModel (
     val id: Int,
     val nickname: String,

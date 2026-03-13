@@ -18,12 +18,15 @@ import com.kidemma.common.ui.theme.KidemmaDimens
 
 /*
  * File: KidemmaAvatarChip
- * Description: [Short description]
+ * Description: avatar chip circular
  *
  * Created by: Laura Zermeño Pichardo
  * Created on: 27/02/26
  * Last modified: 12/03/26
  */
+
+private val AvatarChipBorderWidth = 3.dp
+
 @Composable
 fun KidemmaAvatarChip(
     modifier: Modifier = Modifier,
@@ -35,9 +38,9 @@ fun KidemmaAvatarChip(
         model = memberImage,
         contentDescription = stringResource(R.string.kidemma_avatar_chip_avatar),
         modifier = modifier
-            .size(KidemmaDimens.KidImageSize)
+            .size(KidemmaDimens.AvatarSize)
             .clip(CircleShape)
-            .border(width = 3.dp, color = KidemmaColors.ImageBorderStrokeColor, shape = CircleShape),
+            .border(width = AvatarChipBorderWidth, color = KidemmaColors.ImageBorderStrokeColor, shape = CircleShape),
         contentScale = ContentScale.Crop,
         placeholder = painterResource(memberErrorImage),
         error = painterResource(memberErrorImage),

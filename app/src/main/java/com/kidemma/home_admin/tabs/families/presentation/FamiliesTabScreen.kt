@@ -25,6 +25,10 @@ import com.kidemma.common.components.KidemmaLoadingOverlay
 import com.kidemma.common.components.KidemmaPrimaryButton
 import com.kidemma.common.components.KidemmaTextFieldWithFilter
 import com.kidemma.common.ui.theme.KidemmaColors
+import com.kidemma.common.ui.theme.KidemmaDimens
+import com.kidemma.home_admin.tabs.families.presentation.FamiliesUiConstants.Dimens.ContentSpacing
+import com.kidemma.home_admin.tabs.families.presentation.FamiliesUiConstants.Dimens.ListSpacing
+import com.kidemma.home_admin.tabs.families.presentation.FamiliesUiConstants.Dimens.ScreenTopPadding
 import org.koin.androidx.compose.koinViewModel
 
 /*
@@ -76,9 +80,9 @@ fun FamiliesTabContent(
         Modifier
             .fillMaxSize()
             .background(KidemmaColors.Background)
-            .padding(horizontal = 20.dp)
-            .padding(top = 15.dp),
-        verticalArrangement = Arrangement.spacedBy(18.dp)
+            .padding(horizontal = KidemmaDimens.GeneralPaddingFillMaxSize)
+            .padding(top = ScreenTopPadding),
+        verticalArrangement = Arrangement.spacedBy(ContentSpacing)
     ) {
         KidemmaTextFieldWithFilter(
             value = text,
@@ -89,7 +93,7 @@ fun FamiliesTabContent(
             text = stringResource(R.string.family_screen_create_family),
             modifier = Modifier
                 .fillMaxWidth()
-                .height(65.dp)
+                .height(KidemmaDimens.ButtonHeight)
         ) { onNavigateToCreateFamily()}
 
         if (familyList.isEmpty()){
@@ -98,9 +102,9 @@ fun FamiliesTabContent(
             }
         }else{
             LazyColumn(
-                verticalArrangement = Arrangement.spacedBy(30.dp),
+                verticalArrangement = Arrangement.spacedBy(ListSpacing),
                 contentPadding = PaddingValues(
-                    bottom = 20.dp
+                    bottom = KidemmaDimens.ListBottomPadding
                 )
             ) {
                 items(familyList) { family ->

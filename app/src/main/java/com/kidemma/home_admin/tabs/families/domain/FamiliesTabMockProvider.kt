@@ -4,6 +4,14 @@ import com.kidemma.R
 import com.kidemma.authentication.domain.model.FamilyMemberUiModel
 import com.kidemma.authentication.domain.model.FamilyUiModel
 
+/*
+ * File: FamiliesTabMockProvider
+ * Description: mock list for families
+ *
+ * Created by: Laura Zermeño Pichardo
+ * Created on: 27/02/26
+ * Last modified: 12/03/26
+ */
 object FamiliesTabMockProvider {
     val familyList = listOf(
         FamilyUiModel(
