@@ -28,7 +28,7 @@ import com.kidemma.home_admin.tabs.families.domain.FamiliesTabMockProvider
 
 /*
  * File: FamiliesTabCardItem
- * Description: [Short description]
+ * Description: card item for each family
  *
  * Created by: Laura Zermeño Pichardo
  * Created on: 26/02/26
