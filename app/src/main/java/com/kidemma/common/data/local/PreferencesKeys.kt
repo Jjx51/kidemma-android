@@ -12,4 +12,5 @@ import androidx.datastore.preferences.core.booleanPreferencesKey
  */
 object PreferencesKeys {
     val IS_ONBOARDING_COMPLETED = booleanPreferencesKey("is_onboarding_completed")
+    val IS_ADMIN_USER = booleanPreferencesKey("is_admin_user")
 }
