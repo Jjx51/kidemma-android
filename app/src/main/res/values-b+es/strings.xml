@@ -59,6 +59,9 @@
     <!-- Terms and Conditions -->
     <string name="terms_and_conditions_title">Términos y Condiciones</string>
 
+    <!-- Privacy Policies -->
+    <string name="privacy_policies_title">Políticas de Privacidad</string>
+
     <!-- Agenda Tab strings -->
     <string name="agenda_week_range_chip_content_description">Seleccionar rango de semana</string>
     <string name="agenda_class_time_label">Hora: </string>
