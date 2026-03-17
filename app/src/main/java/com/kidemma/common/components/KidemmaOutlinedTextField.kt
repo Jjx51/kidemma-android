@@ -91,6 +91,41 @@ fun KidemmaOutlinedTextField(
 }
 
 @Composable
+fun KidemmaOutlinedTextField(
+    modifier: Modifier = Modifier,
+    label: Int,
+    value: String,
+    onValueChange: (String) -> Unit,
+    isError: Boolean = false,
+    errorMessage: String? = null,
+    visualTransformation: VisualTransformation = VisualTransformation.None,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    singleLine: Boolean = true,
+    enabled: Boolean = true
+) {
+    OutlinedTextField(
+        modifier = modifier.fillMaxWidth(),
+        value = value,
+        onValueChange = onValueChange,
+        label = { Text(stringResource(id = label)) },
+        singleLine = singleLine,
+        isError = isError,
+        enabled = enabled,
+        keyboardOptions = keyboardOptions,
+        visualTransformation = visualTransformation,
+        shape = RoundedCornerShape(12.dp),
+        supportingText = {
+//            if (isError && errorMessage != null) {
+//                Text(text = errorMessage, color = KidemmaColors.Error)
+//            } else if (label.supportingText != null) {
+//                Text(text = stringResource(data.supportingText))
+//            }
+        },
+        colors = getColorsKidemmaOutlinedTextField()
+    )
+}
+
+@Composable
 private fun GetTrailingIcon(
     trailingIcon: TrailingIconUiModel?,
     onTrailingIconClick: (() -> Unit)? = null,

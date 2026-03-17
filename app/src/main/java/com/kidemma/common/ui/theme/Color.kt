@@ -57,4 +57,6 @@ object KidemmaColors {
 
     val BackgroundColorBottomItem = Icon
     val TextColorBottomItemSelected = Icon
+
+    val BorderStroke = Icon
 }

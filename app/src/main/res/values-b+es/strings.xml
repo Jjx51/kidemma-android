@@ -73,6 +73,12 @@
     <string name="agenda_see_more">Ver más</string>
     <string name="agenda_collapse">Contraer</string>
 
+    <!-- Edit Profile Strings -->
+    <string name="edit_profile_email_text_field">Correo electronico</string>
+    <string name="edit_profile_full_name_text_field">Nombre completo</string>
+    <string name="edit_profile_main_phone_text_field">Teléfono principal</string>
+    <string name="edit_profile_additional_phone_text_field">Teléfono secundario</string>
+
     <!-- KidCardDetail -->
     <string name="kid_card_detail_label_age">Edad</string>
     <string name="kid_card_detail_label_classes">Clases</string>
