@@ -1,4 +1,7 @@
-package kidemma.samplearchitect.enums
+package com.kidemma.common.domain.repository
+
+import com.kidemma.common.data.local.dao.entities.Note
+import kotlinx.coroutines.flow.Flow
 
 /**
  * Copyright (c) 2025 Accenture. All rights reserved.
@@ -8,10 +11,12 @@ package kidemma.samplearchitect.enums
  * accordance with the terms of the license agreement you entered into with
  * Android Mobility.
  * Creator: carlos.graniel
- * Created at: 24/09/2025
+ * Created at: 17/03/2026
  *
  */
 
-enum class DataSource {
-    API, MOCK
+interface NoteRepository {
+    fun getNotes(): Flow<List<Note>>
+    suspend fun insertNote(note: Note)
+    suspend fun deleteNote(note: Note)
 }

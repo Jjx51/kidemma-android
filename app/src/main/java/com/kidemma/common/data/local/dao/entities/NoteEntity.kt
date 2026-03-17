@@ -1,7 +1,7 @@
-package com.kidemma.samplearchitect.data.remote.todo
+package com.kidemma.common.data.local.dao.entities
 
-import com.kidemma.samplearchitect.data.model.UseCaseResult
-import com.kidemma.samplearchitect.data.model.todo.TodoResponse
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
 /**
  * Copyright (c) 2025 Accenture. All rights reserved.
@@ -11,10 +11,12 @@ import com.kidemma.samplearchitect.data.model.todo.TodoResponse
  * accordance with the terms of the license agreement you entered into with
  * Android Mobility.
  * Creator: carlos.graniel
- * Created at: 24/09/2025
+ * Created at: 17/03/2026
  *
  */
 
-interface ITodoAPI {
-    suspend fun fetchTodoList(): UseCaseResult<List<TodoResponse>>
-}
+@Entity(tableName = "notes")
+data class NoteEntity(
+    @PrimaryKey(autoGenerate = true) val id: Int = 0,
+    val title: String, val content: String
+)

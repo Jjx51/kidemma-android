@@ -1,6 +1,8 @@
-package com.kidemma.samplearchitect.presentation.ui.theme
+package com.kidemma.common.domain.usecase
 
-import androidx.compose.ui.graphics.Color
+import com.kidemma.common.data.local.dao.entities.Note
+import com.kidemma.common.domain.repository.NoteRepository
+import kotlinx.coroutines.flow.Flow
 
 /**
  * Copyright (c) 2025 Accenture. All rights reserved.
@@ -10,14 +12,10 @@ import androidx.compose.ui.graphics.Color
  * accordance with the terms of the license agreement you entered into with
  * Android Mobility.
  * Creator: carlos.graniel
- * Created at: 24/09/2025
+ * Created at: 17/03/2026
  *
  */
 
-val Purple80 = Color(0xFFD0BCFF)
-val PurpleGrey80 = Color(0xFFCCC2DC)
-val Pink80 = Color(0xFFEFB8C8)
-
-val Purple40 = Color(0xFF6650a4)
-val PurpleGrey40 = Color(0xFF625b71)
-val Pink40 = Color(0xFF7D5260)
+class GetNotesUseCase(private val repository: NoteRepository) {
+    operator fun invoke(): Flow<List<Note>> = repository.getNotes()
+}
