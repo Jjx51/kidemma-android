@@ -4,7 +4,7 @@ import android.app.Application
 import com.kidemma.authentication.di.authenticationModule
 import com.kidemma.common.di.commonModule
 import com.kidemma.common.di.databaseModule
-import com.kidemma.home_admin.di.adminModule
+import com.kidemma.homeAdmin.di.adminModule
 import com.kidemma.introduction.di.introductionModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.GlobalContext

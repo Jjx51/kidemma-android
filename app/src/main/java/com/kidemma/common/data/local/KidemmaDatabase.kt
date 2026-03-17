@@ -1,7 +1,9 @@
-package com.kidemma.common.data.local.dao.entities
+package com.kidemma.common.data.local
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import com.kidemma.common.data.local.dao.NoteDao
+import com.kidemma.common.data.local.dao.entities.NoteEntity
 
 /**
  * Copyright (c) 2025 Accenture. All rights reserved.

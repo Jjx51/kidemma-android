@@ -40,7 +40,6 @@ class SplashViewModelImpl(
     }
 
     private suspend fun performValidations(): AppRoute {
-        // TODO: Here Implement the validations
         val isOnboardingComplete = userPreferencesRepository.isOnboardingCompleted.first()
 
         return if (isOnboardingComplete) {
@@ -54,7 +53,4 @@ class SplashViewModelImpl(
             AppRoute.Onboarding
         }
     }
-
-
-
 }

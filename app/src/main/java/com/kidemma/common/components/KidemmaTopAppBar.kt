@@ -16,12 +16,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.kidemma.common.domain.models.KidemmaTopBarUiModel
 import com.kidemma.common.presentation.TopBarContentProvider
 import com.kidemma.common.ui.theme.KidemmaColors
-import com.kidemma.home_admin.domain.model.TopBarProfileAvatarUiModel
+import com.kidemma.homeAdmin.domain.model.TopBarProfileAvatarUiModel
 
 /*
  * File: KidemmaTopAppBar

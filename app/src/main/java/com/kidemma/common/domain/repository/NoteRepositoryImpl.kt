@@ -1,7 +1,7 @@
 package com.kidemma.common.domain.repository
 
 import com.kidemma.common.data.local.dao.entities.Note
-import com.kidemma.common.data.local.dao.entities.NoteDao
+import com.kidemma.common.data.local.dao.NoteDao
 import com.kidemma.common.data.local.dao.entities.toDomain
 import com.kidemma.common.data.local.dao.entities.toEntity
 import kotlinx.coroutines.flow.Flow

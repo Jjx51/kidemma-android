@@ -21,7 +21,7 @@ import kotlinx.coroutines.launch
  * Created on: 24/02/26
  * Last modified: 24/02/26
  */
-class LoginViewModelImpl() : LoginViewModel, ViewModel() {
+class LoginViewModelImpl : LoginViewModel, ViewModel() {
     override val uiData: LoginScreenUiModel = LoginContentProvider.getLoginScreenData()
 
     private val _state = MutableStateFlow(LoginContract.State())

@@ -1,7 +1,7 @@
 package com.kidemma.common.di
 
 import androidx.room.Room
-import com.kidemma.common.data.local.dao.entities.KidemmaDatabase
+import com.kidemma.common.data.local.KidemmaDatabase
 import com.kidemma.common.domain.repository.NoteRepository
 import com.kidemma.common.domain.repository.NoteRepositoryImpl
 import org.koin.android.ext.koin.androidApplication

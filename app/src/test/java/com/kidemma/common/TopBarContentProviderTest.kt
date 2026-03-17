@@ -29,7 +29,8 @@ class TopBarContentProviderTest {
         assertThat(uiData.appLogo.resId).isEqualTo(R.drawable.kidemma_logo2)
         assertThat(uiData.appLogo.contentDescription).isEqualTo(R.string.top_app_bar_logo_content_description)
         assertThat(uiData.appLogo.size).isEqualTo(24.dp)
-        assertThat(uiData.notificationIcon.contentDescription).isEqualTo(R.string.top_app_bar_notification_content_description)
+        assertThat(uiData.notificationIcon.contentDescription)
+            .isEqualTo(R.string.top_app_bar_notification_content_description)
         assertThat(uiData.notificationIcon.icon).isEqualTo(Icons.Default.Notifications)
         assertThat(uiData.notificationIcon.tint).isEqualTo(KidemmaColors.Icon)
     }
