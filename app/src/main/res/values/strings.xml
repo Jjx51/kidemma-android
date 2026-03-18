@@ -61,6 +61,9 @@
     <!-- Terms and Conditions -->
     <string name="terms_and_conditions_title">Terms and Conditions</string>
 
+    <!-- Privacy Policies -->
+    <string name="privacy_policies_title">Privacy Policies</string>
+
     <!-- Agenda Tab strings -->
     <string name="agenda_week_range_chip_content_description">Select week range</string>
     <string name="agenda_class_time_label">Time: </string>
