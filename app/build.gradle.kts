@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     id("io.gitlab.arturbosch.detekt") version "1.23.8"
     alias(libs.plugins.jetbrainsKotlinSerialization)
+    alias(libs.plugins.google.gms.google.services)
 }
 
 android {
@@ -71,6 +72,10 @@ dependencies {
     implementation(libs.androidx.datastore.preferences)
     implementation(libs.androidx.compose.material.icons.extended)
     implementation(libs.androidx.compose.material3)
+    implementation(libs.firebase.auth)
+    implementation(libs.androidx.credentials)
+    implementation(libs.androidx.credentials.play.services.auth)
+    implementation(libs.googleid)
 
     // Debug Implementation
     debugImplementation(libs.androidx.ui.tooling)
@@ -91,5 +96,4 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
-
 }
