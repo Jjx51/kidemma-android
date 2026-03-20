@@ -16,7 +16,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.kidemma.R
 import com.kidemma.authentication.domain.model.FamilyMemberUiModel
 import com.kidemma.common.components.KidemmaAvatarChip
@@ -24,7 +23,10 @@ import com.kidemma.common.components.KidemmaBodyLarge
 import com.kidemma.common.components.KidemmaCard
 import com.kidemma.common.components.KidemmaLabelLarge
 import com.kidemma.common.ui.theme.KidemmaColors
+import com.kidemma.common.ui.theme.KidemmaDimens
 import com.kidemma.home_admin.tabs.families.domain.FamiliesTabMockProvider
+import com.kidemma.home_admin.tabs.families.presentation.FamiliesUiConstants.Dimens.ScreenTopPadding
+import com.kidemma.home_admin.tabs.families.presentation.FamiliesUiConstants.Dimens.SpacingMedium
 
 /*
  * File: FamiliesTabCardItem
@@ -32,7 +34,7 @@ import com.kidemma.home_admin.tabs.families.domain.FamiliesTabMockProvider
  *
  * Created by: Laura Zermeño Pichardo
  * Created on: 26/02/26
- * Last modified: 12/03/26
+ * Last modified: 19/03/26
  */
 @Composable
 fun FamiliesTabCardItem(
@@ -46,10 +48,10 @@ fun FamiliesTabCardItem(
         modifier = Modifier
             .fillMaxWidth()
     ) {
-        Row(Modifier.padding(15.dp), verticalAlignment = Alignment.CenterVertically) {
+        Row(Modifier.padding(ScreenTopPadding), verticalAlignment = Alignment.CenterVertically) {
             Column(
                 modifier = Modifier.weight(1f),
-                verticalArrangement = Arrangement.spacedBy(15.dp)
+                verticalArrangement = Arrangement.spacedBy(SpacingMedium)
             ) {
                 KidemmaLabelLarge(
                     text = stringResource(
@@ -65,7 +67,7 @@ fun FamiliesTabCardItem(
                 )
 
                 LazyRow(
-                    horizontalArrangement = Arrangement.spacedBy(14.dp)
+                    horizontalArrangement = Arrangement.spacedBy(SpacingMedium)
                 ) {
                     items(familyMembers) { member ->
                         KidemmaAvatarChip(
@@ -79,7 +81,7 @@ fun FamiliesTabCardItem(
                 painter = icArrowRight,
                 contentDescription = stringResource(R.string.families_tab_card_item_view_family_details),
                 tint = KidemmaColors.Icon,
-                modifier = Modifier.size(30.dp).clickable{onNavigateToDetail()}
+                modifier = Modifier.size(KidemmaDimens.IconSizeMedium).clickable{onNavigateToDetail()}
             )
         }
 

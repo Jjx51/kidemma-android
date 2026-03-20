@@ -8,12 +8,13 @@ import androidx.compose.ui.unit.dp
  *
  * Created by: Laura Zermeño Pichardo
  * Created on: 12/03/26
- * Last modified: 13/03/26
+ * Last modified: 19/03/26
  */
 internal object FamiliesUiConstants {
     internal object Dimens{
         val ScreenTopPadding = 15.dp
         val ContentSpacing = 18.dp
         val ListSpacing = 30.dp
+        val SpacingMedium = 14.dp
     }
 }
