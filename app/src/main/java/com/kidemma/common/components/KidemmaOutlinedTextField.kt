@@ -112,7 +112,8 @@ private fun GetTrailingIcon(
             val icon =
                 if (isTrailingIconActive) trailingIcon.activeIcon else trailingIcon.inactiveIcon
             val description =
-                if (isTrailingIconActive) trailingIcon.activeContentDescription else trailingIcon.inactiveContentDescription
+                if (isTrailingIconActive) trailingIcon.activeContentDescription
+                else trailingIcon.inactiveContentDescription
 
             if (onTrailingIconClick != null) {
                 IconButton(onClick = onTrailingIconClick) {

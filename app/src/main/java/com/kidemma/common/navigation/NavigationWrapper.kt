@@ -5,8 +5,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.kidemma.authentication.login.presentation.LoginScreen
-import com.kidemma.home_admin.presentation.AdminMainScreen
-import com.kidemma.home_parent.presentation.ParentMainScreen
+import com.kidemma.homeAdmin.presentation.AdminMainScreen
+import com.kidemma.homeParent.presentation.ParentMainScreen
 import com.kidemma.introduction.onboarding.presentation.OnboardingScreen
 import com.kidemma.introduction.splash.presentation.SplashScreen
 

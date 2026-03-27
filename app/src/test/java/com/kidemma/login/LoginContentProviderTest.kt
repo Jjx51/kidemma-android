@@ -59,10 +59,12 @@ class LoginContentProviderTest {
             val statefulIcon = trailingIcon as TrailingIconUiModel.Stateful
 
             assertThat(statefulIcon.activeIcon).isEqualTo(Icons.Default.VisibilityOff)
-            assertThat(statefulIcon.activeContentDescription).isEqualTo(R.string.login_password_text_field_trailing_icon_hide_password_description)
+            assertThat(statefulIcon.activeContentDescription).isEqualTo(
+                R.string.login_password_text_field_trailing_icon_hide_password_description)
 
             assertThat(statefulIcon.inactiveIcon).isEqualTo(Icons.Default.Visibility)
-            assertThat(statefulIcon.inactiveContentDescription).isEqualTo(R.string.login_password_text_field_trailing_icon_show_password_content_description)
+            assertThat(statefulIcon.inactiveContentDescription).isEqualTo(
+                R.string.login_password_text_field_trailing_icon_show_password_content_description)
         }
 
         assertThat(uiData.errorInvalidEmailFormat).isEqualTo(R.string.login_error_invalid_email_format)

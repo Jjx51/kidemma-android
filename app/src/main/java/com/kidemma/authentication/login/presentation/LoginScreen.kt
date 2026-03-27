@@ -87,7 +87,8 @@ private fun LoginScreenContent(
                     )
                 },
                 onLoginClicked = { viewModel.processIntent(LoginContract.Intent.OnLoginClicked) },
-                onTogglePasswordVisibility = { viewModel.processIntent(LoginContract.Intent.OnTogglePasswordVisibility) }
+                onTogglePasswordVisibility =
+                    { viewModel.processIntent(LoginContract.Intent.OnTogglePasswordVisibility) }
             )
             if (state.isLoading) {
                 KidemmaLoadingOverlay()
@@ -157,7 +158,8 @@ private fun MainContent(
                 keyboardType = KeyboardType.Password,
                 imeAction = ImeAction.Done,
             ),
-            visualTransformation = if (state.isPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(),
+            visualTransformation = if (state.isPasswordVisible) VisualTransformation.None
+            else PasswordVisualTransformation(),
             onTrailingIconClick = onTogglePasswordVisibility,
             isTrailingIconActive = state.isPasswordVisible
         )

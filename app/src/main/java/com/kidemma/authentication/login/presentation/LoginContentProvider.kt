@@ -70,7 +70,8 @@ object LoginContentProvider {
             trailingIcon = TrailingIconUiModel.Stateful(
                 activeContentDescription = R.string.login_password_text_field_trailing_icon_hide_password_description,
                 activeIcon = Icons.Default.VisibilityOff,
-                inactiveContentDescription = R.string.login_password_text_field_trailing_icon_show_password_content_description,
+                inactiveContentDescription =
+                    R.string.login_password_text_field_trailing_icon_show_password_content_description,
                 inactiveIcon = Icons.Default.Visibility,
             ),
         )

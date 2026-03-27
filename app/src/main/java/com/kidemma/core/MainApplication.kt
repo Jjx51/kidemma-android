@@ -1,9 +1,14 @@
 package com.kidemma.core
 
 import android.app.Application
-import com.kidemma.samplearchitect.presentation.module.createAppModules
+import com.kidemma.authentication.di.authenticationModule
+import com.kidemma.common.di.commonModule
+import com.kidemma.common.di.databaseModule
+import com.kidemma.homeAdmin.di.adminModule
+import com.kidemma.introduction.di.introductionModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.GlobalContext
+import org.koin.dsl.module
 
 /**
  * Copyright (c) 2025 Accenture. All rights reserved.
@@ -21,11 +26,23 @@ class MainApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        val appModules = createAppModules()
-
         GlobalContext.startKoin {
             androidContext(applicationContext)
-            modules(appModules)
+            modules(module() {
+
+                // Here will be the modules for feature
+                includes(
+                    introductionModule,
+                    authenticationModule,
+                    adminModule
+                )
+
+                //Here will be the common modules like network , database, etc
+                includes(
+                    commonModule,
+                    databaseModule
+                )
+            })
         }
     }
 }

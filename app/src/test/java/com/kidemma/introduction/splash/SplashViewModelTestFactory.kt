@@ -20,7 +20,7 @@ object SplashViewModelTestFactory {
     ): SplashViewModelTestSubject {
 
         val fakeUserPreferencesRepository = FakeUserPreferencesRepository()
-        onboardingCompleted?.let { it ->
+        onboardingCompleted?.let {
             fakeUserPreferencesRepository.setOnboardingCompleted(it)
         }
 
