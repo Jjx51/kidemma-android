@@ -1,9 +1,10 @@
 package com.kidemma.common.domain.repository
 
-import com.kidemma.common.data.local.dao.entities.Note
+import com.kidemma.common.data.local.dao.domain.Note
 import com.kidemma.common.data.local.dao.NoteDao
-import com.kidemma.common.data.local.dao.entities.toDomain
-import com.kidemma.common.data.local.dao.entities.toEntity
+import com.kidemma.common.data.local.dao.domain.toDomain
+import com.kidemma.common.data.local.dao.domain.toDomainList
+import com.kidemma.common.data.local.dao.domain.toEntity
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
@@ -25,7 +26,7 @@ class NoteRepositoryImpl(
 
     override fun getNotes(): Flow<List<Note>> {
         return dao.getAllNotes().map { entities ->
-            entities.map { it.toDomain() }
+            entities.toDomainList()
         }
     }
 

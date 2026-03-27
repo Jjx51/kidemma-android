@@ -1,6 +1,6 @@
 package com.kidemma.common.domain.usecase
 
-import com.kidemma.common.data.local.dao.entities.Note
+import com.kidemma.common.data.local.dao.domain.Note
 import com.kidemma.common.domain.repository.NoteRepository
 import kotlinx.coroutines.flow.Flow
 

@@ -1,4 +1,6 @@
-package com.kidemma.common.data.local.dao.entities
+package com.kidemma.common.data.local.dao.domain
+
+import com.kidemma.common.data.local.dao.entities.NoteEntity
 
 /**
  * Copyright (c) 2025 Accenture. All rights reserved.
@@ -31,3 +33,10 @@ fun Note.toEntity(): NoteEntity {
         content = content
     )
 }
+
+// Convertir de Lista de DB a Dominio (Data -> Domain)
+fun List<NoteEntity>.toDomainList(): List<Note> {
+    return map { it.toDomain() }
+}
+
+
