@@ -34,6 +34,7 @@ import com.kidemma.common.ui.theme.KidemmaCardShapes
 import com.kidemma.common.ui.theme.KidemmaColors
 import com.kidemma.common.ui.theme.KidemmaDimens
 import com.kidemma.common.ui.theme.KidemmaTheme
+import com.kidemma.common.utils.DayOfWeek
 import java.time.LocalDate
 
 /*
@@ -42,7 +43,7 @@ import java.time.LocalDate
  *
  * Created by: José Manuel Carrillo Torres
  * Created on: 23/02/26
- * Last modified: 09/03/26
+ * Last modified: 22/04/26
  */
 
 @Composable
@@ -65,102 +66,126 @@ fun KidemmaCard(
     }
 }
 
+private val KidDetailCardSectionPadding = 16.dp
+private val KidDetailCardClassCircleSize = 24.dp
+private val KidDetailCardClassBorderThickness = 2.dp
+
 @Composable
 fun KidDetailCard(
     kidDetailCardUiModel: KidDetailCardUiModel,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val days = stringArrayResource(R.array.kid_card_days_of_week)
-
-    // UI KidDetailCard constants
-    val sectionPadding = 16.dp
-    val classCircleSize = 24.dp
-    val classBorderThickness = 2.dp
-
     KidemmaCard(
         modifier = modifier.clickable { onClick() },
     ) {
         Column {
-            Row(
-                modifier = Modifier.padding(sectionPadding),
-                verticalAlignment = Alignment.CenterVertically,
-            ) {
-                // Todo: use the component that Laura is creating for kid profile pictures once it's ready.
-                //  For now, just a placeholder box.
-                Box(modifier = Modifier.size(40.dp)) {}
-
-                HorizontalSpacerMedium()
-
-                Column(modifier = Modifier.weight(1f)) {
-                    KidemmaLabelLarge(text = kidDetailCardUiModel.kidUiModel.name)
-                    VerticalSpacerExtraSmall()
-                    Row {
-                        KidemmaLabelLarge(text = stringResource(R.string.kid_card_detail_label_age))
-                        HorizontalSpacerExtraSmall()
-                        KidemmaBodyMedium(text = kidDetailCardUiModel.kidUiModel.ageDescription)
-                    }
-                }
-
-                Icon(
-                    modifier = Modifier.size(KidemmaDimens.IconSizeMedium),
-                    painter = painterResource(R.drawable.ic_arrow_right),
-                    contentDescription = kidDetailCardUiModel.kidUiModel.name,
-                    tint = KidemmaColors.Icon,
-                )
-            }
+            KidDetailHeader(
+                name = kidDetailCardUiModel.kidUiModel.name,
+                ageDescription = kidDetailCardUiModel.kidUiModel.ageDescription
+            )
 
             HorizontalDivider(color = KidemmaColors.Divider)
 
-            Column(modifier = Modifier.padding(sectionPadding)) {
-                KidemmaLabelLarge(text = stringResource(R.string.kid_card_detail_label_classes))
-                VerticalSpacerExtraSmall()
+            KidDetailSchedule(weekSchedule = kidDetailCardUiModel.weekScheduleUiModel)
+        }
+    }
+}
 
-                Row(modifier = Modifier.fillMaxWidth()) {
-                    for (i in 0..< days.size) {
-                        val hasClass = when (i) {
-                            0 -> kidDetailCardUiModel.weekScheduleUiModel.hasClassOnMonday
-                            1 -> kidDetailCardUiModel.weekScheduleUiModel.hasClassOnTuesday
-                            2 -> kidDetailCardUiModel.weekScheduleUiModel.hasClassOnWednesday
-                            3 -> kidDetailCardUiModel.weekScheduleUiModel.hasClassOnThursday
-                            4 -> kidDetailCardUiModel.weekScheduleUiModel.hasClassOnFriday
-                            5 -> kidDetailCardUiModel.weekScheduleUiModel.hasClassOnSaturday
-                            6 -> kidDetailCardUiModel.weekScheduleUiModel.hasClassOnSunday
-                            else -> false
-                        }
+@Composable
+private fun KidDetailHeader(
+    name: String,
+    ageDescription: String,
+    modifier: Modifier = Modifier,
+) {
+    Row(
+        modifier = modifier.padding(KidDetailCardSectionPadding),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        // Todo: use the component that Laura is creating for kid profile pictures once it's ready.
+        //  For now, just a placeholder box.
+        Box(modifier = Modifier.size(40.dp)) {}
 
-                        val dayTextColor = if (hasClass) KidemmaColors.Icon else KidemmaColors.DisabledButtonText
+        HorizontalSpacerMedium()
 
-                        val dayFirstLetter = days[i].substring(0, 1)
+        Column(modifier = Modifier.weight(1f)) {
+            KidemmaLabelLarge(text = name)
+            VerticalSpacerExtraSmall()
+            Row {
+                KidemmaLabelLarge(text = stringResource(R.string.kid_card_detail_label_age))
+                HorizontalSpacerExtraSmall()
+                KidemmaBodyMedium(text = ageDescription)
+            }
+        }
 
-                        Box(
-                            modifier = Modifier
-                                .size(classCircleSize)
-                                .clip(CircleShape)
-                                .then(
-                                    if (hasClass) {
-                                        Modifier.border(
-                                            width = classBorderThickness,
-                                            color = KidemmaColors.Icon,
-                                            shape = CircleShape
-                                        )
-                                    } else {
-                                        Modifier.background(KidemmaColors.DisabledButton)
-                                    }
-                                ),
-                            contentAlignment = Alignment.Center,
-                        ) {
-                            KidemmaLabelLarge(
-                                text = dayFirstLetter,
-                                color = dayTextColor,
-                            )
-                        }
+        Icon(
+            modifier = Modifier.size(KidemmaDimens.IconSizeMedium),
+            painter = painterResource(R.drawable.ic_arrow_right),
+            contentDescription = name,
+            tint = KidemmaColors.Icon,
+        )
+    }
+}
 
-                        HorizontalSpacerExtraSmall()
-                    }
+@Composable
+private fun KidDetailSchedule(
+    weekSchedule: WeekScheduleUiModel,
+    modifier: Modifier = Modifier,
+) {
+    val dayLabels = stringArrayResource(R.array.kid_card_days_of_week)
+    val days = DayOfWeek.entries
+
+    Column(modifier = modifier.padding(KidDetailCardSectionPadding)) {
+        KidemmaLabelLarge(text = stringResource(R.string.kid_card_detail_label_classes))
+        VerticalSpacerExtraSmall()
+
+        Row(modifier = Modifier.fillMaxWidth()) {
+            days.forEachIndexed { index, day ->
+                val hasClass = weekSchedule.schedule[day] ?: false
+                val label = dayLabels.getOrNull(index)?.substring(0, 1) ?: ""
+
+                KidDetailDayItem(
+                    dayLabel = label,
+                    hasClass = hasClass
+                )
+
+                if (index < days.size - 1) {
+                    HorizontalSpacerExtraSmall()
                 }
             }
         }
+    }
+}
+
+@Composable
+private fun KidDetailDayItem(
+    dayLabel: String,
+    hasClass: Boolean,
+    modifier: Modifier = Modifier,
+) {
+    val dayTextColor = if (hasClass) KidemmaColors.Icon else KidemmaColors.DisabledButtonText
+
+    Box(
+        modifier = modifier
+            .size(KidDetailCardClassCircleSize)
+            .clip(CircleShape)
+            .then(
+                if (hasClass) {
+                    Modifier.border(
+                        width = KidDetailCardClassBorderThickness,
+                        color = KidemmaColors.Icon,
+                        shape = CircleShape
+                    )
+                } else {
+                    Modifier.background(KidemmaColors.DisabledButton)
+                }
+            ),
+        contentAlignment = Alignment.Center,
+    ) {
+        KidemmaLabelLarge(
+            text = dayLabel,
+            color = dayTextColor,
+        )
     }
 }
 
@@ -197,13 +222,11 @@ fun KidDetailCardPreview() {
                     birthday = LocalDate.now().minusYears(5)
                 ),
                 weekScheduleUiModel = WeekScheduleUiModel(
-                    hasClassOnMonday = true,
-                    hasClassOnTuesday = false,
-                    hasClassOnWednesday = true,
-                    hasClassOnThursday = false,
-                    hasClassOnFriday = true,
-                    hasClassOnSaturday = false,
-                    hasClassOnSunday = false
+                    schedule = mapOf(
+                        DayOfWeek.MONDAY to true,
+                        DayOfWeek.WEDNESDAY to true,
+                        DayOfWeek.FRIDAY to true
+                    )
                 )
             ),
             onClick = {},

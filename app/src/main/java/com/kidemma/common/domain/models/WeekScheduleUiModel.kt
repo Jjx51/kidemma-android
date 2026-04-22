@@ -1,20 +1,16 @@
 package com.kidemma.common.domain.models
 
+import com.kidemma.common.utils.DayOfWeek
+
 /*
  * File: WeekScheduleUiModel.kt
  * Description: UI model representing whether there's a class on each day of the week.
  *
  * Created by: José Manuel Carrillo Torres
- * Created on: 09/03/26
- * Last modified: 09/03/26
+ * Created on: 22/04/26
+ * Last modified: 22/04/26
  */
 
 data class WeekScheduleUiModel(
-    val hasClassOnMonday: Boolean = false,
-    val hasClassOnTuesday: Boolean = false,
-    val hasClassOnWednesday: Boolean = false,
-    val hasClassOnThursday: Boolean = false,
-    val hasClassOnFriday: Boolean = false,
-    val hasClassOnSaturday: Boolean = false,
-    val hasClassOnSunday: Boolean = false,
+    val schedule: Map<DayOfWeek, Boolean> = emptyMap(),
 )

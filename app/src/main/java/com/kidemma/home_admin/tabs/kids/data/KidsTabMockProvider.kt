@@ -3,6 +3,7 @@ package com.kidemma.home_admin.tabs.kids.data
 import com.kidemma.common.domain.models.KidDetailCardUiModel
 import com.kidemma.common.domain.models.KidUiModel
 import com.kidemma.common.domain.models.WeekScheduleUiModel
+import com.kidemma.common.utils.DayOfWeek
 import com.kidemma.common.utils.Gender
 import java.time.LocalDate
 
@@ -12,7 +13,7 @@ import java.time.LocalDate
  *
  * Created by: José Manuel Carrillo Torres
  * Created on: 09/03/26
- * Last modified: 09/03/26
+ * Last modified: 22/04/26
  */
 
 object KidsTabMockProvider {
@@ -27,13 +28,11 @@ object KidsTabMockProvider {
                     gender = Gender.FEMALE
                 ),
                 weekScheduleUiModel = WeekScheduleUiModel(
-                    hasClassOnMonday = true,
-                    hasClassOnTuesday = false,
-                    hasClassOnWednesday = true,
-                    hasClassOnThursday = false,
-                    hasClassOnFriday = true,
-                    hasClassOnSaturday = false,
-                    hasClassOnSunday = false
+                    schedule = mapOf(
+                        DayOfWeek.MONDAY to true,
+                        DayOfWeek.WEDNESDAY to true,
+                        DayOfWeek.FRIDAY to true
+                    )
                 )
             ),
             KidDetailCardUiModel(
@@ -44,13 +43,10 @@ object KidsTabMockProvider {
                     birthday = LocalDate.now().minusYears(4).minusMonths(1)
                 ),
                 weekScheduleUiModel = WeekScheduleUiModel(
-                    hasClassOnMonday = false,
-                    hasClassOnTuesday = true,
-                    hasClassOnWednesday = false,
-                    hasClassOnThursday = true,
-                    hasClassOnFriday = false,
-                    hasClassOnSaturday = false,
-                    hasClassOnSunday = false
+                    schedule = mapOf(
+                        DayOfWeek.TUESDAY to true,
+                        DayOfWeek.THURSDAY to true
+                    )
                 )
             ),
             KidDetailCardUiModel(
@@ -62,13 +58,10 @@ object KidsTabMockProvider {
                     gender = Gender.FEMALE
                 ),
                 weekScheduleUiModel = WeekScheduleUiModel(
-                    hasClassOnMonday = true,
-                    hasClassOnTuesday = true,
-                    hasClassOnWednesday = false,
-                    hasClassOnThursday = false,
-                    hasClassOnFriday = false,
-                    hasClassOnSaturday = false,
-                    hasClassOnSunday = false
+                    schedule = mapOf(
+                        DayOfWeek.MONDAY to true,
+                        DayOfWeek.TUESDAY to true
+                    )
                 )
             ),
             KidDetailCardUiModel(
@@ -79,13 +72,11 @@ object KidsTabMockProvider {
                     birthday = LocalDate.now().minusYears(1)
                 ),
                 weekScheduleUiModel = WeekScheduleUiModel(
-                    hasClassOnMonday = false,
-                    hasClassOnTuesday = false,
-                    hasClassOnWednesday = true,
-                    hasClassOnThursday = true,
-                    hasClassOnFriday = true,
-                    hasClassOnSaturday = false,
-                    hasClassOnSunday = false
+                    schedule = mapOf(
+                        DayOfWeek.WEDNESDAY to true,
+                        DayOfWeek.THURSDAY to true,
+                        DayOfWeek.FRIDAY to true
+                    )
                 )
             ),
             KidDetailCardUiModel(
@@ -97,13 +88,10 @@ object KidsTabMockProvider {
                     gender = Gender.FEMALE
                 ),
                 weekScheduleUiModel = WeekScheduleUiModel(
-                    hasClassOnMonday = false,
-                    hasClassOnTuesday = false,
-                    hasClassOnWednesday = false,
-                    hasClassOnThursday = true,
-                    hasClassOnFriday = false,
-                    hasClassOnSaturday = true,
-                    hasClassOnSunday = false
+                    schedule = mapOf(
+                        DayOfWeek.THURSDAY to true,
+                        DayOfWeek.SATURDAY to true
+                    )
                 )
             ),
             KidDetailCardUiModel(
@@ -114,13 +102,11 @@ object KidsTabMockProvider {
                     birthday = LocalDate.now().minusYears(4).minusMonths(11)
                 ),
                 weekScheduleUiModel = WeekScheduleUiModel(
-                    hasClassOnMonday = true,
-                    hasClassOnTuesday = false,
-                    hasClassOnWednesday = false,
-                    hasClassOnThursday = false,
-                    hasClassOnFriday = true,
-                    hasClassOnSaturday = false,
-                    hasClassOnSunday = true
+                    schedule = mapOf(
+                        DayOfWeek.MONDAY to true,
+                        DayOfWeek.FRIDAY to true,
+                        DayOfWeek.SUNDAY to true
+                    )
                 )
             ),
             KidDetailCardUiModel(
@@ -132,13 +118,11 @@ object KidsTabMockProvider {
                     gender = Gender.FEMALE
                 ),
                 weekScheduleUiModel = WeekScheduleUiModel(
-                    hasClassOnMonday = false,
-                    hasClassOnTuesday = true,
-                    hasClassOnWednesday = true,
-                    hasClassOnThursday = false,
-                    hasClassOnFriday = false,
-                    hasClassOnSaturday = false,
-                    hasClassOnSunday = true
+                    schedule = mapOf(
+                        DayOfWeek.TUESDAY to true,
+                        DayOfWeek.WEDNESDAY to true,
+                        DayOfWeek.SUNDAY to true
+                    )
                 )
             ),
             KidDetailCardUiModel(
@@ -149,13 +133,11 @@ object KidsTabMockProvider {
                     birthday = LocalDate.now().minusYears(4).minusMonths(4)
                 ),
                 weekScheduleUiModel = WeekScheduleUiModel(
-                    hasClassOnMonday = true,
-                    hasClassOnTuesday = true,
-                    hasClassOnWednesday = true,
-                    hasClassOnThursday = false,
-                    hasClassOnFriday = false,
-                    hasClassOnSaturday = false,
-                    hasClassOnSunday = false
+                    schedule = mapOf(
+                        DayOfWeek.MONDAY to true,
+                        DayOfWeek.TUESDAY to true,
+                        DayOfWeek.WEDNESDAY to true
+                    )
                 )
             ),
             KidDetailCardUiModel(
@@ -167,13 +149,11 @@ object KidsTabMockProvider {
                     gender = Gender.FEMALE
                 ),
                 weekScheduleUiModel = WeekScheduleUiModel(
-                    hasClassOnMonday = false,
-                    hasClassOnTuesday = false,
-                    hasClassOnWednesday = false,
-                    hasClassOnThursday = false,
-                    hasClassOnFriday = true,
-                    hasClassOnSaturday = true,
-                    hasClassOnSunday = true
+                    schedule = mapOf(
+                        DayOfWeek.FRIDAY to true,
+                        DayOfWeek.SATURDAY to true,
+                        DayOfWeek.SUNDAY to true
+                    )
                 )
             ),
             KidDetailCardUiModel(
@@ -184,13 +164,11 @@ object KidsTabMockProvider {
                     birthday = LocalDate.now().minusYears(3).minusMonths(11)
                 ),
                 weekScheduleUiModel = WeekScheduleUiModel(
-                    hasClassOnMonday = true,
-                    hasClassOnTuesday = false,
-                    hasClassOnWednesday = true,
-                    hasClassOnThursday = false,
-                    hasClassOnFriday = false,
-                    hasClassOnSaturday = true,
-                    hasClassOnSunday = false
+                    schedule = mapOf(
+                        DayOfWeek.MONDAY to true,
+                        DayOfWeek.WEDNESDAY to true,
+                        DayOfWeek.SATURDAY to true
+                    )
                 )
             )
         )
