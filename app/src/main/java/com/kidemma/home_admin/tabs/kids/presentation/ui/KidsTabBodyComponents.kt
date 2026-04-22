@@ -51,8 +51,8 @@ fun KidsListView(
 ) {
     LazyColumn(
         modifier = modifier.fillMaxSize(),
-        contentPadding = PaddingValues(16.dp),
-        verticalArrangement = Arrangement.spacedBy(12.dp),
+        contentPadding = PaddingValues(KidsTabBodyComponentsUiConstants.ScreenPadding),
+        verticalArrangement = Arrangement.spacedBy(KidsTabBodyComponentsUiConstants.SpacedBy),
     ) {
         items(
             items = kidDetailList,
@@ -75,10 +75,10 @@ fun KidsGridView(
 ) {
     LazyVerticalGrid(
         modifier = modifier.fillMaxSize(),
-        columns = GridCells.Fixed(3),
-        contentPadding = PaddingValues(16.dp),
-        horizontalArrangement = Arrangement.spacedBy(12.dp),
-        verticalArrangement = Arrangement.spacedBy(12.dp),
+        columns = GridCells.Fixed(KidsTabBodyComponentsUiConstants.GridColumns),
+        contentPadding = PaddingValues(KidsTabBodyComponentsUiConstants.ScreenPadding),
+        horizontalArrangement = Arrangement.spacedBy(KidsTabBodyComponentsUiConstants.SpacedBy),
+        verticalArrangement = Arrangement.spacedBy(KidsTabBodyComponentsUiConstants.SpacedBy),
     ) {
         items(
             items = kidDetailList,
@@ -103,12 +103,12 @@ fun KidItem(
         modifier = modifier
             .fillMaxWidth()
             .clickable(onClick = onClick)
-            .padding(4.dp),
+            .padding(KidsTabBodyComponentsUiConstants.ItemPadding),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Box(
             modifier = Modifier
-                .size(56.dp)
+                .size(KidsTabBodyComponentsUiConstants.AvatarSize)
                 .clip(CircleShape)
                 .background(KidemmaColors.DisabledButton),
         )
@@ -120,6 +120,14 @@ fun KidItem(
             textAlign = TextAlign.Center,
         )
     }
+}
+
+private object KidsTabBodyComponentsUiConstants {
+    val ScreenPadding = 16.dp
+    val SpacedBy = 12.dp
+    const val GridColumns = 3
+    val AvatarSize = 56.dp
+    val ItemPadding = 4.dp
 }
 
 @Composable

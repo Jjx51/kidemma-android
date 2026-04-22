@@ -116,7 +116,11 @@ private fun KidsTabActions(
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .padding(top = 16.dp, start = 16.dp, end = 16.dp),
+            .padding(
+                top = KidsTabScreenUiConstants.ActionsTopPadding,
+                start = KidsTabScreenUiConstants.HorizontalPadding,
+                end = KidsTabScreenUiConstants.HorizontalPadding
+            ),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
     ) {
@@ -177,12 +181,12 @@ private fun ToggleGridViewButton(
 
     Card(
         onClick = onToggle,
-        modifier = Modifier
-            .size(36.dp)
+        modifier = modifier
+            .size(KidsTabScreenUiConstants.ButtonSize)
             .clip(CircleShape),
         shape = CircleShape,
         colors = CardDefaults.cardColors(containerColor = KidemmaColors.Card),
-        elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
+        elevation = CardDefaults.cardElevation(defaultElevation = KidsTabScreenUiConstants.ButtonElevation),
     ) {
         Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
             Icon(
@@ -203,11 +207,11 @@ private fun FilterButton(
     Card(
         onClick = onClick,
         modifier = modifier
-            .size(36.dp)
+            .size(KidsTabScreenUiConstants.ButtonSize)
             .clip(CircleShape),
         shape = CircleShape,
         colors = CardDefaults.cardColors(containerColor = KidemmaColors.Card),
-        elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
+        elevation = CardDefaults.cardElevation(defaultElevation = KidsTabScreenUiConstants.ButtonElevation),
     ) {
         Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
             Icon(
@@ -218,6 +222,13 @@ private fun FilterButton(
             )
         }
     }
+}
+
+private object KidsTabScreenUiConstants {
+    val HorizontalPadding = 16.dp
+    val ActionsTopPadding = 16.dp
+    val ButtonSize = 36.dp
+    val ButtonElevation = 6.dp
 }
 
 @Preview(showBackground = true)
