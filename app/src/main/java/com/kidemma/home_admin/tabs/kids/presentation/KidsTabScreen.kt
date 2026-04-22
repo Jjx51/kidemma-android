@@ -73,50 +73,22 @@ private fun KidsTabContent(
                 .fillMaxSize()
                 .background(KidemmaColors.Background),
         ) {
-            // KidsHeader()
+            // TODO: Add Laura's filter field
+            // KidsTabHeaderComponents()
 
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 16.dp, start = 16.dp, end = 16.dp),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically,
-            ) {
-                FilterButton(
-                    onClick = { onIntent(OnOpenFilterDialog) },
-                )
+            KidsTabActions(
+                isGridView = uiState.isGridView,
+                onOpenFilter = { onIntent(OnOpenFilterDialog) },
+                onToggleGridView = { onIntent(KidsTabContract.Intent.OnToggleGridView) }
+            )
 
-                ToggleGridViewButton(
-                    isGridView = uiState.isGridView,
-                    onToggle = { onIntent(KidsTabContract.Intent.OnToggleGridView) },
-                )
-            }
-
-            when (val content = uiState.content) {
-                KidsTabContract.KidsContentState.Loading -> {
-                    // Handled by the overlay below to ensure it's on top of everything
+            KidsTabMainContent(
+                isGridView = uiState.isGridView,
+                contentState = uiState.content,
+                onKidClick = { kidId ->
+                    onIntent(KidsTabContract.Intent.OnKidClick(kidId))
                 }
-
-                KidsTabContract.KidsContentState.Empty -> EmptyKidsContent()
-
-                is KidsTabContract.KidsContentState.Data -> {
-                    if (uiState.isGridView) {
-                        KidsGridView(
-                            kidDetailList = content.kidDetailList,
-                            onKidClick = { kidDetail ->
-                                onIntent(KidsTabContract.Intent.OnKidClick(kidDetail.kidUiModel.id))
-                            },
-                        )
-                    } else {
-                        KidsListView(
-                            kidDetailList = content.kidDetailList,
-                            onKidClick = { kidDetail ->
-                                onIntent(KidsTabContract.Intent.OnKidClick(kidDetail.kidUiModel.id))
-                            },
-                        )
-                    }
-                }
-            }
+            )
         }
 
         if (uiState.content is KidsTabContract.KidsContentState.Loading) {
@@ -135,10 +107,69 @@ private fun KidsTabContent(
 }
 
 @Composable
-fun ToggleGridViewButton(
+private fun KidsTabActions(
+    isGridView: Boolean,
+    onOpenFilter: () -> Unit,
+    onToggleGridView: () -> Unit,
     modifier: Modifier = Modifier,
+) {
+    Row(
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(top = 16.dp, start = 16.dp, end = 16.dp),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        FilterButton(onClick = onOpenFilter)
+
+        ToggleGridViewButton(
+            isGridView = isGridView,
+            onToggle = onToggleGridView,
+        )
+    }
+}
+
+@Composable
+private fun KidsTabMainContent(
+    isGridView: Boolean,
+    contentState: KidsTabContract.KidsContentState,
+    onKidClick: (String) -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    Box(modifier = modifier) {
+        when (contentState) {
+            KidsTabContract.KidsContentState.Loading -> {
+                // Handled by the overlay in parent
+            }
+
+            KidsTabContract.KidsContentState.Empty -> EmptyKidsContent()
+
+            is KidsTabContract.KidsContentState.Data -> {
+                if (isGridView) {
+                    KidsGridView(
+                        kidDetailList = contentState.kidDetailList,
+                        onKidClick = { kidDetail ->
+                            onKidClick(kidDetail.kidUiModel.id)
+                        },
+                    )
+                } else {
+                    KidsListView(
+                        kidDetailList = contentState.kidDetailList,
+                        onKidClick = { kidDetail ->
+                            onKidClick(kidDetail.kidUiModel.id)
+                        },
+                    )
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun ToggleGridViewButton(
     isGridView: Boolean,
     onToggle: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     val icon = if (isGridView) Icons.AutoMirrored.Filled.ViewList else Icons.Filled.GridView
     val iconContentDescription = if (isGridView) stringResource(R.string.kids_list_view_content_description)
@@ -166,8 +197,8 @@ fun ToggleGridViewButton(
 
 @Composable
 private fun FilterButton(
-    modifier: Modifier = Modifier,
     onClick: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     Card(
         onClick = onClick,

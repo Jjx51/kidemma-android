@@ -12,6 +12,6 @@ import androidx.compose.runtime.Composable
  */
 
 @Composable
-fun KidsHeaderComponents() {
-
+fun KidsTabHeaderComponents() {
+    // TODO: Add Laura's filter field
 }
