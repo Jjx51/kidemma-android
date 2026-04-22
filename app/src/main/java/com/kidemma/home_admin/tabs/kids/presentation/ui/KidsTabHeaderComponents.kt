@@ -12,6 +12,6 @@ import androidx.compose.runtime.Composable
  */
 
 @Composable
-internal fun KidsHeaderComponents() {
+fun KidsHeaderComponents() {
 
 }

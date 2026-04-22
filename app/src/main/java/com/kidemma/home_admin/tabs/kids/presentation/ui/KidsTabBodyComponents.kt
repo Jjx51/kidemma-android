@@ -44,7 +44,7 @@ import com.kidemma.home_admin.tabs.kids.data.KidsTabMockProvider
  */
 
 @Composable
-internal fun KidsListView(
+fun KidsListView(
     kidDetailList: List<KidDetailCardUiModel>,
     onKidClick: (KidDetailCardUiModel) -> Unit,
     modifier: Modifier = Modifier,
@@ -68,7 +68,7 @@ internal fun KidsListView(
 }
 
 @Composable
-internal fun KidsGridView(
+fun KidsGridView(
     kidDetailList: List<KidDetailCardUiModel>,
     onKidClick: (KidDetailCardUiModel) -> Unit,
     modifier: Modifier = Modifier,
@@ -93,7 +93,7 @@ internal fun KidsGridView(
 }
 
 @Composable
-internal fun KidItem(
+fun KidItem(
     kidDetail: KidDetailCardUiModel,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
@@ -123,7 +123,7 @@ internal fun KidItem(
 }
 
 @Composable
-internal fun EmptyKidsContent(modifier: Modifier = Modifier) {
+fun EmptyKidsContent(modifier: Modifier = Modifier) {
     Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
         KidemmaBodyMedium(text = stringResource(R.string.kids_empty_state_message))
     }

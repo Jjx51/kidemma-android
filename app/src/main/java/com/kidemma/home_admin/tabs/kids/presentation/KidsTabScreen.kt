@@ -51,7 +51,7 @@ import org.koin.androidx.compose.koinViewModel
  */
 
 @Composable
-internal fun KidsTabScreen(modifier: Modifier = Modifier, viewModel: KidsTabViewModelImpl = koinViewModel()) {
+fun KidsTabScreen(modifier: Modifier = Modifier, viewModel: KidsTabViewModelImpl = koinViewModel()) {
     val uiState by viewModel.state.collectAsState()
 
     KidsTabContent(
@@ -135,7 +135,7 @@ private fun KidsTabContent(
 }
 
 @Composable
-internal fun ToggleGridViewButton(
+fun ToggleGridViewButton(
     modifier: Modifier = Modifier,
     isGridView: Boolean,
     onToggle: () -> Unit,

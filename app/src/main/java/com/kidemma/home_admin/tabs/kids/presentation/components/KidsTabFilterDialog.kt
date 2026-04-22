@@ -55,7 +55,7 @@ import java.time.LocalDate
  */
 
 @Composable
-internal fun KidsTabFilterDialog(
+fun KidsTabFilterDialog(
     modifier: Modifier = Modifier,
     onDismiss: () -> Unit,
     onApplyFilter: (KidsTabFilterResult) -> Unit,
