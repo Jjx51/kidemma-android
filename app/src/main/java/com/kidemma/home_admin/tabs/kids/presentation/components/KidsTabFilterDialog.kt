@@ -18,13 +18,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.window.Dialog
+import androidx.compose.ui.platform.LocalContext
 import com.kidemma.R
 import com.kidemma.common.components.KidemmaBodyMedium
 import com.kidemma.common.components.KidemmaCard
@@ -36,6 +36,7 @@ import com.kidemma.common.components.VerticalSpacerMedium
 import com.kidemma.common.components.VerticalSpacerSmall
 import com.kidemma.common.ui.theme.KidemmaTheme
 import com.kidemma.common.utils.Gender
+import com.kidemma.common.utils.formatAgeMonths
 import com.kidemma.home_admin.tabs.kids.domain.models.KidsTabFilterResult
 import com.kidemma.home_admin.tabs.kids.presentation.components.KidsTabFilterDialogUiConstants.Dimens.ButtonsSpacing
 import com.kidemma.home_admin.tabs.kids.presentation.components.KidsTabFilterDialogUiConstants.Dimens.DialogMaxWidth
@@ -194,12 +195,14 @@ private fun AgeRangeFilterSection(
     onMinAgeChanged: (Int) -> Unit,
     onMaxAgeChanged: (Int) -> Unit,
 ) {
+    val context = LocalContext.current
+
     Column(modifier = modifier.fillMaxWidth()) {
         KidemmaLabelLarge(text = stringResource(R.string.kids_filter_age_range_section_title))
         VerticalSpacerSmall()
 
-        val minAgeLabel = formatAgeMonths(minAgeMonths)
-        val maxAgeLabel = formatAgeMonths(maxAgeMonths)
+        val minAgeLabel = formatAgeMonths(context, minAgeMonths)
+        val maxAgeLabel = formatAgeMonths(context, maxAgeMonths)
 
         KidemmaBodyMedium(
             modifier = Modifier.fillMaxWidth(),
@@ -242,22 +245,6 @@ private fun AgeRangeFilterSection(
             valueRange = minAgeMonths.toFloat()..MAX_AGE_MONTHS.toFloat(),
             steps = ((MAX_AGE_MONTHS - minAgeMonths) - 1).coerceAtLeast(0),
         )
-    }
-}
-
-@Composable
-private fun formatAgeMonths(months: Int): String {
-    val years = months / 12
-    val remainingMonths = months % 12
-
-    return when {
-        years == 0 -> pluralStringResource(R.plurals.kids_age_months, remainingMonths, remainingMonths)
-        remainingMonths == 0 -> pluralStringResource(R.plurals.kids_age_years, years, years)
-        else -> {
-            val yearsLabel = pluralStringResource(R.plurals.kids_age_years, years, years)
-            val monthsLabel = pluralStringResource(R.plurals.kids_age_months, remainingMonths, remainingMonths)
-            "$yearsLabel $monthsLabel"
-        }
     }
 }
 
