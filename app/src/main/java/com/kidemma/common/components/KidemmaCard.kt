@@ -27,6 +27,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.platform.LocalContext
 import com.kidemma.R
 import com.kidemma.common.domain.models.KidDetailCardUiModel
 import com.kidemma.common.domain.models.WeekScheduleUiModel
@@ -76,13 +77,15 @@ fun KidDetailCard(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
+    val context = LocalContext.current
+
     KidemmaCard(
         modifier = modifier.clickable { onClick() },
     ) {
         Column {
             KidDetailHeader(
                 name = kidDetailCardUiModel.kidUiModel.name,
-                ageDescription = kidDetailCardUiModel.kidUiModel.ageDescription
+                ageDescription = kidDetailCardUiModel.kidUiModel.getAgeDescription(context)
             )
 
             HorizontalDivider(color = KidemmaColors.Divider)

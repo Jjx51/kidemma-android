@@ -1,10 +1,11 @@
 package com.kidemma.common.domain.models
 
+import android.content.Context
+import com.kidemma.R
 import com.kidemma.common.ui.models.ImageUiModel
 import com.kidemma.common.utils.Gender
 import java.time.LocalDate
 import java.time.Period
-import java.util.Locale
 
 /*
  * File: KidUiModel.kt
@@ -29,7 +30,7 @@ data class KidUiModel(
      * - EN: "3 years 2 months", "3 months", "2 years"
      * - ES: "3 años 2 meses", "3 meses", "2 años"
      */
-    val ageDescription: String = birthday.let { bday ->
+    fun getAgeDescription(context: Context): String = birthday.let { bday ->
         val today = LocalDate.now()
         if (bday.isAfter(today)) return@let "-"
 
@@ -37,34 +38,20 @@ data class KidUiModel(
         val years = period.years
         val months = period.months
 
-        val localeLanguage = Locale.getDefault().language
-        val isSpanish = localeLanguage.equals("es", ignoreCase = true)
+        val yearsPart = if (years > 0) {
+            context.resources.getQuantityString(R.plurals.kids_age_years, years, years)
+        } else ""
 
-        fun yearsPart(value: Int): String = when {
-            value <= 0 -> ""
-            isSpanish && value == 1 -> "1 año"
-            isSpanish -> "$value años"
-            !isSpanish && value == 1 -> "1 year"
-            else -> "$value years"
-        }
-
-        fun monthsPart(value: Int): String = when {
-            value <= 0 -> ""
-            isSpanish && value == 1 -> "1 mes"
-            isSpanish -> "$value meses"
-            !isSpanish && value == 1 -> "1 month"
-            else -> "$value months"
-        }
-
-        val y = yearsPart(years)
-        val m = monthsPart(months)
+        val monthsPart = if (months > 0) {
+            context.resources.getQuantityString(R.plurals.kids_age_months, months, months)
+        } else ""
 
         when {
-            y.isNotBlank() && m.isNotBlank() -> "$y $m"
-            y.isNotBlank() -> y
-            m.isNotBlank() -> m
+            yearsPart.isNotBlank() && monthsPart.isNotBlank() -> "$yearsPart $monthsPart"
+            yearsPart.isNotBlank() -> yearsPart
+            monthsPart.isNotBlank() -> monthsPart
             // less than 1 month old
-            else -> if (isSpanish) "0 meses" else "0 months"
+            else -> context.resources.getQuantityString(R.plurals.kids_age_months, 0, 0)
         }
     }
 }
