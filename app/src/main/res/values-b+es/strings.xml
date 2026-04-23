@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Testing -->
+    <string name="testing_paragraph">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas et elit ac nulla laoreet rhoncus. Sed bibendum, eros et accumsan vulputate, augue risus viverra metus, sit amet blandit orci nibh ac diam. In ut sollicitudin sapien. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse accumsan sapien sit amet ultrices iaculis. Maecenas suscipit nisl quis neque imperdiet finibus. Proin at mauris viverra, tincidunt nisi vel, pulvinar diam. Donec ac tempor nulla. Fusce congue cursus ipsum, id placerat nulla iaculis quis.\nCurabitur accumsan tortor quis bibendum congue. Suspendisse sollicitudin rhoncus eros, et dignissim ipsum malesuada et. Mauris fermentum velit interdum, finibus mi eget, tristique eros. Mauris vitae volutpat augue. Aenean tincidunt libero eget lectus posuere, vitae eleifend nulla eleifend. Nunc ultricies vestibulum nulla, sed venenatis mauris pellentesque vel. Aliquam efficitur lacus condimentum ante placerat cursus.</string>
+
     <!-- Validation Errors -->
     <string name="error_required">Este campo es obligatorio</string>
     <string name="error_invalid_email">Formato de email inválido</string>
@@ -49,6 +52,15 @@
     <!-- TopAppBar -->
     <string name="top_app_bar_logo_content_description">Logo de Kidemma</string>
     <string name="top_app_bar_notification_content_description">Icono de notificaciones</string>
+
+    <!-- TopAppBarBack -->
+    <string name="top_app_bar_back_arrow_content_description">Flecha hacia atrás</string>
+
+    <!-- Terms and Conditions -->
+    <string name="terms_and_conditions_title">Términos y Condiciones</string>
+
+    <!-- Privacy Policies -->
+    <string name="privacy_policies_title">Políticas de Privacidad</string>
 
     <!-- Agenda Tab strings -->
     <string name="agenda_week_range_chip_content_description">Seleccionar rango de semana</string>

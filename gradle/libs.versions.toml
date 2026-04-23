@@ -30,6 +30,7 @@ mockk = "1.14.6"
 truth = "1.4.5"
 monitor = "1.8.0"
 coil = "3.4.0"
+material3 = "1.4.0"
 
 [libraries]
 # Koin
@@ -82,6 +83,7 @@ androidx-arch-core-testing = { group = "androidx.arch.core", name = "core-testin
 mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
 androidx-monitor = { group = "androidx.test", name = "monitor", version.ref = "monitor" }
 google-truth = { group = "com.google.truth", name = "truth", version.ref = "truth" }
+androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3", version.ref = "material3" }
 
 # Coil
 coil-compose = {group = "io.coil-kt.coil3", name = "coil-compose", version.ref = "coil" }

@@ -70,6 +70,7 @@ dependencies {
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.androidx.datastore.preferences)
     implementation(libs.androidx.compose.material.icons.extended)
+    implementation(libs.androidx.compose.material3)
 
     // Debug Implementation
     debugImplementation(libs.androidx.ui.tooling)
