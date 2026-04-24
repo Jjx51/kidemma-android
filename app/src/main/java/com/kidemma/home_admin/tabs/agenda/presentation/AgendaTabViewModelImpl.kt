@@ -28,7 +28,9 @@ private const val LOADING_DELAY_MILLIS = 1500L
 private const val DAYS_TO_ADD = 1L
 private const val DAYS_TO_SUBTRACT = 1L
 
-class AgendaTabViewModelImpl : ViewModel(), AgendaTabViewModel {
+class AgendaTabViewModelImpl(
+    initialDate: LocalDate = LocalDate.now()
+) : ViewModel(), AgendaTabViewModel {
 
     private val _uiState = MutableStateFlow(AgendaTabContract.State())
     override val uiState: StateFlow<AgendaTabContract.State> = _uiState.asStateFlow()
@@ -37,7 +39,7 @@ class AgendaTabViewModelImpl : ViewModel(), AgendaTabViewModel {
     override val effects: SharedFlow<AgendaTabContract.Effect> = _effects.asSharedFlow()
 
     init {
-        loadClasses(LocalDate.now())
+        loadClasses(initialDate)
     }
 
     override fun processIntent(intent: AgendaTabContract.Intent) {
