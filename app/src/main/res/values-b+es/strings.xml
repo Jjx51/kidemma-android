@@ -73,4 +73,48 @@
     <string name="agenda_see_more">Ver más</string>
     <string name="agenda_collapse">Contraer</string>
 
+    <!-- KidCardDetail -->
+    <string name="kid_card_detail_label_age">Edad</string>
+    <string name="kid_card_detail_label_classes">Clases</string>
+    <array name="kid_card_days_of_week">
+        <item>Lunes</item>
+        <item>Martes</item>
+        <item>Miércoles</item>
+        <item>Jueves</item>
+        <item>Viernes</item>
+        <item>Sábado</item>
+        <item>Domingo</item>
+    </array>
+
+    <!-- Kids Tab strings -->
+    <string name="kids_empty_state_message">Sin contenido de niños</string>
+    <string name="kids_grid_view_content_description">Mostrar listado de niños en cuadrícula</string>
+    <string name="kids_list_view_content_description">Mostrar listado de niños en lista</string>
+    <string name="kids_open_filter_dialog_content_description">Abrir filtros de niños</string>
+
+    <!-- Kids filter dialog -->
+    <string name="kids_filter_dialog_title">Filtrar niños</string>
+    <string name="kids_filter_dialog_clear">Limpiar</string>
+    <string name="kids_filter_dialog_apply">Aplicar</string>
+
+    <string name="kids_filter_gender_section_title">Género</string>
+    <string name="kids_filter_age_range_section_title">Rango de edad</string>
+    <string name="kids_filter_age_range_min_label">Mín</string>
+    <string name="kids_filter_age_range_max_label">Máx</string>
+
+    <string name="kids_filter_gender_male">Niño</string>
+    <string name="kids_filter_gender_female">Niña</string>
+    <string name="kids_filter_gender_both">Ambos</string>
+    <string name="kids_filter_age_range_value">%1$s - %2$s</string>
+
+    <plurals name="kids_age_years">
+        <item quantity="one">%d año</item>
+        <item quantity="other">%d años</item>
+    </plurals>
+
+    <plurals name="kids_age_months">
+        <item quantity="one">%d mes</item>
+        <item quantity="other">%d meses</item>
+    </plurals>
+
 </resources>

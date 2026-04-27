@@ -7,6 +7,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.kidemma.common.components.PlaceholderScreen
 import com.kidemma.common.navigation.AdminRoute
+import com.kidemma.home_admin.tabs.kids.presentation.KidsTabScreen
 import com.kidemma.home_admin.tabs.agenda.presentation.ui.AgendaTabScreen
 
 /*
@@ -30,7 +31,7 @@ fun AdminNavGraph(
 
         composable<AdminRoute.Home> { PlaceholderScreen("Inicio") }
 
-        composable<AdminRoute.Children> { PlaceholderScreen("Niños") }
+        composable<AdminRoute.Children> { KidsTabScreen() }
 
         composable<AdminRoute.Agenda> {
             AgendaTabScreen()

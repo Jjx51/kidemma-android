@@ -3,7 +3,20 @@ package com.kidemma.common.ui.theme
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
+/*
+ * File: Dimens.kt
+ * Description: Centralized dimension constants (dp/sp) used across the Compose UI.
+ *
+ * Created by: José Manuel Carrillo Torres
+ * Created on: 29/11/25
+ * Last modified: 09/03/26
+ */
+
 object KidemmaDimens {
+    // Icons sizes
+    val IconSizeSmall = 24.dp
+    val IconSizeMedium = 32.dp
+
     // General corner radius sizes
     val CornerRadiusSmall = 6.dp
     val CornerRadiusMedium = 8.dp
