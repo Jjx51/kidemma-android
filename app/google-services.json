@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "603709341379",
+    "project_id": "kidemma-932eb",
+    "storage_bucket": "kidemma-932eb.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:603709341379:android:c42d1a6f57a36e4fb0ec76",
+        "android_client_info": {
+          "package_name": "com.kidemma"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDRMPuoX5MxvaiZUSDD3o3L5J9zCn3LUe4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:603709341379:android:60e864d58c1a6f25b0ec76",
+        "android_client_info": {
+          "package_name": "com.kidemma.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDRMPuoX5MxvaiZUSDD3o3L5J9zCn3LUe4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
