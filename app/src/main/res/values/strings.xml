@@ -125,6 +125,8 @@
     <string name="edit_profile_full_name_text_field">Full name</string>
     <string name="edit_profile_main_phone_text_field">Main phone</string>
     <string name="edit_profile_additional_phone_text_field">Additional phone</string>
+    <string name="edit_profile_update_data">Update data</string>
+    <string name="edit_profile_image_profile">Image profile</string>
 
 
 </resources>

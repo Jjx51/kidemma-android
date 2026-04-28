@@ -20,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -57,7 +58,7 @@ fun EditProfileContent(viewModel: EditProfileViewModel) {
         Box(Modifier.size(160.dp), contentAlignment = Alignment.Center) {
             Image(
                 painter = painterResource(R.drawable.img_profile),
-                contentDescription = "image profile",
+                contentDescription = stringResource(R.string.edit_profile_image_profile),
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
                     .fillMaxSize()
@@ -122,7 +123,7 @@ fun EditProfileContent(viewModel: EditProfileViewModel) {
             modifier = Modifier
                 .fillMaxWidth()
                 .height(65.dp),
-            text = "Actualizar datos",
+            text = stringResource(R.string.edit_profile_update_data),
 
             ) { }
 

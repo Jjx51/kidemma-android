@@ -78,6 +78,8 @@
     <string name="edit_profile_full_name_text_field">Nombre completo</string>
     <string name="edit_profile_main_phone_text_field">Teléfono principal</string>
     <string name="edit_profile_additional_phone_text_field">Teléfono secundario</string>
+    <string name="edit_profile_update_data">Actualizar datos</string>
+    <string name="edit_profile_image_profile">Imagen de perfil</string>
 
     <!-- KidCardDetail -->
     <string name="kid_card_detail_label_age">Edad</string>
