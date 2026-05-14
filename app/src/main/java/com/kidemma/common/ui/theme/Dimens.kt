@@ -40,8 +40,8 @@ object KidemmaDimens {
     val BodyMedium = 14.sp
     val BodySmall = 12.sp
 
-    // Material 3 standard sizes (see: https://developer.android.com/develop/ui/compose/designsystems/material3)
-    val LabelLarge = 14.sp
+
+    val LabelLarge = 16.sp
     val LabelMedium = 12.sp
     val LabelSmall = 11.sp
     
@@ -54,5 +54,11 @@ object KidemmaDimens {
     val SpacerXXXLarge = 64.dp
 
     val GeneralPaddingFillMaxSize = 20.dp
+
+    val AvatarSize = 60.dp
+
+    val ButtonHeight = 65.dp
+
+    val ListBottomPadding = 20.dp
     
 }

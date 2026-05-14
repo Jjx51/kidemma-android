@@ -73,6 +73,23 @@
     <string name="agenda_see_more">Ver más</string>
     <string name="agenda_collapse">Contraer</string>
 
+    <!-- FamiliesTabScreen-->
+    <string name="family_screen_create_family">Crear familia</string>
+    <string name="family_screen_write_something">Escribe algo</string>
+    <string name="family_screen_empty_list">Sin familias por mostrar</string>
+
+    <!-- FamiliesTabCardItem-->
+    <string name="families_tab_card_item_nickname">Alias: %1$s</string>
+    <string name="families_tab_card_item_family">Familia: %1$s</string>
+    <string name="families_tab_card_item_view_family_details">Ver detalles de la familia</string>
+
+    <!-- KidemmaAvatarChip-->
+    <string name="kidemma_avatar_chip_avatar">Avatar</string>
+
+    <!-- KidemmaTextFieldWithFilter-->
+    <string name="texfield_with_filter_filter_icon">Icono de filtro</string>
+    <string name="texfield_with_filter_search_icon">Icono de busqueda</string>
+
     <!-- KidCardDetail -->
     <string name="kid_card_detail_label_age">Edad</string>
     <string name="kid_card_detail_label_classes">Clases</string>
