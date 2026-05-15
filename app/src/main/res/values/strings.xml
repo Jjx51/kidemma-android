@@ -9,6 +9,8 @@
     <string name="error_required">This field is required</string>
     <string name="error_invalid_email">Invalid email format</string>
     <string name="error_min_length">Must be at least %1$d characters</string>
+    <string name="error_no_whitespace">No whitespace allowed</string>
+    <string name="error_max_length">Must be at most %1$d characters</string>
 
     <!-- Onboarding strings -->
     <string name="onboarding_title_1">Welcome to Kidemma</string>

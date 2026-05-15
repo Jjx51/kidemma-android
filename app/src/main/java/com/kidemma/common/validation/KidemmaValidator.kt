@@ -24,6 +24,13 @@ object KidemmaValidator {
                     value = value,
                     length = rule.length
                 )
+
+                is KidemmaValidationRule.MaxLength -> validateMaxLength(
+                    value = value,
+                    length = rule.length
+                )
+
+                KidemmaValidationRule.NoWhitespace -> validateNoWhitespace(value)
             }
         }
     }
@@ -41,6 +48,24 @@ object KidemmaValidator {
     ): KidemmaValidationError? {
         if (value.length < length) {
             return KidemmaValidationError.MinLength(length)
+        }
+        return null
+    }
+
+    private fun validateMaxLength(
+        value: String,
+        length: Int
+    ): KidemmaValidationError? {
+        if (value.length > length) {
+            return KidemmaValidationError.MaxLength(length)
+        }
+        return null
+    }
+
+
+    private fun validateNoWhitespace(value: String): KidemmaValidationError? {
+        if (value.contains(" ")) {
+            return KidemmaValidationError.NoWhitespace
         }
         return null
     }

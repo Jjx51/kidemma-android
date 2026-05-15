@@ -77,6 +77,50 @@ class KidemmaValidatorTest {
     }
 
     @Test
+    fun `returns MaxLength when value exceeds max length`() {
+        val maxLength = 5
+
+        val result = KidemmaValidator.validate(
+            value = "123456",
+            rules = listOf(KidemmaValidationRule.MaxLength(maxLength))
+        )
+
+        assertEquals(KidemmaValidationError.MaxLength(maxLength), result)
+    }
+
+    @Test
+    fun `returns null when value meets max length`() {
+        val maxLength = 5
+
+        val result = KidemmaValidator.validate(
+            value = "12345",
+            rules = listOf(KidemmaValidationRule.MaxLength(maxLength))
+        )
+
+        assertNull(result)
+    }
+
+    @Test
+    fun `returns NoWhitespace when value contains whitespace`() {
+        val result = KidemmaValidator.validate(
+            value = "test test",
+            rules = listOf(KidemmaValidationRule.NoWhitespace)
+        )
+
+        assertEquals(KidemmaValidationError.NoWhitespace, result)
+    }
+
+    @Test
+    fun `returns null when value contains no whitespace`() {
+        val result = KidemmaValidator.validate(
+            value = "testtest",
+            rules = listOf(KidemmaValidationRule.NoWhitespace)
+        )
+
+        assertNull(result)
+    }
+
+    @Test
     fun `returns first error when multiple rules fail`() {
         val result = KidemmaValidator.validate(
             value = BLANK,
