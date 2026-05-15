@@ -24,7 +24,7 @@ import java.time.LocalDate
  *
  * Created by: José Manuel Carrillo Torres
  * Created on: 11/03/26
- * Last modified: 11/03/26
+ * Last modified: 14/05/26
  */
 
 private const val ADVANCE_TIME_MS = 2001L
@@ -113,8 +113,6 @@ class KidsTabViewModelTest {
         assertThat(viewModel.state.value.showFilterDialog).isTrue()
 
         // Create a filter that should reduce the list in most cases:
-        // - pick gender based on current mocked data; filtering by gender should at least be valid.
-        // - also constrain by birthday range to "young" kids in last 12 months.
         val today = LocalDate.now()
         val filter = KidsTabFilterResult(
             minBirthday = today.minusYears(10),
@@ -130,5 +128,63 @@ class KidsTabViewModelTest {
         assertThat(viewModel.state.value.content)
             .isNotInstanceOf(KidsTabContract.KidsContentState.Loading::class.java)
     }
-}
 
+    @Test
+    fun `when OnSearchQueryChange intent is processed with match, then content is filtered Data`() = runTest {
+        // GIVEN
+        val testSubject = KidsTabViewModelTestFactory.givenAKidsViewModel()
+        val viewModel = testSubject.viewModel as KidsTabViewModelImpl
+
+        runCurrent()
+        advanceTimeBy(ADVANCE_TIME_MS)
+        runCurrent()
+
+        // WHEN - Search for "Alice"
+        viewModel.processIntent(KidsTabContract.Intent.OnSearchQueryChange("Alice"))
+
+        // THEN
+        val data = viewModel.state.value.content as KidsTabContract.KidsContentState.Data
+        assertThat(data.kidDetailList).isNotEmpty()
+        assertThat(data.kidDetailList.all { it.kidUiModel.name.contains("Alice", ignoreCase = true) }).isTrue()
+    }
+
+    @Test
+    fun `when OnSearchQueryChange intent is processed with no match, then content is Empty`() = runTest {
+        // GIVEN
+        val testSubject = KidsTabViewModelTestFactory.givenAKidsViewModel()
+        val viewModel = testSubject.viewModel as KidsTabViewModelImpl
+
+        runCurrent()
+        advanceTimeBy(ADVANCE_TIME_MS)
+        runCurrent()
+
+        // WHEN - Search for non-existent name
+        viewModel.processIntent(KidsTabContract.Intent.OnSearchQueryChange("NonExistentName"))
+
+        // THEN
+        assertThat(viewModel.state.value.content).isInstanceOf(KidsTabContract.KidsContentState.Empty::class.java)
+    }
+
+    @Test
+    fun `when both OnSearchQueryChange and OnApplyFilter are processed, then content is filtered by both`() = runTest {
+        // GIVEN
+        val testSubject = KidsTabViewModelTestFactory.givenAKidsViewModel()
+        val viewModel = testSubject.viewModel as KidsTabViewModelImpl
+
+        runCurrent()
+        advanceTimeBy(ADVANCE_TIME_MS)
+        runCurrent()
+
+        // Filter by Female
+        val femaleFilter = KidsTabFilterResult(gender = Gender.FEMALE)
+        viewModel.processIntent(KidsTabContract.Intent.OnApplyFilter(femaleFilter))
+
+        // WHEN - Search for "Grace"
+        viewModel.processIntent(KidsTabContract.Intent.OnSearchQueryChange("Grace"))
+
+        // THEN
+        val data = viewModel.state.value.content as KidsTabContract.KidsContentState.Data
+        assertThat(data.kidDetailList).hasSize(1)
+        assertThat(data.kidDetailList.first().kidUiModel.name).isEqualTo("Grace Lee")
+    }
+}

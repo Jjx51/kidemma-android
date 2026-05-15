@@ -55,13 +55,16 @@ class KidsTabViewModelImpl : ViewModel(), KidsTabViewModel {
             }
 
             is KidsTabContract.Intent.OnApplyFilter -> {
-                val filtered = applyFilter(fullKidDetailList, intent.filter)
-
+                currentFilter = intent.filter
                 _state.value = _state.value.copy(
                     showFilterDialog = false,
-                    content = if (filtered.isEmpty()) KidsTabContract.KidsContentState.Empty
-                    else KidsTabContract.KidsContentState.Data(filtered),
                 )
+                updateContent()
+            }
+
+            is KidsTabContract.Intent.OnSearchQueryChange -> {
+                _state.value = _state.value.copy(searchQuery = intent.query)
+                updateContent()
             }
 
             is KidsTabContract.Intent.OnKidClick -> {
@@ -88,22 +91,36 @@ class KidsTabViewModelImpl : ViewModel(), KidsTabViewModel {
         }
     }
 
-    private fun applyFilter(
-        source: List<KidDetailCardUiModel>,
-        filter: KidsTabFilterResult,
-    ): List<KidDetailCardUiModel> {
-        return source.filter { kidDetail ->
-            val kid = kidDetail.kidUiModel
+    private var currentFilter: KidsTabFilterResult? = null
 
-            val isWithinBirthdayRange = when {
-                filter.minBirthday != null && kid.birthday.isBefore(filter.minBirthday) -> false
-                filter.maxBirthday != null && kid.birthday.isAfter(filter.maxBirthday) -> false
-                else -> true
-            }
-
-            val matchesGender = filter.gender?.let { it == kid.gender } ?: true
-
-            isWithinBirthdayRange && matchesGender
+    private fun updateContent() {
+        val query = _state.value.searchQuery
+        val filtered = fullKidDetailList.filter { kidDetail ->
+            val matchesQuery = kidDetail.kidUiModel.name.contains(query, ignoreCase = true)
+            val matchesFilter = currentFilter?.let { applyFilterLogic(kidDetail, it) } ?: true
+            matchesQuery && matchesFilter
         }
+
+        _state.value = _state.value.copy(
+            content = if (filtered.isEmpty()) KidsTabContract.KidsContentState.Empty
+            else KidsTabContract.KidsContentState.Data(filtered),
+        )
+    }
+
+    private fun applyFilterLogic(
+        kidDetail: KidDetailCardUiModel,
+        filter: KidsTabFilterResult,
+    ): Boolean {
+        val kid = kidDetail.kidUiModel
+
+        val isWithinBirthdayRange = when {
+            filter.minBirthday != null && kid.birthday.isBefore(filter.minBirthday) -> false
+            filter.maxBirthday != null && kid.birthday.isAfter(filter.maxBirthday) -> false
+            else -> true
+        }
+
+        val matchesGender = filter.gender?.let { it == kid.gender } ?: true
+
+        return isWithinBirthdayRange && matchesGender
     }
 }

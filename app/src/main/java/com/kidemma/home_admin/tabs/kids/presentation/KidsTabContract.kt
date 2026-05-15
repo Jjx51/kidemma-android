@@ -17,6 +17,7 @@ class KidsTabContract {
         val content: KidsContentState = KidsContentState.Loading,
         val showFilterDialog: Boolean = false,
         val isGridView: Boolean = false,
+        val searchQuery: String = "",
     )
 
     sealed interface KidsContentState {
@@ -31,6 +32,7 @@ class KidsTabContract {
         data object OnToggleGridView : Intent
         data class OnApplyFilter(val filter: KidsTabFilterResult) : Intent
         data class OnKidClick(val kidId: String) : Intent
+        data class OnSearchQueryChange(val query: String) : Intent
     }
 
     sealed interface Effect {
