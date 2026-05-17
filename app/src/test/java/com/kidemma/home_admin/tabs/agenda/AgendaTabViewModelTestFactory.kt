@@ -12,7 +12,7 @@ import java.time.LocalDate
  * Created on: 26/02/26
  * Last modified: 26/02/26
  */
-// A fixed Monday that is guaranteed to return data from AgendaTabMockProvider
+
 private val STABLE_TEST_DATE = LocalDate.of(2026, 3, 2)
 
 object AgendaTabViewModelTestFactory {
