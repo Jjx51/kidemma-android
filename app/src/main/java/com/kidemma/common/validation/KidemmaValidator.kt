@@ -2,6 +2,14 @@ package com.kidemma.common.validation
 
 import com.kidemma.common.utils.RegexPatterns
 
+/*
+ * File: KidemmaValidator.kt
+ * Description: Main validator logic for applying KidemmaValidationRules.
+ *
+ * Created by: José Manuel Carrillo Torres
+ * Created on: 24/02/26
+ * Last modified: 19/05/26
+ */
 object KidemmaValidator {
 
     fun validate(
@@ -29,6 +37,10 @@ object KidemmaValidator {
                     value = value,
                     length = rule.length
                 )
+
+                KidemmaValidationRule.NoSymbols -> validateNoSymbols(value)
+
+                KidemmaValidationRule.NoNumbers -> validateNoNumbers(value)
 
                 KidemmaValidationRule.NoWhitespace -> validateNoWhitespace(value)
             }
@@ -62,6 +74,19 @@ object KidemmaValidator {
         return null
     }
 
+    private fun validateNoSymbols(value: String): KidemmaValidationError? {
+        if (value.any { !it.isLetterOrDigit() && !it.isWhitespace() }) {
+            return KidemmaValidationError.NoSymbols
+        }
+        return null
+    }
+
+    private fun validateNoNumbers(value: String): KidemmaValidationError? {
+        if (value.any { it.isDigit() }) {
+            return KidemmaValidationError.NoNumbers
+        }
+        return null
+    }
 
     private fun validateNoWhitespace(value: String): KidemmaValidationError? {
         if (value.contains(" ")) {

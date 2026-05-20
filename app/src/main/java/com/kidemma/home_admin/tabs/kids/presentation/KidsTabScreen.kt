@@ -29,7 +29,7 @@ import org.koin.androidx.compose.koinViewModel
  *
  * Created by: José Manuel Carrillo Torres
  * Created on: 09/03/26
- * Last modified: 14/05/26
+ * Last modified: 19/05/26
  */
 
 @Composable
@@ -60,6 +60,8 @@ private fun KidsTabContent(
                 onSearchQueryChange = { query ->
                     onIntent(KidsTabContract.Intent.OnSearchQueryChange(query))
                 },
+                isSearchError = uiState.isSearchError,
+                searchError = uiState.searchError,
                 onClickFilter = { onIntent(OnOpenFilterDialog) },
                 isGridView = uiState.isGridView,
                 onToggleGridView = { onIntent(KidsTabContract.Intent.OnToggleGridView) }

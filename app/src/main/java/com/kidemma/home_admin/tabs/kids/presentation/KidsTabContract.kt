@@ -1,6 +1,7 @@
 package com.kidemma.home_admin.tabs.kids.presentation
 
 import com.kidemma.common.domain.models.KidDetailCardUiModel
+import com.kidemma.common.validation.KidemmaValidationError
 import com.kidemma.home_admin.tabs.kids.domain.models.KidsTabFilterResult
 
 /*
@@ -9,7 +10,7 @@ import com.kidemma.home_admin.tabs.kids.domain.models.KidsTabFilterResult
  *
  * Created by: José Manuel Carrillo Torres
  * Created on: 09/03/26
- * Last modified: 09/03/26
+ * Last modified: 19/05/26
  */
 
 class KidsTabContract {
@@ -18,6 +19,8 @@ class KidsTabContract {
         val showFilterDialog: Boolean = false,
         val isGridView: Boolean = false,
         val searchQuery: String = "",
+        val isSearchError: Boolean = false,
+        val searchError: KidemmaValidationError? = null,
     )
 
     sealed interface KidsContentState {

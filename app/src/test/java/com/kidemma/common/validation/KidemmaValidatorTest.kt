@@ -4,6 +4,15 @@ import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNull
 import org.junit.Test
 
+/*
+ * File: KidemmaValidatorTest.kt
+ * Description: Unit tests for KidemmaValidator.
+ *
+ * Created by: José Manuel Carrillo Torres
+ * Created on: 24/02/26
+ * Last modified: 19/05/26
+ */
+
 class KidemmaValidatorTest {
 
     private companion object {
@@ -121,6 +130,26 @@ class KidemmaValidatorTest {
     }
 
     @Test
+    fun `returns NoSymbols when value contains symbols`() {
+        val result = KidemmaValidator.validate(
+            value = "test!",
+            rules = listOf(KidemmaValidationRule.NoSymbols)
+        )
+
+        assertEquals(KidemmaValidationError.NoSymbols, result)
+    }
+
+    @Test
+    fun `returns null when value contains no symbols`() {
+        val result = KidemmaValidator.validate(
+            value = "test 123",
+            rules = listOf(KidemmaValidationRule.NoSymbols)
+        )
+
+        assertNull(result)
+    }
+
+    @Test
     fun `returns first error when multiple rules fail`() {
         val result = KidemmaValidator.validate(
             value = BLANK,
@@ -131,6 +160,19 @@ class KidemmaValidatorTest {
         )
 
         assertEquals(KidemmaValidationError.Required, result)
+    }
+
+    @Test
+    fun `returns first error when multiple rules fail (combined case)`() {
+        val result = KidemmaValidator.validate(
+            value = "test!1",
+            rules = listOf(
+                KidemmaValidationRule.NoSymbols,
+                KidemmaValidationRule.NoNumbers
+            )
+        )
+
+        assertEquals(KidemmaValidationError.NoSymbols, result)
     }
 
     @Test
