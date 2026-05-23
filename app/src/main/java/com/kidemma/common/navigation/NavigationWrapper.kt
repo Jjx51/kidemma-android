@@ -21,7 +21,7 @@ fun NavigationWrapper() {
         composable<AppRoute.Splash> { SplashScreen(navController) }
         composable<AppRoute.Onboarding> { OnboardingScreen(navController) }
         composable<AppRoute.Login> { LoginScreen(navController) }
-        composable<AppRoute.AdminMain> { AdminMainScreen() }
+        composable<AppRoute.AdminMain> { AdminMainScreen(navController) }
         composable<AppRoute.UserMain> { ParentMainScreen() }
         composable<AppRoute.MyProfile> { MyProfileScreen(navController) }
     }
