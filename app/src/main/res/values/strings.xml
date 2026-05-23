@@ -138,4 +138,14 @@
     <string name="texfield_with_filter_filter_icon">Filter Icon</string>
     <string name="texfield_with_filter_search_icon">Search Icon</string>
 
+    <!-- MyProfileScreen-->
+    <string name="my_profile_screen_title">My Profile</string>
+    <string name="my_profile_screen_profile_picture_content_description">My profile picture</string>
+    <string name="my_profile_screen_forward_arrow_content_description">Forward Arrow Icon</string>
+    <string name="my_profile_screen_language_option">Language</string>
+    <string name="my_profile_screen_dark_theme_option">Dark Theme</string>
+    <string name="my_profile_screen_terms_and_conditions_option">Terms and Conditions</string>
+    <string name="my_profile_screen_privacy_policy_option">Privacy Policy</string>
+    <string name="my_profile_screen_logout_option">Logout</string>
+
 </resources>

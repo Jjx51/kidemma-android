@@ -134,4 +134,12 @@
         <item quantity="other">%d meses</item>
     </plurals>
 
+    <string name="my_profile_screen_title">Mi perfil</string>
+    <string name="my_profile_screen_profile_picture_content_description">Mi foto de perfil</string>
+    <string name="my_profile_screen_forward_arrow_content_description">Icono Flecha hacia adelante</string>
+    <string name="my_profile_screen_language_option">Idioma</string>
+    <string name="my_profile_screen_dark_theme_option">Modo Oscuro</string>
+    <string name="my_profile_screen_terms_and_conditions_option">Términos y condiciones</string>
+    <string name="my_profile_screen_privacy_policy_option">Políticas de privacidad</string>
+    <string name="my_profile_screen_logout_option">Cerrar Sesión</string>
 </resources>

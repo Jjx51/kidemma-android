@@ -5,6 +5,7 @@ import com.kidemma.authentication.di.authenticationModule
 import com.kidemma.common.di.commonModule
 import com.kidemma.home_admin.di.adminModule
 import com.kidemma.introduction.di.introductionModule
+import com.kidemma.my_profile.di.myProfileModule
 import com.kidemma.samplearchitect.data.remote.todo.ITodoAPI
 import com.kidemma.samplearchitect.data.remote.todo.RetrofitTodoAPI
 import com.kidemma.samplearchitect.data.remote.todo.TodoAPI
@@ -63,7 +64,8 @@ fun createAppModules(): Module = module() {
     includes(
         introductionModule,
         authenticationModule,
-        adminModule
+        adminModule,
+        myProfileModule,
     )
 
     //Here will be the common modules like network , database, etc
