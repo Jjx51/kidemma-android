@@ -37,6 +37,9 @@ import com.kidemma.common.ui.theme.KidemmaDimens
 import com.kidemma.common.ui.theme.KidemmaTheme
 import com.kidemma.common.utils.DayOfWeek
 import java.time.LocalDate
+import com.kidemma.common.components.KidemmaHorizontalSpacer
+import com.kidemma.common.components.KidemmaSpacerSize
+import com.kidemma.common.components.KidemmaVerticalSpacer
 
 /*
  * File: KidemmaCard.kt
@@ -109,14 +112,14 @@ private fun KidDetailHeader(
         //  For now, just a placeholder box.
         Box(modifier = Modifier.size(40.dp)) {}
 
-        HorizontalSpacerMedium()
+        KidemmaHorizontalSpacer()
 
         Column(modifier = Modifier.weight(1f)) {
             KidemmaLabelLarge(text = name)
-            VerticalSpacerExtraSmall()
+            KidemmaVerticalSpacer(size = KidemmaSpacerSize.ExtraSmall)
             Row {
                 KidemmaLabelLarge(text = stringResource(R.string.kid_card_detail_label_age))
-                HorizontalSpacerExtraSmall()
+                KidemmaHorizontalSpacer(size = KidemmaSpacerSize.ExtraSmall)
                 KidemmaBodyMedium(text = ageDescription)
             }
         }
@@ -140,7 +143,7 @@ private fun KidDetailSchedule(
 
     Column(modifier = modifier.padding(KidDetailCardSectionPadding)) {
         KidemmaLabelLarge(text = stringResource(R.string.kid_card_detail_label_classes))
-        VerticalSpacerExtraSmall()
+        KidemmaVerticalSpacer(size = KidemmaSpacerSize.ExtraSmall)
 
         Row(modifier = Modifier.fillMaxWidth()) {
             days.forEachIndexed { index, day ->
@@ -153,7 +156,7 @@ private fun KidDetailSchedule(
                 )
 
                 if (index < days.size - 1) {
-                    HorizontalSpacerExtraSmall()
+                    KidemmaHorizontalSpacer(size = KidemmaSpacerSize.ExtraSmall)
                 }
             }
         }

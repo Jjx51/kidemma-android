@@ -24,7 +24,9 @@ import com.kidemma.R
 import com.kidemma.common.components.KidemmaBodyMedium
 import com.kidemma.common.components.KidemmaHeadlineSmall
 import com.kidemma.common.components.KidemmaPrimaryButton
+import com.kidemma.common.components.KidemmaSpacerSize
 import com.kidemma.common.components.KidemmaTertiaryButton
+import com.kidemma.common.components.KidemmaVerticalSpacer
 import com.kidemma.common.navigation.AppRoute
 import com.kidemma.common.ui.theme.KidemmaColors
 import kotlinx.coroutines.flow.collectLatest
@@ -85,13 +87,13 @@ fun OnboardingContent(
             .background(KidemmaColors.Background)
             .padding(30.dp)
     ) {
-        Spacer(modifier = Modifier.height(20.dp))
+        KidemmaVerticalSpacer(size = KidemmaSpacerSize.Large)
         KidemmaTertiaryButton(
             text = stringResource(R.string.onboarding_skip_button),
             modifier = Modifier.align(Alignment.End),
             onClick = onSkipClicked
         )
-        Spacer(modifier = Modifier.height(80.dp))
+        KidemmaVerticalSpacer(size = KidemmaSpacerSize.XXXLarge)
         Image(
             modifier = Modifier
                 .align(Alignment.CenterHorizontally)
@@ -99,7 +101,7 @@ fun OnboardingContent(
             painter = painterResource(state.currentPage.imageUiModel.resId),
             contentDescription = stringResource(state.currentPage.imageUiModel.contentDescription)
         )
-        Spacer(Modifier.height(70.dp))
+        KidemmaVerticalSpacer(size = KidemmaSpacerSize.XXXLarge)
         KidemmaHeadlineSmall(
             modifier = Modifier.fillMaxWidth(),
             text = stringResource(state.currentPage.titleText),
@@ -115,6 +117,6 @@ fun OnboardingContent(
             text = stringResource(state.currentPage.buttonText),
             onClick = onNextClicked
         )
-        Spacer(modifier = Modifier.height(30.dp))
+        KidemmaVerticalSpacer(size = KidemmaSpacerSize.Large)
     }
 }

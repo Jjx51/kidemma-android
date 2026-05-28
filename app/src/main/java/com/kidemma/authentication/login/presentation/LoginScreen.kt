@@ -31,9 +31,9 @@ import com.kidemma.authentication.login.domain.model.LoginScreenUiModel
 import com.kidemma.common.components.KidemmaLoadingOverlay
 import com.kidemma.common.components.KidemmaOutlinedTextField
 import com.kidemma.common.components.KidemmaPrimaryButton
-import com.kidemma.common.components.VerticalSpacerMedium
-import com.kidemma.common.components.VerticalSpacerXXLarge
-import com.kidemma.common.components.VerticalSpacerXXXLarge
+import com.kidemma.common.components.KidemmaHorizontalSpacer
+import com.kidemma.common.components.KidemmaSpacerSize
+import com.kidemma.common.components.KidemmaVerticalSpacer
 import com.kidemma.common.extensions.isNotNull
 import com.kidemma.common.navigation.AppRoute
 import com.kidemma.common.ui.theme.KidemmaColors
@@ -120,7 +120,7 @@ private fun MainContent(
             .padding(KidemmaDimens.GeneralPaddingFillMaxSize)
     ) {
 
-        VerticalSpacerXXXLarge()
+        KidemmaVerticalSpacer(size = KidemmaSpacerSize.XXXLarge)
 
         Image(
             painter = painterResource(uiData.logo.resId),
@@ -130,7 +130,7 @@ private fun MainContent(
                 .align(Alignment.CenterHorizontally),
         )
 
-        VerticalSpacerXXLarge()
+        KidemmaVerticalSpacer(size = KidemmaSpacerSize.XXLarge)
 
         KidemmaOutlinedTextField(
             data = uiData.emailTextField,
@@ -145,7 +145,7 @@ private fun MainContent(
             ),
         )
 
-        VerticalSpacerMedium()
+        KidemmaVerticalSpacer()
 
         KidemmaOutlinedTextField(
             data = uiData.passwordTextField,
@@ -162,7 +162,7 @@ private fun MainContent(
             isTrailingIconActive = state.isPasswordVisible
         )
 
-        VerticalSpacerMedium()
+        KidemmaVerticalSpacer()
 
         KidemmaPrimaryButton(
             modifier = Modifier.fillMaxWidth(),

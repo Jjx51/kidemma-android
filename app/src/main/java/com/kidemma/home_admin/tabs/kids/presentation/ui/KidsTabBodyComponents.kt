@@ -28,7 +28,8 @@ import com.kidemma.R
 import com.kidemma.common.components.KidDetailCard
 import com.kidemma.common.components.KidemmaBodyLarge
 import com.kidemma.common.components.KidemmaBodyMedium
-import com.kidemma.common.components.VerticalSpacerSmall
+import com.kidemma.common.components.KidemmaSpacerSize
+import com.kidemma.common.components.KidemmaVerticalSpacer
 import com.kidemma.common.domain.models.KidDetailCardUiModel
 import com.kidemma.common.ui.theme.KidemmaColors
 import com.kidemma.common.ui.theme.KidemmaTheme
@@ -112,7 +113,7 @@ fun KidItem(
                 .clip(CircleShape)
                 .background(KidemmaColors.DisabledButton),
         )
-        VerticalSpacerSmall()
+        KidemmaVerticalSpacer(size = KidemmaSpacerSize.Small)
         KidemmaBodyLarge(
             modifier = Modifier
                 .fillMaxWidth(),

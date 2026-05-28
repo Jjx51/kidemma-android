@@ -19,12 +19,12 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.kidemma.R
-import com.kidemma.common.components.HorizontalSpacerExtraSmall
-import com.kidemma.common.components.HorizontalSpacerMedium
 import com.kidemma.common.components.KidemmaBodyMedium
+import com.kidemma.common.components.KidemmaHorizontalSpacer
 import com.kidemma.common.components.KidemmaLabelMedium
+import com.kidemma.common.components.KidemmaSpacerSize
 import com.kidemma.common.components.KidemmaTertiaryButton
-import com.kidemma.common.components.VerticalSpacerSmall
+import com.kidemma.common.components.KidemmaVerticalSpacer
 import com.kidemma.common.ui.theme.KidemmaColors
 import com.kidemma.common.ui.theme.KidemmaTheme
 import com.kidemma.home_admin.tabs.agenda.presentation.components.AgendaTabUiConstants.Dimens.KidAvatarBorderWidth
@@ -59,7 +59,7 @@ internal fun KidsSection(
         }
 
         if (hasMoreKids) {
-            VerticalSpacerSmall()
+            KidemmaVerticalSpacer(size = KidemmaSpacerSize.Small)
             KidemmaTertiaryButton(
                 text = if (isExpanded) {
                     stringResource(R.string.agenda_collapse)
@@ -96,7 +96,7 @@ private fun KidRow(kid: KidUiModel) {
             )
         }
 
-        HorizontalSpacerMedium()
+        KidemmaHorizontalSpacer()
         KidDetails(kid = kid)
     }
 }
@@ -107,7 +107,7 @@ private fun KidDetails(kid: KidUiModel) {
         KidemmaLabelMedium(text = kid.name)
         Row {
             KidemmaBodyMedium(text = stringResource(R.string.agenda_kid_age_label))
-            HorizontalSpacerExtraSmall()
+            KidemmaHorizontalSpacer(size = KidemmaSpacerSize.ExtraSmall)
             KidemmaBodyMedium(text = kid.ageDescription)
         }
     }

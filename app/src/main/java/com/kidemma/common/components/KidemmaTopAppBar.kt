@@ -18,6 +18,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.kidemma.common.components.KidemmaHorizontalSpacer
+import com.kidemma.common.components.KidemmaSpacerSize
 import com.kidemma.common.domain.models.KidemmaTopBarUiModel
 import com.kidemma.common.presentation.TopBarContentProvider
 import com.kidemma.common.ui.theme.KidemmaColors
@@ -59,13 +61,13 @@ fun KidemmaTopAppBar(
             Row(
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                HorizontalSpacerSmall()
+                KidemmaHorizontalSpacer(size = KidemmaSpacerSize.Small)
                 Image(
                     painter = painterResource(id = uiModel.appLogo.resId),
                     contentDescription = stringResource(uiModel.appLogo.contentDescription),
                     modifier = Modifier.size(uiModel.appLogo.size)
                 )
-                HorizontalSpacerSmall()
+                KidemmaHorizontalSpacer(size = KidemmaSpacerSize.Small)
                 KidemmaLabelMedium(text = stringResource(id = uiModel.appName))
             }
         },
