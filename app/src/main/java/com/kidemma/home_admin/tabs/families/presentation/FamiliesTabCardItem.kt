@@ -34,7 +34,7 @@ import com.kidemma.home_admin.tabs.families.presentation.FamiliesUiConstants.Dim
  *
  * Created by: Laura Zermeño Pichardo
  * Created on: 26/02/26
- * Last modified: 19/03/26
+ * Last modified: 28/05/26
  */
 @Composable
 fun FamiliesTabCardItem(

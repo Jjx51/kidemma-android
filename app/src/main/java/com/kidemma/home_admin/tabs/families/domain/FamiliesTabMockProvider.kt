@@ -10,7 +10,7 @@ import com.kidemma.authentication.domain.model.FamilyUiModel
  *
  * Created by: Laura Zermeño Pichardo
  * Created on: 27/02/26
- * Last modified: 12/03/26
+ * Last modified: 28/05/26
  */
 object FamiliesTabMockProvider {
     val familyList = listOf(

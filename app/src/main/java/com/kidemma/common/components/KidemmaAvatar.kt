@@ -24,7 +24,7 @@ import com.kidemma.common.ui.theme.KidemmaTheme
  *
  * Created by: Laura Zermeño Pichardo
  * Created on: 27/02/26
- * Last modified: 06/03/26
+ * Last modified: 28/05/26
  */
 
 @Composable

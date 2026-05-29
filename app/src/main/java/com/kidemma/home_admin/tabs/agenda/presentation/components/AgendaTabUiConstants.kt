@@ -10,7 +10,7 @@ import androidx.compose.ui.unit.dp
  *
  * Created by: José Manuel Carrillo Torres
  * Created on: 06/03/26
- * Last modified: 06/03/26
+ * Last modified: 28/05/26
  */
 
 internal object AgendaTabUiConstants {

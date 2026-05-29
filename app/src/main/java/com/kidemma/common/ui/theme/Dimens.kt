@@ -9,7 +9,7 @@ import androidx.compose.ui.unit.sp
  *
  * Created by: José Manuel Carrillo Torres
  * Created on: 29/11/25
- * Last modified: 09/03/26
+ * Last modified: 28/05/26
  */
 
 object KidemmaDimens {
