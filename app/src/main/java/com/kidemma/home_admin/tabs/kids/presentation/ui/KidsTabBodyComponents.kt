@@ -11,27 +11,28 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.kidemma.R
 import com.kidemma.common.components.KidDetailCard
+import com.kidemma.common.components.KidemmaAvatar
 import com.kidemma.common.components.KidemmaBodyLarge
 import com.kidemma.common.components.KidemmaBodyMedium
+import com.kidemma.common.components.VerticalSpacerMedium
 import com.kidemma.common.components.VerticalSpacerSmall
 import com.kidemma.common.domain.models.KidDetailCardUiModel
 import com.kidemma.common.ui.theme.KidemmaColors
 import com.kidemma.common.ui.theme.KidemmaTheme
+import com.kidemma.common.utils.defaultAvatarResId
 import com.kidemma.home_admin.tabs.kids.data.KidsTabMockProvider
 
 /*
@@ -98,7 +99,7 @@ fun KidItem(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    // TODO: Replace placeholder with kid avatar component once available.
+    val errorImage = kidDetail.kidUiModel.gender.defaultAvatarResId
     Column(
         modifier = modifier
             .fillMaxWidth()
@@ -106,11 +107,10 @@ fun KidItem(
             .padding(KidsTabBodyComponentsUiConstants.ItemPadding),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Box(
-            modifier = Modifier
-                .size(KidsTabBodyComponentsUiConstants.AvatarSize)
-                .clip(CircleShape)
-                .background(KidemmaColors.DisabledButton),
+        KidemmaAvatar(
+            modifier = Modifier.size(KidsTabBodyComponentsUiConstants.AvatarSize),
+            memberImage = kidDetail.kidUiModel.profileImage?.resId ?: errorImage,
+            memberErrorImage = errorImage
         )
         VerticalSpacerSmall()
         KidemmaBodyLarge(

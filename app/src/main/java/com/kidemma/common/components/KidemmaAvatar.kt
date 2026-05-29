@@ -1,5 +1,6 @@
 package com.kidemma.common.components
 
+import androidx.annotation.DrawableRes
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
@@ -15,32 +16,34 @@ import coil3.compose.AsyncImage
 import com.kidemma.R
 import com.kidemma.common.ui.theme.KidemmaColors
 import com.kidemma.common.ui.theme.KidemmaDimens
+import com.kidemma.common.ui.theme.KidemmaTheme
 
 /*
- * File: KidemmaAvatarChip
- * Description: avatar chip circular
+ * File: KidemmaAvatar
+ * Description: circular avatar component
  *
  * Created by: Laura Zermeño Pichardo
  * Created on: 27/02/26
- * Last modified: 12/03/26
+ * Last modified: 06/03/26
  */
 
-private val AvatarChipBorderWidth = 3.dp
-
 @Composable
-fun KidemmaAvatarChip(
-    modifier: Modifier = Modifier,
-    memberImage: Int,
-    memberErrorImage: Int
+fun KidemmaAvatar(
+    modifier: Modifier = Modifier.size(KidemmaDimens.AvatarSize),
+    @DrawableRes memberImage: Int,
+    @DrawableRes memberErrorImage: Int,
+    contentDescription: String? = stringResource(R.string.kidemma_avatar)
 ) {
-
     AsyncImage(
         model = memberImage,
-        contentDescription = stringResource(R.string.kidemma_avatar_chip_avatar),
+        contentDescription = contentDescription,
         modifier = modifier
-            .size(KidemmaDimens.AvatarSize)
             .clip(CircleShape)
-            .border(width = AvatarChipBorderWidth, color = KidemmaColors.ImageBorderStrokeColor, shape = CircleShape),
+            .border(
+                width = KidemmaDimens.AvatarBorderWidth,
+                color = KidemmaColors.ImageBorderStrokeColor,
+                shape = CircleShape
+            ),
         contentScale = ContentScale.Crop,
         placeholder = painterResource(memberErrorImage),
         error = painterResource(memberErrorImage),
@@ -50,6 +53,12 @@ fun KidemmaAvatarChip(
 
 @Preview(showBackground = true)
 @Composable
-fun KidemmaAvatarChipPreview() {
-    KidemmaAvatarChip(memberImage = R.drawable.img_mom, memberErrorImage = R.drawable.img_boy)
+fun KidemmaAvatarPreview() {
+    KidemmaTheme {
+        KidemmaAvatar(
+            memberImage = R.drawable.img_mom,
+            memberErrorImage = R.drawable.img_boy,
+            contentDescription = "Avatar"
+        )
+    }
 }

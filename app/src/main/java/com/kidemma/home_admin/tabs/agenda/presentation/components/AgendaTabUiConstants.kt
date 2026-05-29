@@ -30,9 +30,6 @@ internal object AgendaTabUiConstants {
         val ClassTimeRowPadding: Dp = 16.dp
 
         val KidsRowPadding: Dp = 16.dp
-        val KidAvatarSize: Dp = 48.dp
-        val KidAvatarBorderWidth: Dp = 1.dp
-        val KidAvatarIconSize: Dp = 32.dp
 
         val ClassesListContentPadding: Dp = 16.dp
         val ClassesListItemSpacing: Dp = 16.dp

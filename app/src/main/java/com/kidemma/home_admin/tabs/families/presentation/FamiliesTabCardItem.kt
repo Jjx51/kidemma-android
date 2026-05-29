@@ -18,7 +18,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.kidemma.R
 import com.kidemma.authentication.domain.model.FamilyMemberUiModel
-import com.kidemma.common.components.KidemmaAvatarChip
+import com.kidemma.common.components.KidemmaAvatar
 import com.kidemma.common.components.KidemmaBodyLarge
 import com.kidemma.common.components.KidemmaCard
 import com.kidemma.common.components.KidemmaLabelLarge
@@ -70,7 +70,7 @@ fun FamiliesTabCardItem(
                     horizontalArrangement = Arrangement.spacedBy(SpacingMedium)
                 ) {
                     items(familyMembers) { member ->
-                        KidemmaAvatarChip(
+                        KidemmaAvatar(
                             memberImage = member.image,
                             memberErrorImage = member.imageError
                         )

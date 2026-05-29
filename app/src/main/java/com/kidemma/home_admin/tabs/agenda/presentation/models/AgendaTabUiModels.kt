@@ -1,6 +1,7 @@
 package com.kidemma.home_admin.tabs.agenda.presentation.models
 
 import com.kidemma.common.ui.models.ImageUiModel
+import com.kidemma.common.utils.Gender
 import java.time.LocalTime
 
 /*
@@ -16,7 +17,8 @@ data class KidUiModel(
     val id: String,
     val name: String,
     val ageDescription: String,
-    val image: ImageUiModel? = null
+    val image: ImageUiModel? = null,
+    val gender: Gender
 )
 
 data class ClassUiModel(

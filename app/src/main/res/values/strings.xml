@@ -131,8 +131,8 @@
     <string name="families_tab_card_item_family">Family: %1$s</string>
     <string name="families_tab_card_item_view_family_details">View family details</string>
 
-    <!-- KidemmaAvatarChip-->
-    <string name="kidemma_avatar_chip_avatar">Avatar</string>
+    <!-- KidemmaAvatar -->
+    <string name="kidemma_avatar">Avatar</string>
 
     <!-- KidemmaTextFieldWithFilter-->
     <string name="texfield_with_filter_filter_icon">Filter Icon</string>

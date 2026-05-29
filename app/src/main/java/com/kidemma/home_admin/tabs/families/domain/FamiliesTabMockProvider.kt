@@ -99,6 +99,14 @@ object FamiliesTabMockProvider {
                 ),
                 FamilyMemberUiModel(
                     9,
+                    name = "María",
+                    gender = "femenino",
+                    role = "hija",
+                    image = R.drawable.img_girl,
+                    imageError = R.drawable.img_girl
+                ),
+                FamilyMemberUiModel(
+                    10,
                     name = "Diego",
                     gender = "masculino",
                     role = "hijo",
@@ -106,7 +114,7 @@ object FamiliesTabMockProvider {
                     imageError = R.drawable.img_boy
                 ),
                 FamilyMemberUiModel(
-                    9,
+                    11,
                     name = "Diego",
                     gender = "masculino",
                     role = "hijo",

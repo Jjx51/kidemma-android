@@ -55,7 +55,8 @@ object KidemmaDimens {
 
     val GeneralPaddingFillMaxSize = 20.dp
 
-    val AvatarSize = 60.dp
+    val AvatarSize = 48.dp
+    val AvatarBorderWidth = 3.dp
 
     val ButtonHeight = 65.dp
 
