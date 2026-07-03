@@ -3,6 +3,8 @@ package com.kidemma.home_admin.tabs.kids.presentation
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.kidemma.common.domain.models.KidDetailCardUiModel
+import com.kidemma.common.validation.KidemmaValidationRules
+import com.kidemma.common.validation.KidemmaValidator
 import com.kidemma.home_admin.tabs.kids.data.KidsTabMockProvider
 import com.kidemma.home_admin.tabs.kids.domain.KidsTabViewModel
 import com.kidemma.home_admin.tabs.kids.domain.models.KidsTabFilterResult
@@ -21,7 +23,7 @@ import kotlinx.coroutines.launch
  *
  * Created by: José Manuel Carrillo Torres
  * Created on: 09/03/26
- * Last modified: 09/03/26
+ * Last modified: 19/05/26
  */
 
 private const val LOADING_DELAY_MILLIS = 1500L
@@ -63,8 +65,18 @@ class KidsTabViewModelImpl : ViewModel(), KidsTabViewModel {
             }
 
             is KidsTabContract.Intent.OnSearchQueryChange -> {
-                _state.value = _state.value.copy(searchQuery = intent.query)
-                updateContent()
+                val error = KidemmaValidator.validate(
+                    intent.query,
+                    KidemmaValidationRules.filter()
+                )
+                _state.value = _state.value.copy(
+                    searchQuery = intent.query,
+                    isSearchError = error != null,
+                    searchError = error
+                )
+                if (error == null) {
+                    updateContent()
+                }
             }
 
             is KidsTabContract.Intent.OnKidClick -> {

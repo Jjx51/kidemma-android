@@ -22,6 +22,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.kidemma.R
 import com.kidemma.common.components.KidemmaTextFieldWithFilter
+import com.kidemma.common.validation.KidemmaValidationError
+import com.kidemma.common.validation.asMessage
 import com.kidemma.common.ui.theme.KidemmaColors
 import com.kidemma.common.ui.theme.KidemmaDimens
 
@@ -31,7 +33,7 @@ import com.kidemma.common.ui.theme.KidemmaDimens
  *
  * Created by: José Manuel Carrillo Torres
  * Created on: 09/03/26
- * Last modified: 12/03/26
+ * Last modified: 19/05/26
  */
 
 @Composable
@@ -39,6 +41,8 @@ fun KidsTabHeader(
     modifier: Modifier = Modifier,
     searchQuery: String,
     onSearchQueryChange: (String) -> Unit,
+    isSearchError: Boolean = false,
+    searchError: KidemmaValidationError? = null,
     onClickFilter: () -> Unit,
     isGridView: Boolean,
     onToggleGridView: () -> Unit,
@@ -57,6 +61,8 @@ fun KidsTabHeader(
             modifier = Modifier.fillMaxWidth(),
             value = searchQuery,
             onValueChange = onSearchQueryChange,
+            isError = isSearchError,
+            errorMessage = searchError.asMessage(),
             onClickFilter = onClickFilter
         )
 

@@ -3,6 +3,7 @@ package com.kidemma.common.ui.models
 import androidx.annotation.StringRes
 import com.kidemma.common.ui.models.icons.IconUiModel
 import com.kidemma.common.ui.models.icons.TrailingIconUiModel
+import com.kidemma.common.validation.KidemmaValidationRule
 
 /*
  * File: OutlinedTextFieldUiModel
@@ -19,6 +20,7 @@ data class OutlinedTextFieldUiModel(
     @param:StringRes val supportingText: Int? = null,
 
     val leadingIcon: IconUiModel? = null,
-    val trailingIcon: TrailingIconUiModel? = null
+    val trailingIcon: TrailingIconUiModel? = null,
+    val validationRules: List<KidemmaValidationRule> = emptyList(),
 
 )

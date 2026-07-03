@@ -7,6 +7,10 @@
     <string name="error_required">Este campo es obligatorio</string>
     <string name="error_invalid_email">Formato de email inválido</string>
     <string name="error_min_length">Debe tener al menos %1$d caracteres</string>
+    <string name="error_no_whitespace">No se permiten espacios en blanco</string>
+    <string name="error_no_symbols">No se permiten símbolos</string>
+    <string name="error_no_numbers">No se permiten números</string>
+    <string name="error_max_length">Debe tener como máximo %1$d caracteres</string>
 
     <!-- Onboarding strings -->
     <string name="onboarding_title_1">Bienvenido a Kidemma</string>

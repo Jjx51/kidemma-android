@@ -3,6 +3,7 @@ package com.kidemma.home_admin.tabs.kids
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.google.common.truth.Truth.assertThat
 import com.kidemma.common.utils.Gender
+import com.kidemma.common.validation.KidemmaValidationError
 import com.kidemma.home_admin.tabs.kids.domain.models.KidsTabFilterResult
 import com.kidemma.home_admin.tabs.kids.presentation.KidsTabContract
 import com.kidemma.home_admin.tabs.kids.presentation.KidsTabViewModelImpl
@@ -24,7 +25,7 @@ import java.time.LocalDate
  *
  * Created by: José Manuel Carrillo Torres
  * Created on: 11/03/26
- * Last modified: 14/05/26
+ * Last modified: 19/05/26
  */
 
 private const val ADVANCE_TIME_MS = 2001L
@@ -146,6 +147,8 @@ class KidsTabViewModelTest {
         val data = viewModel.state.value.content as KidsTabContract.KidsContentState.Data
         assertThat(data.kidDetailList).isNotEmpty()
         assertThat(data.kidDetailList.all { it.kidUiModel.name.contains("Alice", ignoreCase = true) }).isTrue()
+        assertThat(viewModel.state.value.isSearchError).isFalse()
+        assertThat(viewModel.state.value.searchError).isNull()
     }
 
     @Test
@@ -163,6 +166,8 @@ class KidsTabViewModelTest {
 
         // THEN
         assertThat(viewModel.state.value.content).isInstanceOf(KidsTabContract.KidsContentState.Empty::class.java)
+        assertThat(viewModel.state.value.isSearchError).isFalse()
+        assertThat(viewModel.state.value.searchError).isNull()
     }
 
     @Test
@@ -186,5 +191,48 @@ class KidsTabViewModelTest {
         val data = viewModel.state.value.content as KidsTabContract.KidsContentState.Data
         assertThat(data.kidDetailList).hasSize(1)
         assertThat(data.kidDetailList.first().kidUiModel.name).isEqualTo("Grace Lee")
+    }
+
+    @Test
+    fun `when OnSearchQueryChange intent is processed with symbols, then searchError is NoSymbols`() = runTest {
+        // GIVEN
+        val testSubject = KidsTabViewModelTestFactory.givenAKidsViewModel()
+        val viewModel = testSubject.viewModel as KidsTabViewModelImpl
+
+        // WHEN
+        viewModel.processIntent(KidsTabContract.Intent.OnSearchQueryChange("test!"))
+
+        // THEN
+        assertThat(viewModel.state.value.isSearchError).isTrue()
+        assertThat(viewModel.state.value.searchError).isEqualTo(KidemmaValidationError.NoSymbols)
+    }
+
+    @Test
+    fun `when OnSearchQueryChange intent is processed with numbers, then searchError is NoNumbers`() = runTest {
+        // GIVEN
+        val testSubject = KidsTabViewModelTestFactory.givenAKidsViewModel()
+        val viewModel = testSubject.viewModel as KidsTabViewModelImpl
+
+        // WHEN
+        viewModel.processIntent(KidsTabContract.Intent.OnSearchQueryChange("test1"))
+
+        // THEN
+        assertThat(viewModel.state.value.isSearchError).isTrue()
+        assertThat(viewModel.state.value.searchError).isEqualTo(KidemmaValidationError.NoNumbers)
+    }
+
+    @Test
+    fun `when OnSearchQueryChange intent is processed with too many characters, then searchError is MaxLength`() = runTest {
+        // GIVEN
+        val testSubject = KidsTabViewModelTestFactory.givenAKidsViewModel()
+        val viewModel = testSubject.viewModel as KidsTabViewModelImpl
+        val longString = "a".repeat(101)
+
+        // WHEN
+        viewModel.processIntent(KidsTabContract.Intent.OnSearchQueryChange(longString))
+
+        // THEN
+        assertThat(viewModel.state.value.isSearchError).isTrue()
+        assertThat(viewModel.state.value.searchError).isEqualTo(KidemmaValidationError.MaxLength(100))
     }
 }

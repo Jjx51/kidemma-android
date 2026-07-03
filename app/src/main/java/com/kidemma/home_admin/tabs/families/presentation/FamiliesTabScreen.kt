@@ -25,18 +25,20 @@ import com.kidemma.common.components.KidemmaPrimaryButton
 import com.kidemma.common.components.KidemmaTextFieldWithFilter
 import com.kidemma.common.ui.theme.KidemmaColors
 import com.kidemma.common.ui.theme.KidemmaDimens
+import com.kidemma.common.validation.KidemmaValidationError
+import com.kidemma.common.validation.asMessage
 import com.kidemma.home_admin.tabs.families.presentation.FamiliesUiConstants.Dimens.ContentSpacing
 import com.kidemma.home_admin.tabs.families.presentation.FamiliesUiConstants.Dimens.ListSpacing
 import com.kidemma.home_admin.tabs.families.presentation.FamiliesUiConstants.Dimens.ScreenTopPadding
 import org.koin.androidx.compose.koinViewModel
 
 /*
- * File: FamiliesTabScreen
- * Description: screen for listing and filtering families
+ * File: FamiliesTabScreen.kt
+ * Description: Screen for listing and filtering families with search validation feedback.
  *
  * Created by: Laura Zermeño Pichardo
  * Created on: 26/02/26
- * Last modified: 12/03/26
+ * Last modified: 19/05/26
  */
 @Composable
 fun FamiliesTabScreen(
@@ -50,6 +52,8 @@ fun FamiliesTabScreen(
         FamiliesTabContent(
             familyList = state.families,
             text = state.searchQuery,
+            isError = state.isSearchError,
+            searchError = state.searchError,
             onTextChange = {
                 viewModel.onIntent(
                     FamiliesTabContract.Intent.OnSearchQueryChange(it)
@@ -59,7 +63,7 @@ fun FamiliesTabScreen(
             onNavigateToFamilyDetail = onNavigateToFamilyDetail
         )
 
-        if (state.isLoading){
+        if (state.isLoading) {
             KidemmaLoadingOverlay()
         }
     }
@@ -70,6 +74,8 @@ fun FamiliesTabScreen(
 fun FamiliesTabContent(
     familyList: List<FamilyUiModel>,
     text: String,
+    isError: Boolean,
+    searchError: KidemmaValidationError?,
     onTextChange: (String) -> Unit,
     onNavigateToCreateFamily: () -> Unit,
     onNavigateToFamilyDetail: (Int) -> Unit
@@ -85,7 +91,9 @@ fun FamiliesTabContent(
     ) {
         KidemmaTextFieldWithFilter(
             value = text,
-            onValueChange = onTextChange
+            onValueChange = onTextChange,
+            isError = isError,
+            errorMessage = searchError.asMessage()
         )
 
         KidemmaPrimaryButton(

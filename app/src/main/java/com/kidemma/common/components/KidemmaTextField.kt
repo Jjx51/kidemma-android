@@ -2,10 +2,12 @@ package com.kidemma.common.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
@@ -56,72 +58,74 @@ import com.kidemma.common.ui.theme.KidemmaTheme
  *
  * Created by: José Manuel Carrillo Torres
  * Created on: 14/05/26
+ * Last modified: 19/05/26
  */
 
 // --- KidemmaTextFieldWithFilter ---
 
-private val SearchBarHeight = 60.dp
+private val TextFieldWithFilterHeight = 60.dp
+private val TextFieldWithFilterErrorPadding = 16.dp
 
 @Composable
 fun KidemmaTextFieldWithFilter(
     modifier: Modifier = Modifier,
     value: String,
-    onValueChange: (String) -> Unit,
+    onValueChange: (String) -> Unit, isError: Boolean = false, errorMessage: String? = null,
     onClickFilter: () -> Unit = {}
 ) {
-    Row(modifier = modifier, verticalAlignment = Alignment.CenterVertically) {
-        KidemmaCard(
-            modifier = Modifier
-                .weight(1f)
-                .height(SearchBarHeight)
-        ) {
-            Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                TextField(
-                    modifier = Modifier.fillMaxWidth(),
-                    value = value,
-                    onValueChange = onValueChange,
-                    placeholder = {
+    Column(modifier = modifier) {
+        Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+            KidemmaCard(
+                modifier = Modifier
+                    .weight(1f)
+                    .height(TextFieldWithFilterHeight)
+            ) {
+                Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                    TextField(
+                        modifier = Modifier.fillMaxWidth(), value = value, onValueChange = onValueChange, isError = isError, placeholder = {
                         KidemmaLabelLarge(
-                            text = stringResource(R.string.family_screen_write_something),
-                            color = KidemmaColors.PlaceholderForm
+                            text = stringResource(R.string.family_screen_write_something), color = KidemmaColors.PlaceholderForm
                         )
-                    },
-                    trailingIcon = {
+                    }, trailingIcon = {
                         Icon(
                             painter = painterResource(R.drawable.ic_search),
-                            tint = KidemmaColors.PlaceholderForm,
+                            tint = if (isError) KidemmaColors.Error else KidemmaColors.PlaceholderForm,
                             contentDescription = stringResource(R.string.texfield_with_filter_search_icon),
                             modifier = Modifier.size(KidemmaDimens.IconSizeMedium)
                         )
-                    },
-                    singleLine = true,
-                    textStyle = MaterialTheme.typography.bodyMedium,
-                    colors = TextFieldDefaults.colors(
+                    }, singleLine = true, textStyle = MaterialTheme.typography.bodyMedium, colors = TextFieldDefaults.colors(
                         focusedContainerColor = Color.White,
                         unfocusedContainerColor = Color.White,
                         focusedIndicatorColor = Color.Transparent,
-                        unfocusedIndicatorColor = Color.Transparent
+                        unfocusedIndicatorColor = Color.Transparent,
+                        errorContainerColor = Color.White,
+                        errorIndicatorColor = Color.Transparent
                     )
-                )
+                    )
+                }
+            }
+
+            HorizontalSpacerSmall()
+
+            KidemmaCard(
+                modifier = Modifier
+                    .size(TextFieldWithFilterHeight)
+                    .clickable { onClickFilter() }) {
+                Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                    Icon(
+                        painter = painterResource(R.drawable.ic_filter),
+                        contentDescription = stringResource(R.string.texfield_with_filter_filter_icon),
+                        tint = KidemmaColors.PlaceholderForm,
+                        modifier = Modifier.size(KidemmaDimens.IconSizeMedium)
+                    )
+                }
             }
         }
-
-        HorizontalSpacerSmall()
-
-        KidemmaCard(
-            modifier = Modifier
-                .size(SearchBarHeight)
-                .clickable { onClickFilter() }
-        ) {
-            Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                Icon(
-                    painter = painterResource(R.drawable.ic_filter),
-                    contentDescription = stringResource(R.string.texfield_with_filter_filter_icon),
-                    tint = KidemmaColors.PlaceholderForm,
-                    modifier = Modifier
-                        .size(KidemmaDimens.IconSizeMedium)
-                )
-            }
+        if (isError && errorMessage != null) {
+            VerticalSpacerExtraSmall()
+            KidemmaLabelSmall(
+                text = errorMessage, color = KidemmaColors.Error, modifier = Modifier.padding(start = TextFieldWithFilterErrorPadding)
+            )
         }
     }
 }
