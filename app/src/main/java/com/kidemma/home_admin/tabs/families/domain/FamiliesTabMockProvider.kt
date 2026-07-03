@@ -10,7 +10,7 @@ import com.kidemma.authentication.domain.model.FamilyUiModel
  *
  * Created by: Laura Zermeño Pichardo
  * Created on: 27/02/26
- * Last modified: 12/03/26
+ * Last modified: 28/05/26
  */
 object FamiliesTabMockProvider {
     val familyList = listOf(
@@ -99,6 +99,14 @@ object FamiliesTabMockProvider {
                 ),
                 FamilyMemberUiModel(
                     9,
+                    name = "María",
+                    gender = "femenino",
+                    role = "hija",
+                    image = R.drawable.img_girl,
+                    imageError = R.drawable.img_girl
+                ),
+                FamilyMemberUiModel(
+                    10,
                     name = "Diego",
                     gender = "masculino",
                     role = "hijo",
@@ -106,7 +114,7 @@ object FamiliesTabMockProvider {
                     imageError = R.drawable.img_boy
                 ),
                 FamilyMemberUiModel(
-                    9,
+                    11,
                     name = "Diego",
                     gender = "masculino",
                     role = "hijo",

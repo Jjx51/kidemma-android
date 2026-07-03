@@ -1,5 +1,6 @@
 package com.kidemma.common.components
 
+import androidx.annotation.DrawableRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -21,13 +22,13 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.platform.LocalContext
 import com.kidemma.R
 import com.kidemma.common.domain.models.KidDetailCardUiModel
 import com.kidemma.common.domain.models.WeekScheduleUiModel
@@ -36,6 +37,8 @@ import com.kidemma.common.ui.theme.KidemmaColors
 import com.kidemma.common.ui.theme.KidemmaDimens
 import com.kidemma.common.ui.theme.KidemmaTheme
 import com.kidemma.common.utils.DayOfWeek
+import com.kidemma.common.utils.Gender
+import com.kidemma.common.utils.defaultAvatarResId
 import java.time.LocalDate
 
 /*
@@ -44,7 +47,7 @@ import java.time.LocalDate
  *
  * Created by: José Manuel Carrillo Torres
  * Created on: 23/02/26
- * Last modified: 22/04/26
+ * Last modified: 28/05/26
  */
 
 @Composable
@@ -70,6 +73,7 @@ fun KidemmaCard(
 private val KidDetailCardSectionPadding = 16.dp
 private val KidDetailCardClassCircleSize = 24.dp
 private val KidDetailCardClassBorderThickness = 2.dp
+private val KidDetailCardAvatarSize = 40.dp
 
 @Composable
 fun KidDetailCard(
@@ -85,7 +89,9 @@ fun KidDetailCard(
         Column {
             KidDetailHeader(
                 name = kidDetailCardUiModel.kidUiModel.name,
-                ageDescription = kidDetailCardUiModel.kidUiModel.getAgeDescription(context)
+                ageDescription = kidDetailCardUiModel.kidUiModel.getAgeDescription(context),
+                profileImage = kidDetailCardUiModel.kidUiModel.profileImage?.resId,
+                gender = kidDetailCardUiModel.kidUiModel.gender
             )
 
             HorizontalDivider(color = KidemmaColors.Divider)
@@ -99,15 +105,20 @@ fun KidDetailCard(
 private fun KidDetailHeader(
     name: String,
     ageDescription: String,
+    @DrawableRes profileImage: Int?,
+    gender: Gender,
     modifier: Modifier = Modifier,
 ) {
+    val errorImage = gender.defaultAvatarResId
     Row(
         modifier = modifier.padding(KidDetailCardSectionPadding),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        // Todo: use the component that Laura is creating for kid profile pictures once it's ready.
-        //  For now, just a placeholder box.
-        Box(modifier = Modifier.size(40.dp)) {}
+        KidemmaAvatar(
+            modifier = Modifier.size(KidDetailCardAvatarSize),
+            memberImage = profileImage ?: errorImage,
+            memberErrorImage = errorImage
+        )
 
         HorizontalSpacerMedium()
 
@@ -175,9 +186,7 @@ private fun KidDetailDayItem(
             .then(
                 if (hasClass) {
                     Modifier.border(
-                        width = KidDetailCardClassBorderThickness,
-                        color = KidemmaColors.Icon,
-                        shape = CircleShape
+                        width = KidDetailCardClassBorderThickness, color = KidemmaColors.Icon, shape = CircleShape
                     )
                 } else {
                     Modifier.background(KidemmaColors.DisabledButton)
