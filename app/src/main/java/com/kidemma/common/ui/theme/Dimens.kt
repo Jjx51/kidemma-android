@@ -9,7 +9,7 @@ import androidx.compose.ui.unit.sp
  *
  * Created by: José Manuel Carrillo Torres
  * Created on: 29/11/25
- * Last modified: 09/03/26
+ * Last modified: 28/05/26
  */
 
 object KidemmaDimens {
@@ -55,7 +55,8 @@ object KidemmaDimens {
 
     val GeneralPaddingFillMaxSize = 20.dp
 
-    val AvatarSize = 60.dp
+    val AvatarSize = 48.dp
+    val AvatarBorderWidth = 3.dp
 
     val ButtonHeight = 65.dp
 
