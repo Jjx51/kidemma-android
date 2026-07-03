@@ -1,6 +1,8 @@
 package com.kidemma.authentication.login.presentation
 
 import androidx.annotation.StringRes
+import com.kidemma.common.validation.KidemmaFieldState
+import com.kidemma.common.validation.KidemmaValidator
 
 /*
  * File: LoginContract
@@ -13,13 +15,19 @@ import androidx.annotation.StringRes
 object LoginContract {
 
     data class State(
-        val email: String = "",
-        val password: String = "",
+        val email: KidemmaFieldState = KidemmaFieldState(),
+        val password: KidemmaFieldState = KidemmaFieldState(),
         val isLoading: Boolean = false,
         @param:StringRes val errorMessage: Int? = null,
         val isPasswordVisible: Boolean = false,
-        @param:StringRes val emailFormatError: Int? = null,
-    )
+    ) {
+        val fields: List<KidemmaFieldState> get() = listOf(email, password)
+
+        val isSubmitEnabled: Boolean
+            get() = !isLoading && fields.all { field ->
+                KidemmaValidator.validate(field.value, field.rules) == null
+            }
+    }
 
     sealed interface Intent {
         data class OnEmailChange(val email: String) : Intent

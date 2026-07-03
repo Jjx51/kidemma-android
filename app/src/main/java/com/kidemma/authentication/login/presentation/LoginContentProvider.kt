@@ -12,6 +12,7 @@ import com.kidemma.common.ui.models.ImageUiModel
 import com.kidemma.common.ui.models.OutlinedTextFieldUiModel
 import com.kidemma.common.ui.models.icons.IconUiModel
 import com.kidemma.common.ui.models.icons.TrailingIconUiModel
+import com.kidemma.common.validation.KidemmaValidationRules
 
 /*
  * File: LoginContentProvider
@@ -28,7 +29,7 @@ object LoginContentProvider {
     fun getLoginScreenData(): LoginScreenUiModel {
         return LoginScreenUiModel(
             logo = getLogoResource(),
-            buttonText = getButtonText(),
+            buttonText = R.string.login_button_text,
             emailTextField = getEmailTextField(),
             passwordTextField = getPasswordTextField(),
             errorInvalidEmailFormat = R.string.login_error_invalid_email_format,
@@ -46,17 +47,14 @@ object LoginContentProvider {
         )
     }
 
-    private fun getButtonText(): Int {
-        return R.string.login_button_text
-    }
-
     private fun getEmailTextField(): OutlinedTextFieldUiModel {
         return OutlinedTextFieldUiModel(
             label = R.string.login_email_text_field_label,
             leadingIcon = IconUiModel(
                 contentDescription = R.string.login_email_text_field_leading_icon_content_description,
                 icon = Icons.Default.Email
-            )
+            ),
+            validationRules = KidemmaValidationRules.email(maxLength = 50)
         )
     }
 
@@ -73,7 +71,7 @@ object LoginContentProvider {
                 inactiveContentDescription = R.string.login_password_text_field_trailing_icon_show_password_content_description,
                 inactiveIcon = Icons.Default.Visibility,
             ),
+            validationRules = KidemmaValidationRules.password(minLength = 8, maxLength = 50)
         )
     }
-
 }

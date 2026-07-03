@@ -34,10 +34,10 @@ import com.kidemma.common.components.KidemmaPrimaryButton
 import com.kidemma.common.components.VerticalSpacerMedium
 import com.kidemma.common.components.VerticalSpacerXXLarge
 import com.kidemma.common.components.VerticalSpacerXXXLarge
-import com.kidemma.common.extensions.isNotNull
 import com.kidemma.common.navigation.AppRoute
 import com.kidemma.common.ui.theme.KidemmaColors
 import com.kidemma.common.ui.theme.KidemmaDimens
+import com.kidemma.common.validation.asMessage
 import org.koin.androidx.compose.koinViewModel
 
 /*
@@ -134,11 +134,11 @@ private fun MainContent(
 
         KidemmaOutlinedTextField(
             data = uiData.emailTextField,
-            value = state.email,
+            value = state.email.value,
             onValueChange = onEmailChange,
             enabled = state.isLoading.not(),
-            isError = state.errorMessage.isNotNull() || state.emailFormatError.isNotNull(),
-            errorMessage = state.emailFormatError?.let { stringResource(it) },
+            isError = state.email.isNotValid,
+            errorMessage = state.email.error?.asMessage(),
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Email,
                 imeAction = ImeAction.Next,
@@ -148,11 +148,9 @@ private fun MainContent(
         VerticalSpacerMedium()
 
         KidemmaOutlinedTextField(
-            data = uiData.passwordTextField,
-            value = state.password,
+            data = uiData.passwordTextField, value = state.password.value,
             onValueChange = onPasswordChange,
-            enabled = state.isLoading.not(),
-            isError = state.errorMessage.isNotNull(),
+            enabled = state.isLoading.not(), isError = state.password.isNotValid, errorMessage = state.password.error?.asMessage(),
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Password,
                 imeAction = ImeAction.Done,
@@ -166,8 +164,7 @@ private fun MainContent(
 
         KidemmaPrimaryButton(
             modifier = Modifier.fillMaxWidth(),
-            text = stringResource(uiData.buttonText),
-            enabled = !state.isLoading,
+            text = stringResource(uiData.buttonText), enabled = state.isSubmitEnabled,
             onClick = onLoginClicked
         )
     }

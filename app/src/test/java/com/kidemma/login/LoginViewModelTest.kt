@@ -6,6 +6,7 @@ import com.kidemma.authentication.login.presentation.LoginContentProvider
 import com.kidemma.authentication.login.presentation.LoginContract
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
@@ -49,41 +50,42 @@ class LoginViewModelTest : KoinTest {
     }
 
     @Test
-    fun `given error state, when OnEmailChange, then email updates and errors are cleared`() =
+    fun `given error state, when OnEmailChange, then email updates and error is cleared`() =
         runTest {
             val testSubject = LoginViewModelTestFactory.givenALoginViewModel()
             val viewModel = testSubject.viewModel
 
-            //WHEN
-            viewModel.processIntent(LoginContract.Intent.OnLoginClicked)
-            assertThat(viewModel.state.value).isNotNull()
+            // GIVEN: Set an error state (e.g. invalid email)
+            viewModel.processIntent(LoginContract.Intent.OnEmailChange("invalid-email"))
+            assertThat(viewModel.state.value.email.error).isNotNull()
 
-            viewModel.processIntent(LoginContract.Intent.OnEmailChange("test"))
+            // WHEN
+            viewModel.processIntent(LoginContract.Intent.OnEmailChange("test@example.com"))
 
-            //THEN
-            assertThat(viewModel.state.value.email).isEqualTo("test")
-            assertThat(viewModel.state.value.emailFormatError).isNull()
+            // THEN
+            assertThat(viewModel.state.value.email.value).isEqualTo("test@example.com")
+            assertThat(viewModel.state.value.email.error).isNull()
             assertThat(viewModel.state.value.errorMessage).isNull()
-
         }
 
     @Test
-    fun `given error state, when OnPasswordChange, then password updates and errors are cleared`() =
+    fun `given error state, when OnPasswordChange, then password updates and error is cleared`() =
         runTest {
             val testSubject = LoginViewModelTestFactory.givenALoginViewModel()
             val viewModel = testSubject.viewModel
 
-            //WHEN
-            viewModel.processIntent(LoginContract.Intent.OnLoginClicked)
-            assertThat(viewModel.state.value).isNotNull()
+            // GIVEN: Set an error state (e.g. too short)
+            viewModel.processIntent(LoginContract.Intent.OnPasswordChange("123"))
+            assertThat(viewModel.state.value.password.error).isNotNull()
 
             val newPassword = "newPassword"
+            // WHEN
             viewModel.processIntent(LoginContract.Intent.OnPasswordChange(newPassword))
 
-            //THEN
-            assertThat(viewModel.state.value.password).isEqualTo(newPassword)
+            // THEN
+            assertThat(viewModel.state.value.password.value).isEqualTo(newPassword)
+            assertThat(viewModel.state.value.password.error).isNull()
             assertThat(viewModel.state.value.errorMessage).isNull()
-
         }
 
     @Test
@@ -124,34 +126,31 @@ class LoginViewModelTest : KoinTest {
         }
 
     @Test
-    fun `given invalid email format, when OnLoginClicked, then email format error is set`() =
+    fun `given invalid email format, when OnEmailChange, then email error is set`() =
         runTest {
             val testSubject = LoginViewModelTestFactory.givenALoginViewModel()
             val viewModel = testSubject.viewModel
+
+            // WHEN
             viewModel.processIntent(LoginContract.Intent.OnEmailChange("user_without_at_symbol.com"))
 
-            //WHEN
-            viewModel.processIntent(LoginContract.Intent.OnLoginClicked)
-
-            //THEN
-            assertThat(viewModel.state.value.emailFormatError).isNotNull()
-
+            // THEN
+            assertThat(viewModel.state.value.email.error).isNotNull()
         }
 
     @Test
-    fun `given blank email, when OnLoginClicked, then email errorMessage is set`() =
+    fun `given blank required fields, when OnLoginClicked, then submit should not proceed`() =
         runTest {
             val testSubject = LoginViewModelTestFactory.givenALoginViewModel()
             val viewModel = testSubject.viewModel
-            viewModel.processIntent(LoginContract.Intent.OnEmailChange("correo@gmail.com"))
-            viewModel.processIntent(LoginContract.Intent.OnPasswordChange(""))
+            // Both fields are required and blank initially
+            assertThat(viewModel.state.value.isSubmitEnabled).isFalse()
 
-            //WHEN
+            // WHEN
             viewModel.processIntent(LoginContract.Intent.OnLoginClicked)
 
-            //THEN
-            assertThat(viewModel.state.value.errorMessage).isNotNull()
-
+            // THEN
+            assertThat(viewModel.state.value.isLoading).isFalse()
         }
 
     @Test
@@ -161,7 +160,8 @@ class LoginViewModelTest : KoinTest {
         val viewModel = testSubject.viewModel
 
         viewModel.processIntent(LoginContract.Intent.OnEmailChange("valid@email.com"))
-        viewModel.processIntent(LoginContract.Intent.OnPasswordChange("123456"))
+        viewModel.processIntent(LoginContract.Intent.OnPasswordChange("12345678"))
+        assertThat(viewModel.state.value.isSubmitEnabled).isTrue()
 
         // WHEN
         viewModel.processIntent(LoginContract.Intent.OnLoginClicked)
@@ -169,9 +169,76 @@ class LoginViewModelTest : KoinTest {
 
         // THEN
         assertThat(viewModel.state.value.isLoading).isTrue()
-
         assertThat(viewModel.state.value.errorMessage).isNull()
-        assertThat(viewModel.state.value.emailFormatError).isNull()
+        assertThat(viewModel.state.value.email.error).isNull()
+        assertThat(viewModel.state.value.password.error).isNull()
     }
 
+    @OptIn(ExperimentalCoroutinesApi::class)
+    @Test
+    fun `given admin credentials, when OnLoginClicked, then NavigateToAdminHome effect is emitted`() = runTest {
+        // GIVEN
+        val testSubject = LoginViewModelTestFactory.givenALoginViewModel()
+        val viewModel = testSubject.viewModel
+        val effects = mutableListOf<LoginContract.Effect>()
+        val job = launch {
+            viewModel.effects.collect { effects.add(it) }
+        }
+
+        viewModel.processIntent(LoginContract.Intent.OnEmailChange("admin@test.com"))
+        viewModel.processIntent(LoginContract.Intent.OnPasswordChange("12345678"))
+
+        // WHEN
+        viewModel.processIntent(LoginContract.Intent.OnLoginClicked)
+        testDispatcher.scheduler.advanceTimeBy(1501)
+        testDispatcher.scheduler.runCurrent()
+
+        // THEN
+        assertThat(effects).contains(LoginContract.Effect.NavigateToAdminHome)
+        job.cancel()
+    }
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    @Test
+    fun `given user home credentials, when OnLoginClicked, then NavigateToUserHome effect is emitted`() = runTest {
+        // GIVEN
+        val testSubject = LoginViewModelTestFactory.givenALoginViewModel()
+        val viewModel = testSubject.viewModel
+        val effects = mutableListOf<LoginContract.Effect>()
+        val job = launch {
+            viewModel.effects.collect { effects.add(it) }
+        }
+
+        viewModel.processIntent(LoginContract.Intent.OnEmailChange("home@test.com"))
+        viewModel.processIntent(LoginContract.Intent.OnPasswordChange("12345678"))
+
+        // WHEN
+        viewModel.processIntent(LoginContract.Intent.OnLoginClicked)
+        testDispatcher.scheduler.advanceTimeBy(1501)
+        testDispatcher.scheduler.runCurrent()
+
+        // THEN
+        assertThat(effects).contains(LoginContract.Effect.NavigateToUserHome)
+        job.cancel()
+    }
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    @Test
+    fun `given error credentials, when OnLoginClicked, then error message is set and isLoading is false`() = runTest {
+        // GIVEN
+        val testSubject = LoginViewModelTestFactory.givenALoginViewModel()
+        val viewModel = testSubject.viewModel
+
+        viewModel.processIntent(LoginContract.Intent.OnEmailChange("error@test.com"))
+        viewModel.processIntent(LoginContract.Intent.OnPasswordChange("12345678"))
+
+        // WHEN
+        viewModel.processIntent(LoginContract.Intent.OnLoginClicked)
+        testDispatcher.scheduler.advanceTimeBy(1501)
+        testDispatcher.scheduler.runCurrent()
+
+        // THEN
+        assertThat(viewModel.state.value.isLoading).isFalse()
+        assertThat(viewModel.state.value.errorMessage).isEqualTo(viewModel.uiData.errorInvalidCredentials)
+    }
 }
