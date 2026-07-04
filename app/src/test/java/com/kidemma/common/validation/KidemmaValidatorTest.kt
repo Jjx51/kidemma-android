@@ -4,6 +4,15 @@ import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNull
 import org.junit.Test
 
+/*
+ * File: KidemmaValidatorTest.kt
+ * Description: Unit tests for KidemmaValidator.
+ *
+ * Created by: José Manuel Carrillo Torres
+ * Created on: 24/02/26
+ * Last modified: 19/05/26
+ */
+
 class KidemmaValidatorTest {
 
     private companion object {
@@ -77,6 +86,70 @@ class KidemmaValidatorTest {
     }
 
     @Test
+    fun `returns MaxLength when value exceeds max length`() {
+        val maxLength = 5
+
+        val result = KidemmaValidator.validate(
+            value = "123456",
+            rules = listOf(KidemmaValidationRule.MaxLength(maxLength))
+        )
+
+        assertEquals(KidemmaValidationError.MaxLength(maxLength), result)
+    }
+
+    @Test
+    fun `returns null when value meets max length`() {
+        val maxLength = 5
+
+        val result = KidemmaValidator.validate(
+            value = "12345",
+            rules = listOf(KidemmaValidationRule.MaxLength(maxLength))
+        )
+
+        assertNull(result)
+    }
+
+    @Test
+    fun `returns NoWhitespace when value contains whitespace`() {
+        val result = KidemmaValidator.validate(
+            value = "test test",
+            rules = listOf(KidemmaValidationRule.NoWhitespace)
+        )
+
+        assertEquals(KidemmaValidationError.NoWhitespace, result)
+    }
+
+    @Test
+    fun `returns null when value contains no whitespace`() {
+        val result = KidemmaValidator.validate(
+            value = "testtest",
+            rules = listOf(KidemmaValidationRule.NoWhitespace)
+        )
+
+        assertNull(result)
+    }
+
+    @Test
+    fun `returns NoSymbols when value contains symbols`() {
+        val result = KidemmaValidator.validate(
+            value = "test!",
+            rules = listOf(KidemmaValidationRule.NoSymbols)
+        )
+
+        assertEquals(KidemmaValidationError.NoSymbols, result)
+    }
+
+    @Test
+    fun `returns null when value contains no symbols`() {
+        val result = KidemmaValidator.validate(
+            value = "test 123",
+            rules = listOf(KidemmaValidationRule.NoSymbols)
+        )
+
+        assertNull(result)
+    }
+
+    @Test
     fun `returns first error when multiple rules fail`() {
         val result = KidemmaValidator.validate(
             value = BLANK,
@@ -87,6 +160,19 @@ class KidemmaValidatorTest {
         )
 
         assertEquals(KidemmaValidationError.Required, result)
+    }
+
+    @Test
+    fun `returns first error when multiple rules fail (combined case)`() {
+        val result = KidemmaValidator.validate(
+            value = "test!1",
+            rules = listOf(
+                KidemmaValidationRule.NoSymbols,
+                KidemmaValidationRule.NoNumbers
+            )
+        )
+
+        assertEquals(KidemmaValidationError.NoSymbols, result)
     }
 
     @Test
