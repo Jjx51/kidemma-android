@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.kidemma.R
+import com.kidemma.common.components.KidemmaAvatar
 import com.kidemma.common.components.KidemmaBodyMedium
 import com.kidemma.common.components.KidemmaHorizontalSpacer
 import com.kidemma.common.components.KidemmaLabelMedium
