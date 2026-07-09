@@ -35,7 +35,7 @@ fun KidemmaScrollableTextContent(
 
         MainTextBody(bodyText = bodyText)
 
-        VerticalSpacerExtraLarge()
+        KidemmaVerticalSpacer(size = KidemmaSpacerSize.ExtraLarge)
 
     }
 }

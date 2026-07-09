@@ -32,8 +32,8 @@ import com.kidemma.common.components.KidemmaHeadlineSmall
 import com.kidemma.common.components.KidemmaLabelLarge
 import com.kidemma.common.components.KidemmaPrimaryButton
 import com.kidemma.common.components.KidemmaTertiaryButton
-import com.kidemma.common.components.VerticalSpacerMedium
-import com.kidemma.common.components.VerticalSpacerSmall
+import com.kidemma.common.components.KidemmaSpacerSize
+import com.kidemma.common.components.KidemmaVerticalSpacer
 import com.kidemma.common.ui.theme.KidemmaTheme
 import com.kidemma.common.utils.Gender
 import com.kidemma.common.utils.formatAgeMonths
@@ -80,14 +80,14 @@ fun KidsTabFilterDialog(
                     textAlign = TextAlign.Center,
                 )
 
-                VerticalSpacerMedium()
+                KidemmaVerticalSpacer()
 
                 GenderFilterSection(
                     selectedGender = selectedGender,
                     onGenderSelected = { selectedGender = it },
                 )
 
-                VerticalSpacerMedium()
+                KidemmaVerticalSpacer()
 
                 AgeRangeFilterSection(
                     minAgeMonths = minAgeMonths,
@@ -100,7 +100,7 @@ fun KidsTabFilterDialog(
                     },
                 )
 
-                VerticalSpacerMedium()
+                KidemmaVerticalSpacer()
 
                 Row(
                     modifier = Modifier.fillMaxWidth(),
@@ -199,7 +199,7 @@ private fun AgeRangeFilterSection(
 
     Column(modifier = modifier.fillMaxWidth()) {
         KidemmaLabelLarge(text = stringResource(R.string.kids_filter_age_range_section_title))
-        VerticalSpacerSmall()
+        KidemmaVerticalSpacer(size = KidemmaSpacerSize.Small)
 
         val minAgeLabel = formatAgeMonths(context, minAgeMonths)
         val maxAgeLabel = formatAgeMonths(context, maxAgeMonths)
@@ -214,7 +214,7 @@ private fun AgeRangeFilterSection(
             textAlign = TextAlign.Center,
         )
 
-        VerticalSpacerMedium()
+        KidemmaVerticalSpacer()
 
         KidemmaBodyMedium(
             text = stringResource(R.string.kids_filter_age_range_min_label),
@@ -230,7 +230,7 @@ private fun AgeRangeFilterSection(
             steps = ((maxAgeMonths - MIN_AGE_MONTHS) - 1).coerceAtLeast(0),
         )
 
-        VerticalSpacerSmall()
+        KidemmaVerticalSpacer(size = KidemmaSpacerSize.Small)
 
         KidemmaBodyMedium(
             text = stringResource(R.string.kids_filter_age_range_max_label),

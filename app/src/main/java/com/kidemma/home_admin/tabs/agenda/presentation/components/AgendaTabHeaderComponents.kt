@@ -26,10 +26,11 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import com.kidemma.R
 import com.kidemma.common.extensions.toWeekRangeLabel
-import com.kidemma.common.components.HorizontalSpacerSmall
 import com.kidemma.common.components.KidemmaCard
+import com.kidemma.common.components.KidemmaHorizontalSpacer
 import com.kidemma.common.components.KidemmaLabelLarge
-import com.kidemma.common.components.VerticalSpacerLarge
+import com.kidemma.common.components.KidemmaSpacerSize
+import com.kidemma.common.components.KidemmaVerticalSpacer
 import com.kidemma.common.ui.theme.KidemmaCardShapes
 import com.kidemma.common.ui.theme.KidemmaColors
 import com.kidemma.common.ui.theme.KidemmaTheme
@@ -69,7 +70,7 @@ internal fun AgendaHeader(
             .padding(ScreenPadding),
     ) {
         AgendaWeekSelector(weekStart = weekStart, onIntent = onIntent)
-        VerticalSpacerLarge()
+        KidemmaVerticalSpacer(size = KidemmaSpacerSize.Large)
         AgendaDaySelector(selectedDate = selectedDate, weekStart = weekStart, onIntent = onIntent)
     }
 }
@@ -110,7 +111,7 @@ private fun WeekRangeChip(weekStart: LocalDate, onIntent: (AgendaTabContract.Int
             tint = KidemmaColors.Icon,
             modifier = Modifier.size(WeekRangeChipIconSize),
         )
-        HorizontalSpacerSmall()
+        KidemmaHorizontalSpacer(size = KidemmaSpacerSize.Small)
         KidemmaLabelLarge(
             text = weekStart.toWeekRangeLabel(
                 daysToAddForWeekend = DAYS_TO_ADD_FOR_THE_WEEKEND,

@@ -19,7 +19,8 @@ import com.kidemma.home_admin.tabs.agenda.presentation.components.AgendaTabUiCon
 import com.kidemma.home_admin.tabs.agenda.presentation.components.AgendaTabUiConstants.Dimens.ClassesListContentPadding
 import com.kidemma.home_admin.tabs.agenda.presentation.components.AgendaTabUiConstants.Dimens.ClassesListItemSpacing
 import com.kidemma.R
-import com.kidemma.common.components.HorizontalSpacerExtraSmall
+import com.kidemma.common.components.KidemmaHorizontalSpacer
+import com.kidemma.common.components.KidemmaSpacerSize
 import com.kidemma.common.components.KidemmaBodyMedium
 import com.kidemma.common.components.KidemmaCard
 import com.kidemma.common.components.KidemmaLabelMedium
@@ -95,7 +96,7 @@ private fun ClassTimeRow(timeDescription: String) {
         verticalAlignment = Alignment.CenterVertically,
     ) {
         KidemmaLabelMedium(text = stringResource(R.string.agenda_class_time_label))
-        HorizontalSpacerExtraSmall()
+        KidemmaHorizontalSpacer(size = KidemmaSpacerSize.ExtraSmall)
         KidemmaBodyMedium(text = timeDescription)
     }
 }

@@ -105,7 +105,7 @@ fun KidemmaTextFieldWithFilter(
                 }
             }
 
-            HorizontalSpacerSmall()
+            KidemmaHorizontalSpacer(size = KidemmaSpacerSize.Small)
 
             KidemmaCard(
                 modifier = Modifier
@@ -122,7 +122,7 @@ fun KidemmaTextFieldWithFilter(
             }
         }
         if (isError && errorMessage != null) {
-            VerticalSpacerExtraSmall()
+            KidemmaVerticalSpacer(size = KidemmaSpacerSize.ExtraSmall)
             KidemmaLabelSmall(
                 text = errorMessage, color = KidemmaColors.Error, modifier = Modifier.padding(start = TextFieldWithFilterErrorPadding)
             )
