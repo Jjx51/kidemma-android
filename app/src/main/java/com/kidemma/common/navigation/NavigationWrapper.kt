@@ -9,6 +9,7 @@ import com.kidemma.home_admin.presentation.AdminMainScreen
 import com.kidemma.home_parent.presentation.ParentMainScreen
 import com.kidemma.introduction.onboarding.presentation.OnboardingScreen
 import com.kidemma.introduction.splash.presentation.SplashScreen
+import com.kidemma.my_profile.presentation.MyProfileScreen
 
 @Composable
 fun NavigationWrapper() {
@@ -20,7 +21,8 @@ fun NavigationWrapper() {
         composable<AppRoute.Splash> { SplashScreen(navController) }
         composable<AppRoute.Onboarding> { OnboardingScreen(navController) }
         composable<AppRoute.Login> { LoginScreen(navController) }
-        composable<AppRoute.AdminMain> { AdminMainScreen() }
+        composable<AppRoute.AdminMain> { AdminMainScreen(navController) }
         composable<AppRoute.UserMain> { ParentMainScreen() }
+        composable<AppRoute.MyProfile> { MyProfileScreen(navController) }
     }
 }

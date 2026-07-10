@@ -16,4 +16,7 @@ sealed interface  AppRoute{
 
     @Serializable
     data object UserMain : AppRoute
+
+    @Serializable
+    data object MyProfile : AppRoute
 }

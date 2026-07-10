@@ -19,6 +19,8 @@ object KidemmaColors {
     val Divider = Color(0xFFD3D3D3)
     val Focus = Color(0xFF4682B4)
     val Card = Color(0xFFFFFFFF)
+
+    val CardBackground = Color(0xFFF9EDC8)
     val Toolbar = Color(0xFFFFFFFF)
     val Icon = Color(0xFFAD5645)
     val PlaceholderForm = Color(0xFFD3D3D3)

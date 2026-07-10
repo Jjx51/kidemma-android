@@ -20,6 +20,7 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.kidemma.common.components.KidemmaTopAppBar
+import com.kidemma.common.navigation.AppRoute
 import com.kidemma.common.ui.theme.KidemmaColors
 import com.kidemma.common.ui.theme.KidemmaColors.BackgroundColorBottomItem
 import com.kidemma.common.ui.theme.KidemmaColors.TextColorBottomItemSelected
@@ -36,6 +37,7 @@ import com.kidemma.home_admin.domain.model.TopBarProfileAvatarUiModel
  */
 @Composable
 fun AdminMainScreen(
+    navController: NavController,
     adminNavItems: List<AdminBottomNavItemUiModel> = AdminNavigationContentProvider.getBottomNavigationItems()
 ) {
 
@@ -51,7 +53,7 @@ fun AdminMainScreen(
         topBar = {
             KidemmaTopAppBar(
                 topBarProfileAvatarUiModel = topBarProfileAvatarUiModel,
-                onProfileClick = {},
+                onProfileClick = {navController.navigate(AppRoute.MyProfile)},
                 onNotificationClick = {}
             )
         },
