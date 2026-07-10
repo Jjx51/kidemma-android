@@ -32,4 +32,15 @@ class UserPreferencesRepositoryImpl(
             preferences[PreferencesKeys.IS_ONBOARDING_COMPLETED] = completed
         }
     }
+
+    override val isAdminUser: Flow<Boolean> = context.dataStore.data
+        .map { preferences ->
+            preferences[PreferencesKeys.IS_ADMIN_USER] ?: false
+        }
+
+    override suspend fun setIsAdminUser(isAdmin: Boolean) {
+        context.dataStore.edit { preferences ->
+            preferences[PreferencesKeys.IS_ADMIN_USER] = isAdmin
+        }
+    }
 }

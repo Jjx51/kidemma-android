@@ -10,5 +10,7 @@ package com.kidemma.common.interactions
  */
 enum class UserPreferencesInteraction {
     SET_ONBOARDING_COMPLETED,
-    GET_ONBOARDING_STATUS
+    GET_ONBOARDING_STATUS,
+    SET_IS_ADMIN_USER,
+    GET_IS_ADMIN_USER
 }

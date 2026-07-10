@@ -2,6 +2,7 @@ package com.kidemma.home_admin.presentation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -10,6 +11,7 @@ import com.kidemma.common.navigation.AdminRoute
 import com.kidemma.home_admin.tabs.kids.presentation.KidsTabScreen
 import com.kidemma.home_admin.tabs.agenda.presentation.ui.AgendaTabScreen
 import com.kidemma.home_admin.tabs.families.presentation.FamiliesTabScreen
+import com.kidemma.home_admin.tabs.others.presentation.OthersTabScreen
 
 /*
  * File: AdminNavGraph
@@ -23,6 +25,7 @@ import com.kidemma.home_admin.tabs.families.presentation.FamiliesTabScreen
 fun AdminNavGraph(
     modifier: Modifier = Modifier,
     navController: NavHostController,
+    kidemmaNavController: NavController,
 ) {
     NavHost(
         navController = navController,
@@ -34,12 +37,10 @@ fun AdminNavGraph(
 
         composable<AdminRoute.Children> { KidsTabScreen() }
 
-        composable<AdminRoute.Agenda> {
-            AgendaTabScreen()
-        }
+        composable<AdminRoute.Agenda> { AgendaTabScreen() }
 
         composable<AdminRoute.Families> { FamiliesTabScreen(onNavigateToCreateFamily = {}, onNavigateToFamilyDetail = {}) }
 
-        composable<AdminRoute.Other> { PlaceholderScreen("Otros") }
+        composable<AdminRoute.Other> { OthersTabScreen(kidemmaNavController) }
     }
 }

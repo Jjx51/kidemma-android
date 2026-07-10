@@ -36,6 +36,7 @@ import com.kidemma.home_admin.domain.model.TopBarProfileAvatarUiModel
  */
 @Composable
 fun AdminMainScreen(
+    kidemmaNavController: NavController,
     adminNavItems: List<AdminBottomNavItemUiModel> = AdminNavigationContentProvider.getBottomNavigationItems()
 ) {
 
@@ -65,6 +66,7 @@ fun AdminMainScreen(
     ) { innerPadding ->
         AdminNavGraph(
             navController = adminNavController,
+            kidemmaNavController = kidemmaNavController,
             modifier = Modifier.padding(innerPadding)
         )
     }
